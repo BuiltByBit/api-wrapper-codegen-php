@@ -39,8 +39,8 @@ jobs:
             -o generated/ \
             --skip-validate-spec \
             --git-repo-id api-wrapper-codegen-php \
-            --git-user-id BuiltByBit \
-            --additional-properties="packageName=YourApiClient"
+            --git-user-id BuiltByBit \ 
+            --package-name builtbybit/api-wrapper-codegen-php
             
       - name: Copy generated files
         run: |
@@ -61,5 +61,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"  
           git add .
+          git reset .gitignore
           git commit -m "Auto-generate wrapper from updated spec" || exit 0
           git push  # Uses GITHUB_TOKEN automatically
