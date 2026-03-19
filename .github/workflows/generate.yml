@@ -35,10 +35,10 @@ jobs:
           java -jar openapi-generator-cli.jar generate \
             -i spec.yaml \
             -g php \
-            -o . \
+            -o ./ \
             --skip-validate-spec \
             --git-repo-id api-wrapper-codegen-php \
-            --git-user-id BuiltByBit \ 
+            --git-user-id BuiltByBit \
             --package-name builtbybit/api-wrapper-codegen-php
           
       - name: Check for changes
