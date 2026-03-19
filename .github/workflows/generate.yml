@@ -32,20 +32,14 @@ jobs:
           
       - name: Generate PHP wrapper
         run: |
-          rm -rf generated/*
           java -jar openapi-generator-cli.jar generate \
             -i spec.yaml \
             -g php \
-            -o generated/ \
+            -o . \
             --skip-validate-spec \
             --git-repo-id api-wrapper-codegen-php \
             --git-user-id BuiltByBit \ 
             --package-name builtbybit/api-wrapper-codegen-php
-            
-      - name: Copy generated files
-        run: |
-          # Copy generated files to repo root, preserving structure
-          rsync -av generated/ ./ --exclude=generated
           
       - name: Check for changes
         id: changes
