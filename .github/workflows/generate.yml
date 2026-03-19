@@ -57,11 +57,9 @@ jobs:
           fi
           
       - name: Commit and push changes
-        if: steps.changes.outputs.has-changes == 'true'
         run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          # Add only specific directories/files, not everything
-          git add lib/ docs/ src/ composer.json README.md
-          git commit -m "Auto-generate wrapper from updated spec"
-          git push
+          git config --local user.name "GitHub Action"  
+          git add .
+          git commit -m "Auto-generate wrapper from updated spec" || exit 0
+          git push  # Uses GITHUB_TOKEN automatically
