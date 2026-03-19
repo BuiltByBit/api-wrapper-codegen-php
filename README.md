@@ -1,4 +1,4 @@
-# YourApiClient
+# builtbybit/api-wrapper-codegen-php
 
 All operations not tagged 'free' require an active [Ultimate](https://builtbybit.com/account/ultimate) subscription or invite-only permissions.
 
@@ -37,7 +37,7 @@ Download the files and include `autoload.php`:
 
 ```php
 <?php
-require_once('/path/to/YourApiClient/vendor/autoload.php');
+require_once('/path/to/builtbybit/api-wrapper-codegen-php/vendor/autoload.php');
 ```
 
 ## Getting Started

@@ -1,0 +1,1657 @@
+openapi: 3.0.0
+x-stoplight:
+  id: yu7gslmw7p8dt
+info:
+  description: 'All operations not tagged ''free'' require an active [Ultimate](https://builtbybit.com/account/ultimate) subscription or invite-only permissions.'
+  version: v2
+  title: BuiltByBit API
+  termsOfService: 'https://builtbybit.com/wiki/terms'
+  contact:
+    url: 'https://builtbybit.com/ticket'
+    name: BuiltByBit
+servers:
+  - description: BuiltByBit
+    url: 'https://api.builtbybit.com/'
+tags:
+  - name: discovery
+  - name: free
+  - name: oauth2
+  - name: resources
+paths:
+  /oauth2/token:
+    post:
+      summary: Request an access token using an existing grant
+      tags:
+        - oauth2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    x-stoplight:
+                      id: zsjt9ii4bl4p4
+                  expires_in:
+                    type: integer
+                    x-stoplight:
+                      id: w9gxdiz9y15yk
+                  refresh_token:
+                    type: string
+                    x-stoplight:
+                      id: c6b0c5o05iuva
+                  scope:
+                    type: string
+                    x-stoplight:
+                      id: th4bm8n8ri8yv
+                  token_type:
+                    type: string
+                    x-stoplight:
+                      id: 45ci7b7ac94e0
+      operationId: get-oauth2-token
+      x-stoplight:
+        id: e2kos61m784xx
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+              properties:
+                grant_type:
+                  type: string
+                  x-stoplight:
+                    id: fel1kseew6q2q
+                  example: authorization_code
+                code:
+                  type: string
+                  x-stoplight:
+                    id: k4hmw14e1sycl
+                  description: Required if grant_type = `authorization_code`.
+                refresh_token:
+                  type: string
+                  x-stoplight:
+                    id: x37pvqrf2ewd8
+                  description: Required if grant_type = `refresh_token`.
+      description: 'Supported grant types: authorization_code, refresh_token'
+  /oauth2/token/revoke:
+    post:
+      summary: Revoke an existing access or refresh token
+      tags:
+        - oauth2
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - revoked
+                properties:
+                  revoked:
+                    type: boolean
+                    x-stoplight:
+                      id: rk9152aczpg27
+                    default: true
+      operationId: get-oauth2-token-revoke
+      x-stoplight:
+        id: amvjs8enfwm15
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - token
+              properties:
+                token:
+                  type: string
+                  x-stoplight:
+                    id: e5346lawffc2i
+                token_hint:
+                  type: string
+                  x-stoplight:
+                    id: gpg14sbbeovih
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+  /v2/resources/discover/resources:
+    get:
+      summary: Fetch a list of resources
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    x-stoplight:
+                      id: dglyjliykl8du
+                    example: success
+                    default: sucess
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 2vibxcaob4nm2
+                    required:
+                      - resources
+                      - stats
+                    properties:
+                      resources:
+                        type: array
+                        x-stoplight:
+                          id: o8puq9d5e8lrd
+                        items:
+                          $ref: '#/components/schemas/Resource'
+                      filters:
+                        x-stoplight:
+                          id: 0o7us2ki57uke
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Filter'
+                      stats:
+                        $ref: '#/components/schemas/ListStats'
+        4XX:
+          $ref: '#/components/responses/Error'
+        5XX:
+          $ref: '#/components/responses/Error'
+      operationId: get-resources-discover-resources
+      x-stoplight:
+        id: p24j0imx0z6cc
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: category_id
+          description: 'A category ID to filter on. If the provided category is a parent, resources from subcategories will also be included.'
+          allowEmptyValue: false
+        - schema:
+            type: string
+            example: 'Description,Creator'
+          in: query
+          name: with
+          description: A comma-separated list of additional data to include. See endpoint documentation for more information.
+        - schema:
+            type: object
+          in: query
+          name: filters
+          description: A list of dynamic filters to apply.
+          explode: false
+          style: deepObject
+        - schema:
+            type: string
+          in: query
+          name: resource_ids
+          description: A comma-separated list of resource IDs to filter on.
+        - schema:
+            type: integer
+            default: 1
+          in: query
+          name: page
+          description: The page number to return.
+        - schema:
+            type: number
+            default: 25
+            maximum: 100
+          in: query
+          name: per_page
+          description: The number of resources to return per page.
+        - schema:
+            type: boolean
+          in: query
+          name: no_dependencies
+      description: "Supported 'with' hints:\r\n- `filters`: include dynamic filter information in the response.\r\n- See 'Resource' model for additional 'with' hints."
+      security:
+        - token: []
+      tags:
+        - discovery
+    parameters: []
+  /v2/resources/discover/categories:
+    get:
+      summary: Fetch a list of categories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    x-stoplight:
+                      id: xlgju922zbakq
+                    enum:
+                      - success
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: qzpl0xc49xbqn
+                    properties:
+                      categories:
+                        type: array
+                        x-stoplight:
+                          id: ypy1uslznrrg8
+                        items:
+                          $ref: '#/components/schemas/Category'
+        4XX:
+          $ref: '#/components/responses/Error'
+        5XX:
+          $ref: '#/components/responses/Error'
+      operationId: get-resources-discover-categories
+      x-stoplight:
+        id: 1wpuixx1xd8vo
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: category_id
+          description: A category ID to filter on.
+        - schema:
+            type: string
+            enum:
+              - SortOptions
+              - FilterOptions
+          in: query
+          name: with
+          description: A comma-separated list of submodels to include.
+      tags:
+        - discovery
+      description: "Supported 'with' hints:\r\n- Children: includes all subcategories and their children"
+    parameters: []
+  /v2/resources/discover/licenses:
+    get:
+      summary: Fetch a list of the user's licenses
+      tags:
+        - discovery
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    x-stoplight:
+                      id: n6seyo7ctng3b
+                    enum:
+                      - success
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: ok6y9x8fnujrs
+                    properties:
+                      licenses:
+                        type: array
+                        x-stoplight:
+                          id: ukpndrnv7kx4k
+                        items:
+                          $ref: '#/components/schemas/License'
+                      stats:
+                        $ref: '#/components/schemas/ListStats'
+        4XX:
+          $ref: '#/components/responses/Error'
+        5XX:
+          $ref: '#/components/responses/Error'
+      operationId: get-v2-resources-discover-licenses
+      x-stoplight:
+        id: 5ulsft847tbha
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/per_page'
+        - $ref: '#/components/parameters/with'
+      description: "Supported 'with' hints:\r\n- Resource: the resource the license is for if content_type = `resource`"
+  /v2/resources/discover/cart/view:
+    get:
+      summary: View the user's cart items
+      tags:
+        - discovery
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - result
+                  - data
+                properties:
+                  result:
+                    x-stoplight:
+                      id: nh2gpyez71rg4
+                    enum:
+                      - success
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: s9eu4del2jl1o
+                    required:
+                      - items
+                      - summary
+                    properties:
+                      items:
+                        type: array
+                        x-stoplight:
+                          id: y5uutu1pll4ju
+                        items:
+                          $ref: '#/components/schemas/CartItem'
+                      summary:
+                        $ref: '#/components/schemas/CartSummary'
+                      user:
+                        $ref: '#/components/schemas/Member'
+      operationId: get-v2-resources-discover-cart-view
+      x-stoplight:
+        id: eikr4b3wx2qem
+      description: 'Supported ''with hints'':'
+  /v2/resources/discover/cart/add:
+    post:
+      summary: Add items to a user's cart
+      tags:
+        - discovery
+      responses:
+        2XX:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    x-stoplight:
+                      id: 2frwalk3e6cdk
+                  data:
+                    type: string
+                    x-stoplight:
+                      id: oofrp2lorahcv
+      operationId: post-v2-resources-discover-cart-add
+      x-stoplight:
+        id: 91lnfa7dxz87w
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                add:
+                  type: array
+                  x-stoplight:
+                    id: rypnfui87uxpw
+                  items:
+                    x-stoplight:
+                      id: 17j3u2gvgn73u
+                    type: array
+                    items:
+                      x-stoplight:
+                        id: c1m7a3oenkptw
+                      type: integer
+        description: "A list of content to add to the user's cart. The outer list is keyed by the content type and the inner list are the content IDs.\r\n\r\nFor instance, if adding a resource with the ID 555, the body becomes:\r\n```json\r\n{\"add\": {\"resource\": [555]}}\r\n```"
+  /v2/resources/discover/cart/checkout:
+    post:
+      summary: Initiate a checkout of a user's cart
+      tags:
+        - discovery
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - result
+                  - data
+                properties:
+                  result:
+                    x-stoplight:
+                      id: 0bq17xcx6sasp
+                    enum:
+                      - success
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: t03u8ehqrfbfm
+                    required:
+                      - status
+                    properties:
+                      status:
+                        x-stoplight:
+                          id: cltailjstvwne
+                        description: "`initiated` - the checkout request was successful and returned a Tebex basket identifier stored in the `ident` field.\r\n\r\n`bypassed` - the checkout was successful but no Tebex basket identifier was generated as it was not needed (perhaps because the buyer used a 100% off coupon)."
+                        enum:
+                          - initiated
+                          - bypassed
+                      ident:
+                        type: string
+                        x-stoplight:
+                          id: 2dgphdqq1plwd
+                        description: The Tebex cart identifier which you can use to redirect to or open a Tebex.js overlay.
+                      url:
+                        type: string
+                        x-stoplight:
+                          id: e3gsxaj64agkm
+                        description: The Tebex checkout link to redirect to if not using Tebex.js (built from the included ident).
+      operationId: post-v2-resources-discover-cart-checkout
+      x-stoplight:
+        id: 0x1pcudppx63b
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empty'
+  /v2/resources/discover/cart/remove:
+    post:
+      summary: Remove an item from the user's cart
+      tags:
+        - discovery
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    x-stoplight:
+                      id: p1mprt5irhvp4
+                    enum:
+                      - success
+                  data:
+                    type: string
+                    x-stoplight:
+                      id: rrk17ep6tjvee
+      operationId: post-v2-resources-discover-cart-remove
+      x-stoplight:
+        id: 12m9v5ctkpynt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_item_id:
+                  type: integer
+                  x-stoplight:
+                    id: ja4uc5cg03559
+  /v2/resources/discover/cart/coupon/add:
+    post:
+      summary: Add a coupon to the user's cart
+      tags:
+        - discovery
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    x-stoplight:
+                      id: ih2ptsykg2zfp
+                    enum:
+                      - success
+                  data:
+                    type: string
+                    x-stoplight:
+                      id: wy1y5k6tyj66w
+      operationId: post-v2-resources-discover-cart-coupon-add
+      x-stoplight:
+        id: g2gmfc32a3a14
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  x-stoplight:
+                    id: 4ojoigmv6ehl1
+    parameters: []
+  /v2/resources/discover/cart/coupon/remove:
+    post:
+      summary: Remove a coupon from the user's cart
+      tags:
+        - discovery
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    x-stoplight:
+                      id: zn9dfmuqpf8do
+                    enum:
+                      - success
+                  data:
+                    type: string
+                    x-stoplight:
+                      id: aw8s9itfrpeei
+      operationId: post-v2-resources-discover-cart-coupon-remove
+      x-stoplight:
+        id: bbvokgafxl9nf
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  x-stoplight:
+                    id: mlueurz12lym0
+  /v2/events:
+    get:
+      summary: Fetch a list of pending events
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    x-stoplight:
+                      id: 3tmrr5vfrkfif
+                    enum:
+                      - success
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 4o0sz1pv0blqo
+                    properties:
+                      events:
+                        type: array
+                        x-stoplight:
+                          id: uhm6rqy1zeb93
+                        items:
+                          $ref: '#/components/schemas/Event'
+                      stats:
+                        $ref: '#/components/schemas/ListStats'
+      operationId: get-v2-events
+      x-stoplight:
+        id: 00f4ahftly4s2
+  /v2/events/complete:
+    post:
+      summary: Mark events as complete
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    x-stoplight:
+                      id: 43yhqm08jdpp7
+                    enum:
+                      - success
+                  data:
+                    type: string
+                    x-stoplight:
+                      id: kx5hd2kwivu68
+      operationId: post-v2-events-complete
+      x-stoplight:
+        id: f2lqrdli45xul
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - event_ids
+              properties:
+                event_ids:
+                  type: array
+                  x-stoplight:
+                    id: k95upgj82o2zf
+                  items:
+                    x-stoplight:
+                      id: 9ykv6yr4xaldk
+                    type: integer
+  /v2/analytics:
+    get:
+      summary: Fetch a list of analytics definitions
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    x-stoplight:
+                      id: qh5difwvjoizq
+                    enum:
+                      - success
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: ylaffyg9gv5g0
+                    properties:
+                      analytics:
+                        $ref: '#/components/schemas/Analytic'
+      operationId: get-v2-analytics
+      x-stoplight:
+        id: au6y5fszotgtf
+  /v2/analytics/graph:
+    get:
+      summary: Fetch analytics graph data
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    x-stoplight:
+                      id: 2bq9is0ilhv95
+                    enum:
+                      - success
+                  data:
+                    $ref: '#/components/schemas/AnalyticGraphData'
+      operationId: get-v2-analytics-graph
+      x-stoplight:
+        id: 10brpg6zlz0yv
+      parameters:
+        - schema:
+            type: array
+          in: query
+          name: analytics
+        - schema:
+            type: string
+          in: query
+          name: period
+        - schema:
+            type: string
+          in: query
+          name: grouping
+        - schema:
+            type: string
+          in: query
+          name: filters
+        - schema:
+            type: string
+          in: query
+          name: start_date
+          description: Only respected when 'period' = 'custom_range'.
+        - schema:
+            type: string
+          in: query
+          name: end_date
+          description: Only respected when 'period' = 'custom_range'.
+  /v2/resources/creator/update:
+    post:
+      summary: Post a resource update
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - result
+                  - data
+                properties:
+                  result:
+                    x-stoplight:
+                      id: exqnprziiwvbp
+                    enum:
+                      - success
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 344b8t2v40q02
+                    required:
+                      - version_id
+                    properties:
+                      update_id:
+                        type: integer
+                        x-stoplight:
+                          id: dbrrg2c8zn7gp
+                      version_id:
+                        type: integer
+                        x-stoplight:
+                          id: dc1zs3jwc4eam
+      operationId: post-v2-resources-creator-update
+      x-stoplight:
+        id: wowhoeszq2hjg
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - resource_id
+                - version_name
+                - file
+              properties:
+                resource_id:
+                  type: integer
+                  x-stoplight:
+                    id: cmtmq6rbwu7qg
+                version_name:
+                  type: string
+                  x-stoplight:
+                    id: 8hv9lq3frpql9
+                  description: 'The version name as a string (eg. 5.0, 5.0-stable). The final version name will be prepended with ''v'' (eg. v5.0, v5.0-stable).'
+                file:
+                  type: object
+                  x-stoplight:
+                    id: 5u46zlge0nj6e
+                  required:
+                    - name
+                    - data
+                  properties:
+                    name:
+                      type: string
+                      x-stoplight:
+                        id: zbo1xazef8cb9
+                      description: The name of the file (including extension).
+                    data:
+                      type: string
+                      x-stoplight:
+                        id: fw3l64sgufj9g
+                      description: The base64 encoded file data.
+                update:
+                  type: object
+                  x-stoplight:
+                    id: n2gw4000dvmce
+                  properties:
+                    post:
+                      type: boolean
+                      x-stoplight:
+                        id: z62rbhal57j9a
+                      description: Whether or not to post an update alongside the new version.
+                    title:
+                      type: string
+                      x-stoplight:
+                        id: odpb2hragka52
+                    message:
+                      type: string
+                      x-stoplight:
+                        id: nb28gbi9jdlg3
+                      description: The BBCode-formatted body of the update.
+      description: "Creates a new version for the resource and optionally posts a public update message. The uploaded file must be encoded using base64 as part of the JSON request body shown below.\r\n\r\nThe request body (including the base64 encoded file data) cannot exceed 100MB. This roughly equates to a 67MB upload limit for the raw file when taking into account base64 encoding losses."
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+components:
+  schemas:
+    Resource:
+      title: Resource
+      x-stoplight:
+        id: zmcimzer1b1jr
+      type: object
+      x-examples:
+        Example 1:
+          resource_id: 16682
+          title: NameGradient
+          summary: Sleek-looking and fully customisable HEX/RGB username gradients for your players with PAPI support.
+          creator_id: 87939
+          description: string
+          description_raw: string
+          description_html: string
+          published_at: 0
+          last_updated_at: 0
+          price: 0
+          currency: string
+          purchases: 0
+          downloads: 0
+          reviews: 0
+          cover_image_url: string
+          carousel_image_urls:
+            - string
+          SaleEventEntry:
+            entry_id: 0
+            event_id: 0
+            content_type: string
+            content_id: 0
+            discount: 0
+            SaleEvent:
+              event_id: string
+              title: string
+              started_at: string
+              ended_at: string
+          Creator:
+            user_id: string
+            username: string
+            registered_at: string
+          '': string
+      description: |-
+        Supported 'with' values:
+        - 'Creator': the resource creator/owner
+        - 'Category': the resource category 
+        - 'Description': the resource description (rendered HTML and BBCode)
+        - 'LatestReviews': list of the 10 latest reviews
+        - 'Filter values': filter values set by the creator
+      properties:
+        resource_id:
+          type: integer
+        title:
+          type: string
+        summary:
+          type: string
+        url:
+          type: string
+          x-stoplight:
+            id: j0kfd8dneoz28
+        creator_id:
+          type: integer
+        published_at:
+          type: integer
+        last_updated_at:
+          type: integer
+        currency:
+          type: string
+        purchases:
+          type: integer
+        downloads:
+          type: integer
+        list_price:
+          type: number
+          x-stoplight:
+            id: 6nvbsui4s8jl9
+        cover_image_url:
+          type: string
+          x-stoplight:
+            id: y7ga85b3lc17q
+        final_price:
+          type: number
+          x-stoplight:
+            id: b2medhzkptziy
+        final_price_formatted:
+          type: string
+          x-stoplight:
+            id: seeo2tuqppvfy
+        list_price_formatted:
+          type: string
+          x-stoplight:
+            id: 95pfh9uv4h1hb
+        carousel_image_urls:
+          type: array
+          x-stoplight:
+            id: mzrwh9m4c7hn6
+          items:
+            x-stoplight:
+              id: cosmqkjrtvkyy
+            type: string
+        review_count:
+          type: integer
+          x-stoplight:
+            id: 8s289vxet37m3
+        review_average:
+          type: number
+          x-stoplight:
+            id: h72cfjwc1hvtw
+        SaleEventEntry:
+          $ref: '#/components/schemas/SaleEventEntry'
+        Creator:
+          $ref: '#/components/schemas/Member'
+        LatestVersion:
+          $ref: '#/components/schemas/Version'
+        LatestUpdate:
+          $ref: '#/components/schemas/Version'
+        LatestReviews:
+          type: array
+          x-stoplight:
+            id: yezfazxyrfotj
+          items:
+            $ref: '#/components/schemas/Review'
+        Description:
+          $ref: '#/components/schemas/Description'
+        Category:
+          $ref: '#/components/schemas/Category'
+        Addons:
+          type: object
+          x-stoplight:
+            id: nw0fuu0htjc3r
+          additionalProperties:
+            x-stoplight:
+              id: rn2wzjjlm7yl7
+            type: array
+            items:
+              $ref: '#/components/schemas/Addon'
+    Member:
+      title: User
+      x-stoplight:
+        id: 7sp14wi7arb08
+      type: object
+      properties:
+        user_id:
+          type: string
+        username:
+          type: string
+          x-stoplight:
+            id: yzcth62ycexs0
+        registered_at:
+          type: string
+          x-stoplight:
+            id: kfuewsgtcuq74
+        avatar_url:
+          type: string
+          x-stoplight:
+            id: 6l5qmbkfzte0c
+    SaleEventEntry:
+      title: SaleEventEntry
+      x-stoplight:
+        id: aothfswa474u9
+      type: object
+      properties:
+        entry_id:
+          type: integer
+        event_id:
+          type: integer
+          x-stoplight:
+            id: lm30shuyr3z6c
+        content_type:
+          type: string
+          x-stoplight:
+            id: osmnw0wzr159m
+        content_id:
+          type: integer
+          x-stoplight:
+            id: a8mbe1vh1zs2j
+        discount:
+          type: number
+          x-stoplight:
+            id: 2mgm9awat9wwx
+        SaleEvent:
+          $ref: '#/components/schemas/SaleEvent'
+    SaleEvent:
+      title: SaleEvent
+      x-stoplight:
+        id: 9s2wuunj794c3
+      type: object
+      properties:
+        event_id:
+          type: string
+        title:
+          type: string
+          x-stoplight:
+            id: jxr9eg8jphwjc
+        started_at:
+          type: string
+          x-stoplight:
+            id: 4c5qybqyvaisx
+        ended_at:
+          type: string
+          x-stoplight:
+            id: qvyo8pizo0d9c
+    Review:
+      title: Review
+      x-stoplight:
+        id: pg0jfhod8x7p9
+      type: object
+      properties:
+        review_id:
+          type: string
+        resource_id:
+          type: string
+          x-stoplight:
+            id: stsa2cb4s307b
+        written_by_id:
+          type: string
+          x-stoplight:
+            id: 5s74618zab9sx
+    Update:
+      title: Update
+      x-stoplight:
+        id: ellmdilqjtnpb
+      type: object
+      properties:
+        update_id:
+          type: string
+        resource_id:
+          type: string
+          x-stoplight:
+            id: qhg4ucudmv0xy
+    Version:
+      title: Version
+      x-stoplight:
+        id: bmt8gkywmk32d
+      type: object
+      properties:
+        version_id:
+          type: string
+        resource_id:
+          type: string
+          x-stoplight:
+            id: 45vrbew3ivt8o
+    Filter:
+      title: Filter
+      x-stoplight:
+        id: kkfwv2lsdg2u4
+      type: object
+      x-examples:
+        Search:
+          filter_id: __keywords
+          order: 0
+          primary: true
+          title: Search
+          options: []
+        Type:
+          filter_id: type
+          order: 0
+          primary: true
+          title: Price
+          options:
+            - option_key: ''
+              count: 0
+              query_field: type
+              title: Any
+            - option_key: free
+              count: 0
+              query_field: type
+              title: Free
+            - option_key: paid
+              count: 0
+              query_field: type
+              title: Paid
+      required:
+        - filter_id
+        - order
+        - primary
+        - title
+        - type
+      properties:
+        filter_id:
+          type: string
+          x-stoplight:
+            id: nn8ae8gyqr43q
+        order:
+          type: integer
+          x-stoplight:
+            id: nyubx0l148ysg
+          description: 'The display order of this filter. Filters on BuiltByBit are displayed in ascending order of their order value. '
+        primary:
+          type: boolean
+          x-stoplight:
+            id: u0axd5t576mbx
+          description: Whether or not BuiltByBit considers this a primary filter. Primary filters are displayed more prominently.
+        title:
+          type: string
+          x-stoplight:
+            id: od4r4eq60xl4i
+        type:
+          type: string
+          x-stoplight:
+            id: rdwntahbpyw72
+          description: "Supported types:  \r\n'choice': a finite choice set (see `options`).  \r\n'text': user text input"
+        choices:
+          type: array
+          x-stoplight:
+            id: jlg4vk2ej8n2u
+          items:
+            $ref: '#/components/schemas/FilterChoice'
+        query_field:
+          type: string
+          x-stoplight:
+            id: 86ys0rmz1tivj
+        value:
+          type: string
+          x-stoplight:
+            id: pnfspxktvikb9
+          description: 'The pass-through value of this filter, only applicable where type = `text`.'
+    FilterChoice:
+      title: FilterOption
+      x-stoplight:
+        id: elfdgagrdwhix
+      type: object
+      required:
+        - key
+        - query_field
+        - title
+      properties:
+        key:
+          type: string
+          x-stoplight:
+            id: j2zic0ayp4ygl
+        count:
+          type: integer
+          x-stoplight:
+            id: jk9mreifb9ivb
+          description: "The dynamic count of relevant resources based on the already-applied filter options.\r\nThis may be *null* if we're unable to provide a count for a specific filter combination."
+        query_field:
+          type: string
+          x-stoplight:
+            id: jqmsdtrbbvpof
+          description: "This is the query string field name to use when attempting to filter on this option. Pass this name as the query string field name and the 'option_key' value as the query string field key.\r\n\r\nEg, if 'option_key' = 'action' and 'query_field' = 'rf[genre]', you should be the query string as `?rf[genre]=action`."
+        title:
+          type: string
+          x-stoplight:
+            id: kwmqhc9nqp3ub
+        selected:
+          type: boolean
+          x-stoplight:
+            id: jwaeqo2uf1aht
+          description: 'Whether or not this option was selected, but only applicable where type = `radio` or `checkbox`.'
+    FilterValue:
+      title: FilterValue
+      x-stoplight:
+        id: r7elnl4qkegda
+      type: object
+      properties:
+        filter_id:
+          type: string
+          x-stoplight:
+            id: nxewujomzbhql
+        filter_value:
+          type: string
+          x-stoplight:
+            id: vyhp69mlih9or
+    Description:
+      title: Description
+      x-stoplight:
+        id: t4fr7ogjm9zkt
+      type: object
+      properties:
+        html:
+          type: string
+          x-stoplight:
+            id: xoe2x54v4o8ju
+        bbcode:
+          type: string
+          x-stoplight:
+            id: miylq4pxfxay5
+    Empty:
+      title: Empty
+      x-stoplight:
+        id: vgcuawlmev6cq
+      type: object
+    CartItem:
+      title: CartItem
+      x-stoplight:
+        id: 56j3817scrzh1
+      type: object
+      properties:
+        cart_item_id:
+          type: string
+          x-stoplight:
+            id: p6ujg1bv3o3ih
+        content_type:
+          type: string
+          x-stoplight:
+            id: m4asqoij5d0z9
+        content_id:
+          type: integer
+          x-stoplight:
+            id: mt6cjyfnk484h
+        content_title:
+          type: string
+          x-stoplight:
+            id: sv2e43i5w09un
+        content_summary:
+          type: string
+          x-stoplight:
+            id: 7owpp4c9c87yj
+        content_cover_image_url:
+          type: string
+          x-stoplight:
+            id: 6imus6gmqu7tn
+        list_price:
+          type: number
+          x-stoplight:
+            id: ccxb6cl670du8
+        list_price_formatted:
+          type: string
+          x-stoplight:
+            id: zvgipr34l9yv7
+        final_price:
+          type: number
+          x-stoplight:
+            id: yo4zke2lcac6l
+        final_price_formatted:
+          type: string
+          x-stoplight:
+            id: bypnjlevon8u9
+        discounts:
+          type: array
+          x-stoplight:
+            id: g4djxkdvgkxuu
+          items:
+            x-stoplight:
+              id: r6x6zbrv6s90q
+            type: object
+            properties:
+              amount:
+                type: number
+                x-stoplight:
+                  id: xferie0tbawb8
+              formatted:
+                type: string
+                x-stoplight:
+                  id: r3zlzx1omaqc8
+    CartSummary:
+      title: CartSummary
+      x-stoplight:
+        id: 7vftixajz8wum
+      type: object
+      required:
+        - list_price
+        - list_price_formatted
+        - final_price
+        - final_price_formatted
+        - currency
+      properties:
+        list_price:
+          type: number
+          x-stoplight:
+            id: cb3jp1b4c7o60
+          description: The combined listed price of all items in the cart (ie. the original prices without any discounts applied).
+        list_price_formatted:
+          type: string
+          x-stoplight:
+            id: viqvi29vgo81h
+          description: "The list price formatted as a string using the given currency.\r\nA list price of 5 would be formatted as `$5.00`."
+        final_price:
+          type: number
+          x-stoplight:
+            id: 2ary8hl7lag9s
+          description: 'The combined final price of all items in the cart (ie. with discounts applied). This is the subtotal the user would pay upon checkout initiation, minus any applicable sales tax.'
+        final_price_formatted:
+          type: string
+          x-stoplight:
+            id: clz01pfy72j3o
+          description: "The final price formatted as a string using the given currency.\r\nA final price of 5 would be formatted as `$5.00`."
+        currency:
+          type: string
+          x-stoplight:
+            id: vhcjzo79pzldi
+          example: USD
+          description: "The currency code (ISO 4217) of the prices in this summary.\r\nWill be USD for all transactions through BuiltByBit."
+        notice:
+          type: string
+          x-stoplight:
+            id: arvcnn9amx7ok
+          description: A message to display to the user as a notice regarding their current cart items. We may use this to inform the user that they have a previous pending checkout which is yet to be fulfilled (either because the payment is still pending or because they closed out of the checkout).
+    ListStats:
+      title: ListStats
+      x-stoplight:
+        id: 2u45ylcsrl3nm
+      type: object
+      properties:
+        total:
+          type: integer
+          x-stoplight:
+            id: 8204i9quj03ow
+        page:
+          type: integer
+          x-stoplight:
+            id: 49avq4sg099mn
+        per_page:
+          type: integer
+          x-stoplight:
+            id: wx7qu5pxu7fkk
+        max_page:
+          type: integer
+          x-stoplight:
+            id: pwbxrblm8j3f2
+    License:
+      title: License
+      x-stoplight:
+        id: o9u5p45v5rb7i
+      type: object
+      required:
+        - content_type
+        - content_id
+      properties:
+        content_type:
+          type: string
+          x-stoplight:
+            id: rlc1ysbnqmp7n
+        content_id:
+          type: integer
+          x-stoplight:
+            id: 88psm3zjyyfxf
+        permanent:
+          type: boolean
+          x-stoplight:
+            id: x1wh8p1szumhf
+          description: Whether or not this license is permanent.
+        active:
+          type: boolean
+          x-stoplight:
+            id: uredi55fdcnxe
+          description: Only respected when permanent = `true`.
+        start_date:
+          type: integer
+          x-stoplight:
+            id: 8ht4uxswipjq8
+          description: Only respected when permanent = `false`.
+        end_date:
+          type: integer
+          x-stoplight:
+            id: 2878h1ojln4yv
+          description: Only respected when permanent = `false`.
+        Resource:
+          $ref: '#/components/schemas/Resource'
+    Category:
+      title: Category
+      x-stoplight:
+        id: 3y3jqix6hbt0l
+      type: object
+      required:
+        - category_id
+        - category_url
+        - title
+      properties:
+        category_id:
+          type: integer
+          x-stoplight:
+            id: g6i2pnor4ut2n
+        category_url:
+          type: string
+          x-stoplight:
+            id: na2gbq2evth2l
+        description:
+          type: string
+          x-stoplight:
+            id: 1soqon5vi9j7v
+        fa_icon:
+          type: string
+          x-stoplight:
+            id: 3ebq76co0fah0
+        platform_image_url:
+          type: string
+          x-stoplight:
+            id: fzvocd1ll8ag6
+        title:
+          type: string
+          x-stoplight:
+            id: hr3v1dvkfhp0a
+        Children:
+          type: array
+          x-stoplight:
+            id: pckprpjczzouq
+          items:
+            $ref: '#/components/schemas/Category'
+    Addon:
+      title: Addon
+      x-stoplight:
+        id: nyfzf8yo4xr80
+      type: object
+      properties:
+        addon_id:
+          type: integer
+          x-stoplight:
+            id: il7su36pygfzx
+        title:
+          type: string
+          x-stoplight:
+            id: u5mht7bdoepzg
+        description:
+          type: string
+          x-stoplight:
+            id: admdd9quz6dmq
+        type:
+          type: string
+          x-stoplight:
+            id: 3d33acfl1lv7r
+        state:
+          x-stoplight:
+            id: 9ckmm8mg8kxk2
+          enum:
+            - visible
+            - disabled
+        list_price:
+          type: number
+          x-stoplight:
+            id: 2fdks528f64lr
+        list_price_formatted:
+          type: string
+          x-stoplight:
+            id: hzewr5kcciggw
+        final_price:
+          type: number
+          x-stoplight:
+            id: xdkooesdnx9nt
+        final_price_formatted:
+          type: string
+          x-stoplight:
+            id: q3iw5uiygxz87
+        price_currency:
+          type: string
+          x-stoplight:
+            id: ln1svamlzdy61
+        display_order:
+          type: integer
+          x-stoplight:
+            id: ok474nzyh3w9q
+        default:
+          type: boolean
+          x-stoplight:
+            id: 1o17r7mnuny38
+    Event:
+      title: Event
+      x-stoplight:
+        id: r5v42rgdqdw28
+      type: object
+      required:
+        - event_id
+        - listener_id
+        - created_at
+        - trigger_type
+        - trigger_data
+      properties:
+        event_id:
+          type: integer
+          x-stoplight:
+            id: rvyudn0oeaf4c
+        listener_id:
+          type: integer
+          x-stoplight:
+            id: tdv1hu24fg6ew
+        created_at:
+          type: integer
+          x-stoplight:
+            id: qq4izs03gliqk
+        trigger_type:
+          type: string
+          x-stoplight:
+            id: bf893lysx1xat
+        trigger_data:
+          type: object
+          x-stoplight:
+            id: ukdnh6uvx3dbz
+    Analytic:
+      title: Analytic
+      x-stoplight:
+        id: du2qh49t7r2aj
+      type: object
+      properties:
+        label:
+          type: string
+          x-stoplight:
+            id: vroghnn1n0sje
+        desc:
+          type: string
+          x-stoplight:
+            id: b8haikhkg54b9
+        graph:
+          type: boolean
+          x-stoplight:
+            id: ttl1kmqn1roxd
+          description: Whether or not this analytic can be requested via the /v2/analytics/graph endpoint.
+        single:
+          type: boolean
+          x-stoplight:
+            id: 0fudal91tc4uk
+          description: Whether or not this analytic can be requested via the /v2/analytics/single endpoint.
+        filters:
+          type: string
+          x-stoplight:
+            id: u7qomukz00gik
+    AnalyticGraphData:
+      title: AnalyticGraphData
+      x-stoplight:
+        id: sqs7fuqvaup2y
+      type: object
+      properties:
+        data:
+          type: object
+          x-stoplight:
+            id: o8849z3b8fyuy
+          additionalProperties:
+            $ref: '#/components/schemas/AnalyticGraphDataPoint'
+        grouping:
+          type: string
+          x-stoplight:
+            id: g8zpusqf9g9ql
+        label:
+          type: string
+          x-stoplight:
+            id: 0lulkkwyfm1l5
+        period:
+          type: object
+          x-stoplight:
+            id: gnjtob0nyvzgo
+          properties:
+            period:
+              type: string
+              x-stoplight:
+                id: xf4hakxfnd2c0
+            period_display:
+              type: string
+              x-stoplight:
+                id: dcsdfmggx6vd4
+            start_date:
+              type: string
+              x-stoplight:
+                id: oae0lct5fsyah
+            end_date:
+              type: string
+              x-stoplight:
+                id: t9lc0rcpkesbu
+    AnalyticGraphDataPoint:
+      title: AnalyticGraphDataPoint
+      x-stoplight:
+        id: ybm62r91xo1kj
+      type: object
+      properties:
+        label:
+          type: string
+          x-stoplight:
+            id: z24oka172rv9g
+        count:
+          type: integer
+          x-stoplight:
+            id: 5gzu6ctl746uh
+        ts:
+          type: integer
+          x-stoplight:
+            id: czfl5wz2ju5eh
+        days:
+          type: integer
+          x-stoplight:
+            id: 1f7d4eagb2d0i
+        values:
+          type: object
+          x-stoplight:
+            id: 73ijgb3mknlad
+          additionalProperties:
+            x-stoplight:
+              id: irm0618am9i2d
+            type: number
+        averages:
+          type: object
+          x-stoplight:
+            id: eyh6ty5q9nwvy
+          additionalProperties:
+            x-stoplight:
+              id: oud9zl7csn7r6
+            type: number
+  requestBodies: {}
+  securitySchemes:
+    token:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: 'See documentation on authorization: https://builtbybit.com/wiki/api'
+  parameters:
+    Authorization:
+      name: Authorization
+      in: header
+      required: true
+      schema:
+        type: string
+      description: OAuth2 client credentials in the Basic authorization format.
+    page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+      description: The page number/offset to return items for.
+    per_page:
+      name: per_page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+      description: The number of items per page to return.
+    with:
+      name: with
+      in: query
+      required: false
+      schema:
+        type: string
+      description: A comma-separated list of supported 'with hints'. See model & endpoint-level docs for more info.
+  responses:
+    Error:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              result:
+                x-stoplight:
+                  id: yuhdqyggund1v
+                enum:
+                  - error
+              error:
+                type: object
+                x-stoplight:
+                  id: f84vet5rax17r
+                properties:
+                  code:
+                    type: string
+                    x-stoplight:
+                      id: y0tck5k6wcwte
+                  message:
+                    type: string
+                    x-stoplight:
+                      id: rgueqs4b55t18
+  examples: {}
