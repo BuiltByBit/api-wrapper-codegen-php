@@ -1,0 +1,6 @@
+# OpenAPI Generator
+openapi-generator-cli*.jar
+spec.yaml
+
+# Generated build artifacts
+.openapi-generator/
