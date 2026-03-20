@@ -56,6 +56,8 @@ jobs:
           git config --local user.name "GitHub Action"  
           git add .
           git reset .gitignore
-          git reset -- $(git ls-files --ignored --exclude-standard) || true
+          git reset spec.yaml 2>/dev/null || true
+          git reset openapi-generator-cli*.jar 2>/dev/null || true
+          git reset .openapi-generator/ 2>/dev/null || true
           git commit -m "Auto-generate wrapper from updated spec" || exit 0
           git push  # Uses GITHUB_TOKEN automatically
