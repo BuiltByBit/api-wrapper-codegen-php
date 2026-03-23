@@ -11,12 +11,12 @@ All URIs are relative to https://api.builtbybit.com, except if the operation def
 ## `getOauth2Token()`
 
 ```php
-getOauth2Token($authorization, $grant_type, $code, $refresh_token): \OpenAPI\Client\Model\GetOauth2Token200Response
+getOauth2Token($grant_type, $code, $refresh_token): \OpenAPI\Client\Model\GetOauth2Token200Response
 ```
 
 Request an access token using an existing grant
 
-Supported grant types: authorization_code, refresh_token
+Supported grant types: `authorization_code`, and `refresh_token`.  Must authenticate via HTTP Basic Authentication, using your OAuth2 client credentials.
 
 ### Example
 
@@ -25,19 +25,24 @@ Supported grant types: authorization_code, refresh_token
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new OpenAPI\Client\Api\Oauth2Api(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
-$authorization = 'authorization_example'; // string | OAuth2 client credentials in the Basic authorization format.
 $grant_type = 'grant_type_example'; // string
 $code = 'code_example'; // string | Required if grant_type = `authorization_code`.
 $refresh_token = 'refresh_token_example'; // string | Required if grant_type = `refresh_token`.
 
 try {
-    $result = $apiInstance->getOauth2Token($authorization, $grant_type, $code, $refresh_token);
+    $result = $apiInstance->getOauth2Token($grant_type, $code, $refresh_token);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Oauth2Api->getOauth2Token: ', $e->getMessage(), PHP_EOL;
@@ -48,7 +53,6 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **authorization** | **string**| OAuth2 client credentials in the Basic authorization format. | |
 | **grant_type** | **string**|  | |
 | **code** | **string**| Required if grant_type &#x3D; &#x60;authorization_code&#x60;. | [optional] |
 | **refresh_token** | **string**| Required if grant_type &#x3D; &#x60;refresh_token&#x60;. | [optional] |
@@ -59,7 +63,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[token](../../README.md#token)
 
 ### HTTP request headers
 
@@ -78,6 +82,8 @@ getOauth2TokenRevoke($authorization, $token, $token_hint): \OpenAPI\Client\Model
 
 Revoke an existing access or refresh token
 
+Must authenticate via HTTP Basic Authentication, using your OAuth2 client credentials.
+
 ### Example
 
 ```php
@@ -85,11 +91,17 @@ Revoke an existing access or refresh token
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new OpenAPI\Client\Api\Oauth2Api(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $authorization = 'authorization_example'; // string | OAuth2 client credentials in the Basic authorization format.
 $token = 'token_example'; // string
@@ -117,7 +129,7 @@ try {
 
 ### Authorization
 
-No authorization required
+[token](../../README.md#token)
 
 ### HTTP request headers
 

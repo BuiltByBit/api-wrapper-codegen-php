@@ -2,6 +2,9 @@
 
 All operations not tagged 'free' require an active [Ultimate](https://builtbybit.com/account/ultimate) subscription or invite-only permissions.
 
+V2 documentation: https://builtbybit.com/wiki/api-v2/ \\
+OAuth2 documentation: https://builtbybit.com/wiki/oauth2/
+
 For more information, please visit [https://builtbybit.com/ticket](https://builtbybit.com/ticket).
 
 ## Installation & Usage
@@ -50,18 +53,24 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
+// Configure API key authorization: token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+
+$apiInstance = new OpenAPI\Client\Api\GlobalApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 
 try {
     $result = $apiInstance->getV2Analytics();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->getV2Analytics: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GlobalApi->getV2Analytics: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -72,27 +81,29 @@ All URIs are relative to *https://api.builtbybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getV2Analytics**](docs/Api/DefaultApi.md#getv2analytics) | **GET** /v2/analytics | Fetch a list of analytics definitions
-*DefaultApi* | [**getV2AnalyticsGraph**](docs/Api/DefaultApi.md#getv2analyticsgraph) | **GET** /v2/analytics/graph | Fetch analytics graph data
-*DefaultApi* | [**getV2Events**](docs/Api/DefaultApi.md#getv2events) | **GET** /v2/events | Fetch a list of pending events
-*DefaultApi* | [**postV2EventsComplete**](docs/Api/DefaultApi.md#postv2eventscomplete) | **POST** /v2/events/complete | Mark events as complete
-*DefaultApi* | [**postV2ResourcesCreatorUpdate**](docs/Api/DefaultApi.md#postv2resourcescreatorupdate) | **POST** /v2/resources/creator/update | Post a resource update
-*DiscoveryApi* | [**getResourcesDiscoverCategories**](docs/Api/DiscoveryApi.md#getresourcesdiscovercategories) | **GET** /v2/resources/discover/categories | Fetch a list of categories
-*DiscoveryApi* | [**getResourcesDiscoverResources**](docs/Api/DiscoveryApi.md#getresourcesdiscoverresources) | **GET** /v2/resources/discover/resources | Fetch a list of resources
-*DiscoveryApi* | [**getV2ResourcesDiscoverCartView**](docs/Api/DiscoveryApi.md#getv2resourcesdiscovercartview) | **GET** /v2/resources/discover/cart/view | View the user&#39;s cart items
-*DiscoveryApi* | [**getV2ResourcesDiscoverLicenses**](docs/Api/DiscoveryApi.md#getv2resourcesdiscoverlicenses) | **GET** /v2/resources/discover/licenses | Fetch a list of the user&#39;s licenses
-*DiscoveryApi* | [**postV2ResourcesDiscoverCartAdd**](docs/Api/DiscoveryApi.md#postv2resourcesdiscovercartadd) | **POST** /v2/resources/discover/cart/add | Add items to a user&#39;s cart
-*DiscoveryApi* | [**postV2ResourcesDiscoverCartCheckout**](docs/Api/DiscoveryApi.md#postv2resourcesdiscovercartcheckout) | **POST** /v2/resources/discover/cart/checkout | Initiate a checkout of a user&#39;s cart
-*DiscoveryApi* | [**postV2ResourcesDiscoverCartCouponAdd**](docs/Api/DiscoveryApi.md#postv2resourcesdiscovercartcouponadd) | **POST** /v2/resources/discover/cart/coupon/add | Add a coupon to the user&#39;s cart
-*DiscoveryApi* | [**postV2ResourcesDiscoverCartCouponRemove**](docs/Api/DiscoveryApi.md#postv2resourcesdiscovercartcouponremove) | **POST** /v2/resources/discover/cart/coupon/remove | Remove a coupon from the user&#39;s cart
-*DiscoveryApi* | [**postV2ResourcesDiscoverCartRemove**](docs/Api/DiscoveryApi.md#postv2resourcesdiscovercartremove) | **POST** /v2/resources/discover/cart/remove | Remove an item from the user&#39;s cart
+*GlobalApi* | [**getV2Analytics**](docs/Api/GlobalApi.md#getv2analytics) | **GET** /v2/analytics | Fetch a list of analytics definitions
+*GlobalApi* | [**getV2AnalyticsGraph**](docs/Api/GlobalApi.md#getv2analyticsgraph) | **GET** /v2/analytics/graph | Fetch analytics graph data
+*GlobalApi* | [**getV2AnalyticsSingle**](docs/Api/GlobalApi.md#getv2analyticssingle) | **GET** /v2/analytics/single | Fetch a single analytics value
+*GlobalApi* | [**getV2Events**](docs/Api/GlobalApi.md#getv2events) | **GET** /v2/events | Fetch a list of pending events
+*GlobalApi* | [**postV2EventsComplete**](docs/Api/GlobalApi.md#postv2eventscomplete) | **POST** /v2/events/complete | Mark events as complete
 *Oauth2Api* | [**getOauth2Token**](docs/Api/Oauth2Api.md#getoauth2token) | **POST** /oauth2/token | Request an access token using an existing grant
 *Oauth2Api* | [**getOauth2TokenRevoke**](docs/Api/Oauth2Api.md#getoauth2tokenrevoke) | **POST** /oauth2/token/revoke | Revoke an existing access or refresh token
+*ResourcesCreatorApi* | [**postV2ResourcesCreatorUpdate**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorupdate) | **POST** /v2/resources/creator/update | Post a resource update
+*ResourcesDiscoveryApi* | [**getResourcesDiscoverCategories**](docs/Api/ResourcesDiscoveryApi.md#getresourcesdiscovercategories) | **GET** /v2/resources/discover/categories | Fetch a list of categories
+*ResourcesDiscoveryApi* | [**getResourcesDiscoverResources**](docs/Api/ResourcesDiscoveryApi.md#getresourcesdiscoverresources) | **GET** /v2/resources/discover/resources | Fetch a list of resources
+*ResourcesDiscoveryApi* | [**getV2ResourcesDiscoverCartView**](docs/Api/ResourcesDiscoveryApi.md#getv2resourcesdiscovercartview) | **GET** /v2/resources/discover/cart/view | View the user&#39;s cart items
+*ResourcesDiscoveryApi* | [**getV2ResourcesDiscoverLicenses**](docs/Api/ResourcesDiscoveryApi.md#getv2resourcesdiscoverlicenses) | **GET** /v2/resources/discover/licenses | Fetch a list of the user&#39;s licenses
+*ResourcesDiscoveryApi* | [**postV2ResourcesDiscoverCartAdd**](docs/Api/ResourcesDiscoveryApi.md#postv2resourcesdiscovercartadd) | **POST** /v2/resources/discover/cart/add | Add items to a user&#39;s cart
+*ResourcesDiscoveryApi* | [**postV2ResourcesDiscoverCartCheckout**](docs/Api/ResourcesDiscoveryApi.md#postv2resourcesdiscovercartcheckout) | **POST** /v2/resources/discover/cart/checkout | Initiate a checkout of a user&#39;s cart
+*ResourcesDiscoveryApi* | [**postV2ResourcesDiscoverCartCouponAdd**](docs/Api/ResourcesDiscoveryApi.md#postv2resourcesdiscovercartcouponadd) | **POST** /v2/resources/discover/cart/coupon/add | Add a coupon to the user&#39;s cart
+*ResourcesDiscoveryApi* | [**postV2ResourcesDiscoverCartCouponRemove**](docs/Api/ResourcesDiscoveryApi.md#postv2resourcesdiscovercartcouponremove) | **POST** /v2/resources/discover/cart/coupon/remove | Remove a coupon from the user&#39;s cart
+*ResourcesDiscoveryApi* | [**postV2ResourcesDiscoverCartRemove**](docs/Api/ResourcesDiscoveryApi.md#postv2resourcesdiscovercartremove) | **POST** /v2/resources/discover/cart/remove | Remove an item from the user&#39;s cart
 
 ## Models
 
 - [Addon](docs/Model/Addon.md)
 - [Analytic](docs/Model/Analytic.md)
+- [AnalyticFiltersValue](docs/Model/AnalyticFiltersValue.md)
 - [AnalyticGraphData](docs/Model/AnalyticGraphData.md)
 - [AnalyticGraphDataPeriod](docs/Model/AnalyticGraphDataPeriod.md)
 - [AnalyticGraphDataPoint](docs/Model/AnalyticGraphDataPoint.md)
@@ -116,6 +127,9 @@ Class | Method | HTTP request | Description
 - [GetV2Analytics200Response](docs/Model/GetV2Analytics200Response.md)
 - [GetV2Analytics200ResponseData](docs/Model/GetV2Analytics200ResponseData.md)
 - [GetV2AnalyticsGraph200Response](docs/Model/GetV2AnalyticsGraph200Response.md)
+- [GetV2AnalyticsSingle200Response](docs/Model/GetV2AnalyticsSingle200Response.md)
+- [GetV2AnalyticsSingle200ResponseData](docs/Model/GetV2AnalyticsSingle200ResponseData.md)
+- [GetV2AnalyticsSingle200ResponseDataPeriod](docs/Model/GetV2AnalyticsSingle200ResponseDataPeriod.md)
 - [GetV2Events200Response](docs/Model/GetV2Events200Response.md)
 - [GetV2Events200ResponseData](docs/Model/GetV2Events200ResponseData.md)
 - [GetV2ResourcesDiscoverCartView200Response](docs/Model/GetV2ResourcesDiscoverCartView200Response.md)
@@ -158,6 +172,13 @@ Authentication schemes defined for the API:
 - **API key parameter name**: Authorization
 - **Location**: HTTP header
 
+
+### oauth2
+
+- **Type**: `OAuth`
+- **Flow**: `accessCode`
+- **Authorization URL**: `https://builtbybit.com/account/external/authorize`
+- **Scopes**: N/A
 
 ## Tests
 
