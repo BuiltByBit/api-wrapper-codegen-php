@@ -62,13 +62,10 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'string',
         'type' => 'string',
         'state' => 'string',
-        'list_price' => 'float',
-        'list_price_formatted' => 'string',
-        'final_price' => 'float',
-        'final_price_formatted' => 'string',
-        'price_currency' => 'string',
         'display_order' => 'int',
-        'default' => 'bool'
+        'default' => 'bool',
+        'list_price' => '\OpenAPI\Client\Model\Price',
+        'final_price' => '\OpenAPI\Client\Model\Price'
     ];
 
     /**
@@ -84,13 +81,10 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => null,
         'type' => null,
         'state' => null,
-        'list_price' => null,
-        'list_price_formatted' => null,
-        'final_price' => null,
-        'final_price_formatted' => null,
-        'price_currency' => null,
         'display_order' => null,
-        'default' => null
+        'default' => null,
+        'list_price' => null,
+        'final_price' => null
     ];
 
     /**
@@ -104,13 +98,10 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => false,
         'type' => false,
         'state' => false,
-        'list_price' => false,
-        'list_price_formatted' => false,
-        'final_price' => false,
-        'final_price_formatted' => false,
-        'price_currency' => false,
         'display_order' => false,
-        'default' => false
+        'default' => false,
+        'list_price' => false,
+        'final_price' => false
     ];
 
     /**
@@ -204,13 +195,10 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'description',
         'type' => 'type',
         'state' => 'state',
-        'list_price' => 'list_price',
-        'list_price_formatted' => 'list_price_formatted',
-        'final_price' => 'final_price',
-        'final_price_formatted' => 'final_price_formatted',
-        'price_currency' => 'price_currency',
         'display_order' => 'display_order',
-        'default' => 'default'
+        'default' => 'default',
+        'list_price' => 'ListPrice',
+        'final_price' => 'FinalPrice'
     ];
 
     /**
@@ -224,13 +212,10 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'setDescription',
         'type' => 'setType',
         'state' => 'setState',
-        'list_price' => 'setListPrice',
-        'list_price_formatted' => 'setListPriceFormatted',
-        'final_price' => 'setFinalPrice',
-        'final_price_formatted' => 'setFinalPriceFormatted',
-        'price_currency' => 'setPriceCurrency',
         'display_order' => 'setDisplayOrder',
-        'default' => 'setDefault'
+        'default' => 'setDefault',
+        'list_price' => 'setListPrice',
+        'final_price' => 'setFinalPrice'
     ];
 
     /**
@@ -244,13 +229,10 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'description' => 'getDescription',
         'type' => 'getType',
         'state' => 'getState',
-        'list_price' => 'getListPrice',
-        'list_price_formatted' => 'getListPriceFormatted',
-        'final_price' => 'getFinalPrice',
-        'final_price_formatted' => 'getFinalPriceFormatted',
-        'price_currency' => 'getPriceCurrency',
         'display_order' => 'getDisplayOrder',
-        'default' => 'getDefault'
+        'default' => 'getDefault',
+        'list_price' => 'getListPrice',
+        'final_price' => 'getFinalPrice'
     ];
 
     /**
@@ -330,13 +312,10 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('state', $data ?? [], null);
-        $this->setIfExists('list_price', $data ?? [], null);
-        $this->setIfExists('list_price_formatted', $data ?? [], null);
-        $this->setIfExists('final_price', $data ?? [], null);
-        $this->setIfExists('final_price_formatted', $data ?? [], null);
-        $this->setIfExists('price_currency', $data ?? [], null);
         $this->setIfExists('display_order', $data ?? [], null);
         $this->setIfExists('default', $data ?? [], null);
+        $this->setIfExists('list_price', $data ?? [], null);
+        $this->setIfExists('final_price', $data ?? [], null);
     }
 
     /**
@@ -536,141 +515,6 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets list_price
-     *
-     * @return float|null
-     */
-    public function getListPrice()
-    {
-        return $this->container['list_price'];
-    }
-
-    /**
-     * Sets list_price
-     *
-     * @param float|null $list_price list_price
-     *
-     * @return self
-     */
-    public function setListPrice($list_price)
-    {
-        if (is_null($list_price)) {
-            throw new \InvalidArgumentException('non-nullable list_price cannot be null');
-        }
-        $this->container['list_price'] = $list_price;
-
-        return $this;
-    }
-
-    /**
-     * Gets list_price_formatted
-     *
-     * @return string|null
-     */
-    public function getListPriceFormatted()
-    {
-        return $this->container['list_price_formatted'];
-    }
-
-    /**
-     * Sets list_price_formatted
-     *
-     * @param string|null $list_price_formatted list_price_formatted
-     *
-     * @return self
-     */
-    public function setListPriceFormatted($list_price_formatted)
-    {
-        if (is_null($list_price_formatted)) {
-            throw new \InvalidArgumentException('non-nullable list_price_formatted cannot be null');
-        }
-        $this->container['list_price_formatted'] = $list_price_formatted;
-
-        return $this;
-    }
-
-    /**
-     * Gets final_price
-     *
-     * @return float|null
-     */
-    public function getFinalPrice()
-    {
-        return $this->container['final_price'];
-    }
-
-    /**
-     * Sets final_price
-     *
-     * @param float|null $final_price final_price
-     *
-     * @return self
-     */
-    public function setFinalPrice($final_price)
-    {
-        if (is_null($final_price)) {
-            throw new \InvalidArgumentException('non-nullable final_price cannot be null');
-        }
-        $this->container['final_price'] = $final_price;
-
-        return $this;
-    }
-
-    /**
-     * Gets final_price_formatted
-     *
-     * @return string|null
-     */
-    public function getFinalPriceFormatted()
-    {
-        return $this->container['final_price_formatted'];
-    }
-
-    /**
-     * Sets final_price_formatted
-     *
-     * @param string|null $final_price_formatted final_price_formatted
-     *
-     * @return self
-     */
-    public function setFinalPriceFormatted($final_price_formatted)
-    {
-        if (is_null($final_price_formatted)) {
-            throw new \InvalidArgumentException('non-nullable final_price_formatted cannot be null');
-        }
-        $this->container['final_price_formatted'] = $final_price_formatted;
-
-        return $this;
-    }
-
-    /**
-     * Gets price_currency
-     *
-     * @return string|null
-     */
-    public function getPriceCurrency()
-    {
-        return $this->container['price_currency'];
-    }
-
-    /**
-     * Sets price_currency
-     *
-     * @param string|null $price_currency price_currency
-     *
-     * @return self
-     */
-    public function setPriceCurrency($price_currency)
-    {
-        if (is_null($price_currency)) {
-            throw new \InvalidArgumentException('non-nullable price_currency cannot be null');
-        }
-        $this->container['price_currency'] = $price_currency;
-
-        return $this;
-    }
-
-    /**
      * Gets display_order
      *
      * @return int|null
@@ -720,6 +564,60 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable default cannot be null');
         }
         $this->container['default'] = $default;
+
+        return $this;
+    }
+
+    /**
+     * Gets list_price
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getListPrice()
+    {
+        return $this->container['list_price'];
+    }
+
+    /**
+     * Sets list_price
+     *
+     * @param \OpenAPI\Client\Model\Price|null $list_price list_price
+     *
+     * @return self
+     */
+    public function setListPrice($list_price)
+    {
+        if (is_null($list_price)) {
+            throw new \InvalidArgumentException('non-nullable list_price cannot be null');
+        }
+        $this->container['list_price'] = $list_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets final_price
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getFinalPrice()
+    {
+        return $this->container['final_price'];
+    }
+
+    /**
+     * Sets final_price
+     *
+     * @param \OpenAPI\Client\Model\Price|null $final_price final_price
+     *
+     * @return self
+     */
+    public function setFinalPrice($final_price)
+    {
+        if (is_null($final_price)) {
+            throw new \InvalidArgumentException('non-nullable final_price cannot be null');
+        }
+        $this->container['final_price'] = $final_price;
 
         return $this;
     }

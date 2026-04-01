@@ -71,6 +71,33 @@ class ResourcesCreatorApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'getV2ResourcesCreatorAddons' => [
+            'application/json',
+        ],
+        'getV2ResourcesCreatorBundles' => [
+            'application/json',
+        ],
+        'getV2ResourcesCreatorLicenses' => [
+            'application/json',
+        ],
+        'getV2ResourcesCreatorPurchases' => [
+            'application/json',
+        ],
+        'getV2ResourcesCreatorResources' => [
+            'application/json',
+        ],
+        'getV2ResourcesCreatorReviews' => [
+            'application/json',
+        ],
+        'getV2ResourcesCreatorSaleEvents' => [
+            'application/json',
+        ],
+        'getV2ResourcesCreatorUpdates' => [
+            'application/json',
+        ],
+        'getV2ResourcesCreatorVersions' => [
+            'application/json',
+        ],
         'postV2ResourcesCreatorUpdate' => [
             'application/json',
         ],
@@ -120,6 +147,2734 @@ class ResourcesCreatorApi
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorAddons
+     *
+     * Fetch a list of your resources&#39; addons
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorAddons'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorAddons200Response
+     */
+    public function getV2ResourcesCreatorAddons($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorAddons'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorAddonsWithHttpInfo($resource_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorAddonsWithHttpInfo
+     *
+     * Fetch a list of your resources&#39; addons
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorAddons'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorAddons200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorAddonsWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorAddons'][0])
+    {
+        $request = $this->getV2ResourcesCreatorAddonsRequest($resource_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorAddons200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorAddons200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorAddons200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorAddons200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorAddons200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorAddonsAsync
+     *
+     * Fetch a list of your resources&#39; addons
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorAddons'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorAddonsAsync($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorAddons'][0])
+    {
+        return $this->getV2ResourcesCreatorAddonsAsyncWithHttpInfo($resource_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorAddonsAsyncWithHttpInfo
+     *
+     * Fetch a list of your resources&#39; addons
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorAddons'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorAddonsAsyncWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorAddons'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorAddons200Response';
+        $request = $this->getV2ResourcesCreatorAddonsRequest($resource_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorAddons'
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorAddons'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorAddonsRequest($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorAddons'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/addons';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $resource_ids,
+            'resource_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBundles
+     *
+     * Fetch a list of your bundles
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundles'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response
+     */
+    public function getV2ResourcesCreatorBundles(string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorBundlesWithHttpInfo($contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBundlesWithHttpInfo
+     *
+     * Fetch a list of your bundles
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundles'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorBundlesWithHttpInfo(string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
+    {
+        $request = $this->getV2ResourcesCreatorBundlesRequest($contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBundlesAsync
+     *
+     * Fetch a list of your bundles
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundles'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorBundlesAsync(string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
+    {
+        return $this->getV2ResourcesCreatorBundlesAsyncWithHttpInfo($contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBundlesAsyncWithHttpInfo
+     *
+     * Fetch a list of your bundles
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundles'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorBundlesAsyncWithHttpInfo(string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response';
+        $request = $this->getV2ResourcesCreatorBundlesRequest($contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorBundles'
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundles'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorBundlesRequest(string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
+    {
+
+
+        $resourcePath = '/v2/resources/creator/bundles';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorLicenses
+     *
+     * Fetch a list of your resources&#39; licenses
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorLicenses'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorLicenses200Response
+     */
+    public function getV2ResourcesCreatorLicenses($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorLicenses'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorLicensesWithHttpInfo($resource_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorLicensesWithHttpInfo
+     *
+     * Fetch a list of your resources&#39; licenses
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorLicenses'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorLicenses200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorLicensesWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorLicenses'][0])
+    {
+        $request = $this->getV2ResourcesCreatorLicensesRequest($resource_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorLicenses200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorLicenses200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorLicenses200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorLicenses200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorLicenses200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorLicensesAsync
+     *
+     * Fetch a list of your resources&#39; licenses
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorLicenses'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorLicensesAsync($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorLicenses'][0])
+    {
+        return $this->getV2ResourcesCreatorLicensesAsyncWithHttpInfo($resource_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorLicensesAsyncWithHttpInfo
+     *
+     * Fetch a list of your resources&#39; licenses
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorLicenses'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorLicensesAsyncWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorLicenses'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorLicenses200Response';
+        $request = $this->getV2ResourcesCreatorLicensesRequest($resource_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorLicenses'
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorLicenses'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorLicensesRequest($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorLicenses'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/licenses';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $resource_ids,
+            'resource_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorPurchases
+     *
+     * Fetch a list of your resources&#39; purchases
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorPurchases'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response
+     */
+    public function getV2ResourcesCreatorPurchases($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorPurchasesWithHttpInfo($resource_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorPurchasesWithHttpInfo
+     *
+     * Fetch a list of your resources&#39; purchases
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorPurchases'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorPurchasesWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
+    {
+        $request = $this->getV2ResourcesCreatorPurchasesRequest($resource_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorPurchasesAsync
+     *
+     * Fetch a list of your resources&#39; purchases
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorPurchases'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorPurchasesAsync($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
+    {
+        return $this->getV2ResourcesCreatorPurchasesAsyncWithHttpInfo($resource_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorPurchasesAsyncWithHttpInfo
+     *
+     * Fetch a list of your resources&#39; purchases
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorPurchases'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorPurchasesAsyncWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response';
+        $request = $this->getV2ResourcesCreatorPurchasesRequest($resource_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorPurchases'
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorPurchases'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorPurchasesRequest($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/purchases';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $resource_ids,
+            'resource_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorResources
+     *
+     * Fetch a list of your resources
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorResources'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorResources200Response
+     */
+    public function getV2ResourcesCreatorResources($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorResources'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorResourcesWithHttpInfo($resource_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorResourcesWithHttpInfo
+     *
+     * Fetch a list of your resources
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorResources'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorResources200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorResourcesWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorResources'][0])
+    {
+        $request = $this->getV2ResourcesCreatorResourcesRequest($resource_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorResources200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorResources200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorResources200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorResources200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorResources200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorResourcesAsync
+     *
+     * Fetch a list of your resources
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorResources'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorResourcesAsync($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorResources'][0])
+    {
+        return $this->getV2ResourcesCreatorResourcesAsyncWithHttpInfo($resource_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorResourcesAsyncWithHttpInfo
+     *
+     * Fetch a list of your resources
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorResources'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorResourcesAsyncWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorResources'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorResources200Response';
+        $request = $this->getV2ResourcesCreatorResourcesRequest($resource_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorResources'
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorResources'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorResourcesRequest($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorResources'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/resources';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $resource_ids,
+            'resource_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorReviews
+     *
+     * Fetch a list of your resources&#39; reviews
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorReviews'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorReviews200Response
+     */
+    public function getV2ResourcesCreatorReviews($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorReviews'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorReviewsWithHttpInfo($resource_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorReviewsWithHttpInfo
+     *
+     * Fetch a list of your resources&#39; reviews
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorReviews'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorReviews200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorReviewsWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorReviews'][0])
+    {
+        $request = $this->getV2ResourcesCreatorReviewsRequest($resource_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorReviews200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorReviews200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorReviews200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorReviews200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorReviews200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorReviewsAsync
+     *
+     * Fetch a list of your resources&#39; reviews
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorReviews'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorReviewsAsync($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorReviews'][0])
+    {
+        return $this->getV2ResourcesCreatorReviewsAsyncWithHttpInfo($resource_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorReviewsAsyncWithHttpInfo
+     *
+     * Fetch a list of your resources&#39; reviews
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorReviews'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorReviewsAsyncWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorReviews'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorReviews200Response';
+        $request = $this->getV2ResourcesCreatorReviewsRequest($resource_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorReviews'
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorReviews'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorReviewsRequest($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorReviews'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/reviews';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $resource_ids,
+            'resource_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorSaleEvents
+     *
+     * Fetch a list of your sale events
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEvents'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response
+     */
+    public function getV2ResourcesCreatorSaleEvents(string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorSaleEventsWithHttpInfo($contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorSaleEventsWithHttpInfo
+     *
+     * Fetch a list of your sale events
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEvents'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorSaleEventsWithHttpInfo(string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
+    {
+        $request = $this->getV2ResourcesCreatorSaleEventsRequest($contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorSaleEventsAsync
+     *
+     * Fetch a list of your sale events
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEvents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorSaleEventsAsync(string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
+    {
+        return $this->getV2ResourcesCreatorSaleEventsAsyncWithHttpInfo($contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorSaleEventsAsyncWithHttpInfo
+     *
+     * Fetch a list of your sale events
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEvents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorSaleEventsAsyncWithHttpInfo(string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response';
+        $request = $this->getV2ResourcesCreatorSaleEventsRequest($contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorSaleEvents'
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEvents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorSaleEventsRequest(string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
+    {
+
+
+        $resourcePath = '/v2/resources/creator/sale-events';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorUpdates
+     *
+     * Fetch a list of your resource&#39;s updates
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorUpdates'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorUpdates200Response
+     */
+    public function getV2ResourcesCreatorUpdates($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorUpdates'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorUpdatesWithHttpInfo($resource_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorUpdatesWithHttpInfo
+     *
+     * Fetch a list of your resource&#39;s updates
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorUpdates'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorUpdates200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorUpdatesWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorUpdates'][0])
+    {
+        $request = $this->getV2ResourcesCreatorUpdatesRequest($resource_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorUpdates200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorUpdates200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorUpdates200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorUpdates200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorUpdates200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorUpdatesAsync
+     *
+     * Fetch a list of your resource&#39;s updates
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorUpdates'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorUpdatesAsync($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorUpdates'][0])
+    {
+        return $this->getV2ResourcesCreatorUpdatesAsyncWithHttpInfo($resource_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorUpdatesAsyncWithHttpInfo
+     *
+     * Fetch a list of your resource&#39;s updates
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorUpdates'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorUpdatesAsyncWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorUpdates'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorUpdates200Response';
+        $request = $this->getV2ResourcesCreatorUpdatesRequest($resource_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorUpdates'
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorUpdates'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorUpdatesRequest($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorUpdates'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/updates';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $resource_ids,
+            'resource_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorVersions
+     *
+     * Fetch a list of your resources&#39; versions
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorVersions'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorVersions200Response
+     */
+    public function getV2ResourcesCreatorVersions($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorVersions'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorVersionsWithHttpInfo($resource_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorVersionsWithHttpInfo
+     *
+     * Fetch a list of your resources&#39; versions
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorVersions'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorVersions200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorVersionsWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorVersions'][0])
+    {
+        $request = $this->getV2ResourcesCreatorVersionsRequest($resource_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorVersions200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorVersions200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorVersions200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorVersions200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorVersions200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorVersionsAsync
+     *
+     * Fetch a list of your resources&#39; versions
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorVersions'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorVersionsAsync($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorVersions'][0])
+    {
+        return $this->getV2ResourcesCreatorVersionsAsyncWithHttpInfo($resource_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorVersionsAsyncWithHttpInfo
+     *
+     * Fetch a list of your resources&#39; versions
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorVersions'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorVersionsAsyncWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorVersions'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorVersions200Response';
+        $request = $this->getV2ResourcesCreatorVersionsRequest($resource_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorVersions'
+     *
+     * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorVersions'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorVersionsRequest($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorVersions'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/versions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $resource_ids,
+            'resource_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 
     /**

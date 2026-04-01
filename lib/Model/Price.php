@@ -1,6 +1,6 @@
 <?php
 /**
- * Review
+ * Price
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Review Class Doc Comment
+ * Price Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Review implements ModelInterface, ArrayAccess, \JsonSerializable
+class Price implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Review';
+    protected static $openAPIModelName = 'Price';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'review_id' => 'string',
-        'resource_id' => 'string',
-        'reviewer_id' => 'string'
+        'value' => 'float',
+        'currency' => 'string',
+        'formatted' => 'string'
     ];
 
     /**
@@ -70,9 +70,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'review_id' => null,
-        'resource_id' => null,
-        'reviewer_id' => null
+        'value' => null,
+        'currency' => null,
+        'formatted' => null
     ];
 
     /**
@@ -81,9 +81,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'review_id' => false,
-        'resource_id' => false,
-        'reviewer_id' => false
+        'value' => false,
+        'currency' => false,
+        'formatted' => false
     ];
 
     /**
@@ -172,9 +172,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'review_id' => 'review_id',
-        'resource_id' => 'resource_id',
-        'reviewer_id' => 'reviewer_id'
+        'value' => 'value',
+        'currency' => 'currency',
+        'formatted' => 'formatted'
     ];
 
     /**
@@ -183,9 +183,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'review_id' => 'setReviewId',
-        'resource_id' => 'setResourceId',
-        'reviewer_id' => 'setReviewerId'
+        'value' => 'setValue',
+        'currency' => 'setCurrency',
+        'formatted' => 'setFormatted'
     ];
 
     /**
@@ -194,9 +194,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'review_id' => 'getReviewId',
-        'resource_id' => 'getResourceId',
-        'reviewer_id' => 'getReviewerId'
+        'value' => 'getValue',
+        'currency' => 'getCurrency',
+        'formatted' => 'getFormatted'
     ];
 
     /**
@@ -256,9 +256,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('review_id', $data ?? [], null);
-        $this->setIfExists('resource_id', $data ?? [], null);
-        $this->setIfExists('reviewer_id', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('formatted', $data ?? [], null);
     }
 
     /**
@@ -304,82 +304,82 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets review_id
+     * Gets value
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getReviewId()
+    public function getValue()
     {
-        return $this->container['review_id'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets review_id
+     * Sets value
      *
-     * @param string|null $review_id review_id
+     * @param float|null $value value
      *
      * @return self
      */
-    public function setReviewId($review_id)
+    public function setValue($value)
     {
-        if (is_null($review_id)) {
-            throw new \InvalidArgumentException('non-nullable review_id cannot be null');
+        if (is_null($value)) {
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
-        $this->container['review_id'] = $review_id;
+        $this->container['value'] = $value;
 
         return $this;
     }
 
     /**
-     * Gets resource_id
+     * Gets currency
      *
      * @return string|null
      */
-    public function getResourceId()
+    public function getCurrency()
     {
-        return $this->container['resource_id'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets resource_id
+     * Sets currency
      *
-     * @param string|null $resource_id resource_id
+     * @param string|null $currency currency
      *
      * @return self
      */
-    public function setResourceId($resource_id)
+    public function setCurrency($currency)
     {
-        if (is_null($resource_id)) {
-            throw new \InvalidArgumentException('non-nullable resource_id cannot be null');
+        if (is_null($currency)) {
+            throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
-        $this->container['resource_id'] = $resource_id;
+        $this->container['currency'] = $currency;
 
         return $this;
     }
 
     /**
-     * Gets reviewer_id
+     * Gets formatted
      *
      * @return string|null
      */
-    public function getReviewerId()
+    public function getFormatted()
     {
-        return $this->container['reviewer_id'];
+        return $this->container['formatted'];
     }
 
     /**
-     * Sets reviewer_id
+     * Sets formatted
      *
-     * @param string|null $reviewer_id reviewer_id
+     * @param string|null $formatted formatted
      *
      * @return self
      */
-    public function setReviewerId($reviewer_id)
+    public function setFormatted($formatted)
     {
-        if (is_null($reviewer_id)) {
-            throw new \InvalidArgumentException('non-nullable reviewer_id cannot be null');
+        if (is_null($formatted)) {
+            throw new \InvalidArgumentException('non-nullable formatted cannot be null');
         }
-        $this->container['reviewer_id'] = $reviewer_id;
+        $this->container['formatted'] = $formatted;
 
         return $this;
     }

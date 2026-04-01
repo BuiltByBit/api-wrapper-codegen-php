@@ -1,6 +1,6 @@
 <?php
 /**
- * Review
+ * GetV2ResourcesCreatorPurchases200Response
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Review Class Doc Comment
+ * GetV2ResourcesCreatorPurchases200Response Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Review implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetV2ResourcesCreatorPurchases200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Review';
+    protected static $openAPIModelName = 'get_v2_resources_creator_purchases_200_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,8 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'review_id' => 'string',
-        'resource_id' => 'string',
-        'reviewer_id' => 'string'
+        'result' => 'string',
+        'data' => '\OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200ResponseData'
     ];
 
     /**
@@ -70,9 +69,8 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'review_id' => null,
-        'resource_id' => null,
-        'reviewer_id' => null
+        'result' => null,
+        'data' => null
     ];
 
     /**
@@ -81,9 +79,8 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'review_id' => false,
-        'resource_id' => false,
-        'reviewer_id' => false
+        'result' => false,
+        'data' => false
     ];
 
     /**
@@ -172,9 +169,8 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'review_id' => 'review_id',
-        'resource_id' => 'resource_id',
-        'reviewer_id' => 'reviewer_id'
+        'result' => 'result',
+        'data' => 'data'
     ];
 
     /**
@@ -183,9 +179,8 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'review_id' => 'setReviewId',
-        'resource_id' => 'setResourceId',
-        'reviewer_id' => 'setReviewerId'
+        'result' => 'setResult',
+        'data' => 'setData'
     ];
 
     /**
@@ -194,9 +189,8 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'review_id' => 'getReviewId',
-        'resource_id' => 'getResourceId',
-        'reviewer_id' => 'getReviewerId'
+        'result' => 'getResult',
+        'data' => 'getData'
     ];
 
     /**
@@ -240,6 +234,19 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const RESULT_SUCCESS = 'success';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getResultAllowableValues()
+    {
+        return [
+            self::RESULT_SUCCESS,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -256,9 +263,8 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('review_id', $data ?? [], null);
-        $this->setIfExists('resource_id', $data ?? [], null);
-        $this->setIfExists('reviewer_id', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
     }
 
     /**
@@ -288,6 +294,15 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getResultAllowableValues();
+        if (!is_null($this->container['result']) && !in_array($this->container['result'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'result', must be one of '%s'",
+                $this->container['result'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -304,82 +319,65 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets review_id
+     * Gets result
      *
      * @return string|null
      */
-    public function getReviewId()
+    public function getResult()
     {
-        return $this->container['review_id'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets review_id
+     * Sets result
      *
-     * @param string|null $review_id review_id
+     * @param string|null $result result
      *
      * @return self
      */
-    public function setReviewId($review_id)
+    public function setResult($result)
     {
-        if (is_null($review_id)) {
-            throw new \InvalidArgumentException('non-nullable review_id cannot be null');
+        if (is_null($result)) {
+            throw new \InvalidArgumentException('non-nullable result cannot be null');
         }
-        $this->container['review_id'] = $review_id;
+        $allowedValues = $this->getResultAllowableValues();
+        if (!in_array($result, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'result', must be one of '%s'",
+                    $result,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['result'] = $result;
 
         return $this;
     }
 
     /**
-     * Gets resource_id
+     * Gets data
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200ResponseData|null
      */
-    public function getResourceId()
+    public function getData()
     {
-        return $this->container['resource_id'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets resource_id
+     * Sets data
      *
-     * @param string|null $resource_id resource_id
+     * @param \OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200ResponseData|null $data data
      *
      * @return self
      */
-    public function setResourceId($resource_id)
+    public function setData($data)
     {
-        if (is_null($resource_id)) {
-            throw new \InvalidArgumentException('non-nullable resource_id cannot be null');
+        if (is_null($data)) {
+            throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
-        $this->container['resource_id'] = $resource_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets reviewer_id
-     *
-     * @return string|null
-     */
-    public function getReviewerId()
-    {
-        return $this->container['reviewer_id'];
-    }
-
-    /**
-     * Sets reviewer_id
-     *
-     * @param string|null $reviewer_id reviewer_id
-     *
-     * @return self
-     */
-    public function setReviewerId($reviewer_id)
-    {
-        if (is_null($reviewer_id)) {
-            throw new \InvalidArgumentException('non-nullable reviewer_id cannot be null');
-        }
-        $this->container['reviewer_id'] = $reviewer_id;
+        $this->container['data'] = $data;
 
         return $this;
     }

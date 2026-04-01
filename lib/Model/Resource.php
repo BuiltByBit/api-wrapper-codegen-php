@@ -65,17 +65,14 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'creator_id' => 'int',
         'published_at' => 'int',
         'last_updated_at' => 'int',
-        'currency' => 'string',
         'purchases' => 'int',
         'downloads' => 'int',
-        'list_price' => 'float',
         'cover_image_url' => 'string',
-        'final_price' => 'float',
-        'final_price_formatted' => 'string',
-        'list_price_formatted' => 'string',
         'carousel_image_urls' => 'string[]',
         'review_count' => 'int',
         'review_average' => 'float',
+        'list_price' => '\OpenAPI\Client\Model\Price',
+        'final_price' => '\OpenAPI\Client\Model\Price',
         'sale_event_entry' => '\OpenAPI\Client\Model\SaleEventEntry',
         'creator' => '\OpenAPI\Client\Model\Member',
         'latest_version' => '\OpenAPI\Client\Model\Version',
@@ -101,17 +98,14 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'creator_id' => null,
         'published_at' => null,
         'last_updated_at' => null,
-        'currency' => null,
         'purchases' => null,
         'downloads' => null,
-        'list_price' => null,
         'cover_image_url' => null,
-        'final_price' => null,
-        'final_price_formatted' => null,
-        'list_price_formatted' => null,
         'carousel_image_urls' => null,
         'review_count' => null,
         'review_average' => null,
+        'list_price' => null,
+        'final_price' => null,
         'sale_event_entry' => null,
         'creator' => null,
         'latest_version' => null,
@@ -135,17 +129,14 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'creator_id' => false,
         'published_at' => false,
         'last_updated_at' => false,
-        'currency' => false,
         'purchases' => false,
         'downloads' => false,
-        'list_price' => false,
         'cover_image_url' => false,
-        'final_price' => false,
-        'final_price_formatted' => false,
-        'list_price_formatted' => false,
         'carousel_image_urls' => false,
         'review_count' => false,
         'review_average' => false,
+        'list_price' => false,
+        'final_price' => false,
         'sale_event_entry' => false,
         'creator' => false,
         'latest_version' => false,
@@ -249,17 +240,14 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'creator_id' => 'creator_id',
         'published_at' => 'published_at',
         'last_updated_at' => 'last_updated_at',
-        'currency' => 'currency',
         'purchases' => 'purchases',
         'downloads' => 'downloads',
-        'list_price' => 'list_price',
         'cover_image_url' => 'cover_image_url',
-        'final_price' => 'final_price',
-        'final_price_formatted' => 'final_price_formatted',
-        'list_price_formatted' => 'list_price_formatted',
         'carousel_image_urls' => 'carousel_image_urls',
         'review_count' => 'review_count',
         'review_average' => 'review_average',
+        'list_price' => 'ListPrice',
+        'final_price' => 'FinalPrice',
         'sale_event_entry' => 'SaleEventEntry',
         'creator' => 'Creator',
         'latest_version' => 'LatestVersion',
@@ -283,17 +271,14 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'creator_id' => 'setCreatorId',
         'published_at' => 'setPublishedAt',
         'last_updated_at' => 'setLastUpdatedAt',
-        'currency' => 'setCurrency',
         'purchases' => 'setPurchases',
         'downloads' => 'setDownloads',
-        'list_price' => 'setListPrice',
         'cover_image_url' => 'setCoverImageUrl',
-        'final_price' => 'setFinalPrice',
-        'final_price_formatted' => 'setFinalPriceFormatted',
-        'list_price_formatted' => 'setListPriceFormatted',
         'carousel_image_urls' => 'setCarouselImageUrls',
         'review_count' => 'setReviewCount',
         'review_average' => 'setReviewAverage',
+        'list_price' => 'setListPrice',
+        'final_price' => 'setFinalPrice',
         'sale_event_entry' => 'setSaleEventEntry',
         'creator' => 'setCreator',
         'latest_version' => 'setLatestVersion',
@@ -317,17 +302,14 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'creator_id' => 'getCreatorId',
         'published_at' => 'getPublishedAt',
         'last_updated_at' => 'getLastUpdatedAt',
-        'currency' => 'getCurrency',
         'purchases' => 'getPurchases',
         'downloads' => 'getDownloads',
-        'list_price' => 'getListPrice',
         'cover_image_url' => 'getCoverImageUrl',
-        'final_price' => 'getFinalPrice',
-        'final_price_formatted' => 'getFinalPriceFormatted',
-        'list_price_formatted' => 'getListPriceFormatted',
         'carousel_image_urls' => 'getCarouselImageUrls',
         'review_count' => 'getReviewCount',
         'review_average' => 'getReviewAverage',
+        'list_price' => 'getListPrice',
+        'final_price' => 'getFinalPrice',
         'sale_event_entry' => 'getSaleEventEntry',
         'creator' => 'getCreator',
         'latest_version' => 'getLatestVersion',
@@ -402,17 +384,14 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('creator_id', $data ?? [], null);
         $this->setIfExists('published_at', $data ?? [], null);
         $this->setIfExists('last_updated_at', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('purchases', $data ?? [], null);
         $this->setIfExists('downloads', $data ?? [], null);
-        $this->setIfExists('list_price', $data ?? [], null);
         $this->setIfExists('cover_image_url', $data ?? [], null);
-        $this->setIfExists('final_price', $data ?? [], null);
-        $this->setIfExists('final_price_formatted', $data ?? [], null);
-        $this->setIfExists('list_price_formatted', $data ?? [], null);
         $this->setIfExists('carousel_image_urls', $data ?? [], null);
         $this->setIfExists('review_count', $data ?? [], null);
         $this->setIfExists('review_average', $data ?? [], null);
+        $this->setIfExists('list_price', $data ?? [], null);
+        $this->setIfExists('final_price', $data ?? [], null);
         $this->setIfExists('sale_event_entry', $data ?? [], null);
         $this->setIfExists('creator', $data ?? [], null);
         $this->setIfExists('latest_version', $data ?? [], null);
@@ -655,33 +634,6 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets currency
-     *
-     * @return string|null
-     */
-    public function getCurrency()
-    {
-        return $this->container['currency'];
-    }
-
-    /**
-     * Sets currency
-     *
-     * @param string|null $currency currency
-     *
-     * @return self
-     */
-    public function setCurrency($currency)
-    {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
      * Gets purchases
      *
      * @return int|null
@@ -736,33 +688,6 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets list_price
-     *
-     * @return float|null
-     */
-    public function getListPrice()
-    {
-        return $this->container['list_price'];
-    }
-
-    /**
-     * Sets list_price
-     *
-     * @param float|null $list_price list_price
-     *
-     * @return self
-     */
-    public function setListPrice($list_price)
-    {
-        if (is_null($list_price)) {
-            throw new \InvalidArgumentException('non-nullable list_price cannot be null');
-        }
-        $this->container['list_price'] = $list_price;
-
-        return $this;
-    }
-
-    /**
      * Gets cover_image_url
      *
      * @return string|null
@@ -785,87 +710,6 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable cover_image_url cannot be null');
         }
         $this->container['cover_image_url'] = $cover_image_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets final_price
-     *
-     * @return float|null
-     */
-    public function getFinalPrice()
-    {
-        return $this->container['final_price'];
-    }
-
-    /**
-     * Sets final_price
-     *
-     * @param float|null $final_price final_price
-     *
-     * @return self
-     */
-    public function setFinalPrice($final_price)
-    {
-        if (is_null($final_price)) {
-            throw new \InvalidArgumentException('non-nullable final_price cannot be null');
-        }
-        $this->container['final_price'] = $final_price;
-
-        return $this;
-    }
-
-    /**
-     * Gets final_price_formatted
-     *
-     * @return string|null
-     */
-    public function getFinalPriceFormatted()
-    {
-        return $this->container['final_price_formatted'];
-    }
-
-    /**
-     * Sets final_price_formatted
-     *
-     * @param string|null $final_price_formatted final_price_formatted
-     *
-     * @return self
-     */
-    public function setFinalPriceFormatted($final_price_formatted)
-    {
-        if (is_null($final_price_formatted)) {
-            throw new \InvalidArgumentException('non-nullable final_price_formatted cannot be null');
-        }
-        $this->container['final_price_formatted'] = $final_price_formatted;
-
-        return $this;
-    }
-
-    /**
-     * Gets list_price_formatted
-     *
-     * @return string|null
-     */
-    public function getListPriceFormatted()
-    {
-        return $this->container['list_price_formatted'];
-    }
-
-    /**
-     * Sets list_price_formatted
-     *
-     * @param string|null $list_price_formatted list_price_formatted
-     *
-     * @return self
-     */
-    public function setListPriceFormatted($list_price_formatted)
-    {
-        if (is_null($list_price_formatted)) {
-            throw new \InvalidArgumentException('non-nullable list_price_formatted cannot be null');
-        }
-        $this->container['list_price_formatted'] = $list_price_formatted;
 
         return $this;
     }
@@ -947,6 +791,60 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable review_average cannot be null');
         }
         $this->container['review_average'] = $review_average;
+
+        return $this;
+    }
+
+    /**
+     * Gets list_price
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getListPrice()
+    {
+        return $this->container['list_price'];
+    }
+
+    /**
+     * Sets list_price
+     *
+     * @param \OpenAPI\Client\Model\Price|null $list_price list_price
+     *
+     * @return self
+     */
+    public function setListPrice($list_price)
+    {
+        if (is_null($list_price)) {
+            throw new \InvalidArgumentException('non-nullable list_price cannot be null');
+        }
+        $this->container['list_price'] = $list_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets final_price
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getFinalPrice()
+    {
+        return $this->container['final_price'];
+    }
+
+    /**
+     * Sets final_price
+     *
+     * @param \OpenAPI\Client\Model\Price|null $final_price final_price
+     *
+     * @return self
+     */
+    public function setFinalPrice($final_price)
+    {
+        if (is_null($final_price)) {
+            throw new \InvalidArgumentException('non-nullable final_price cannot be null');
+        }
+        $this->container['final_price'] = $final_price;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Review
+ * GetV2ResourcesBuyerLatest200ResponseData
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Review Class Doc Comment
+ * GetV2ResourcesBuyerLatest200ResponseData Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Review implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetV2ResourcesBuyerLatest200ResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Review';
+    protected static $openAPIModelName = 'get_v2_resources_buyer_latest_200_response_data';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'review_id' => 'string',
-        'resource_id' => 'string',
-        'reviewer_id' => 'string'
+        'current' => '\OpenAPI\Client\Model\Version',
+        'latest' => '\OpenAPI\Client\Model\Version',
+        'has_usage_rights' => 'bool'
     ];
 
     /**
@@ -70,9 +70,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'review_id' => null,
-        'resource_id' => null,
-        'reviewer_id' => null
+        'current' => null,
+        'latest' => null,
+        'has_usage_rights' => null
     ];
 
     /**
@@ -81,9 +81,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'review_id' => false,
-        'resource_id' => false,
-        'reviewer_id' => false
+        'current' => false,
+        'latest' => false,
+        'has_usage_rights' => false
     ];
 
     /**
@@ -172,9 +172,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'review_id' => 'review_id',
-        'resource_id' => 'resource_id',
-        'reviewer_id' => 'reviewer_id'
+        'current' => 'current',
+        'latest' => 'latest',
+        'has_usage_rights' => 'has_usage_rights'
     ];
 
     /**
@@ -183,9 +183,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'review_id' => 'setReviewId',
-        'resource_id' => 'setResourceId',
-        'reviewer_id' => 'setReviewerId'
+        'current' => 'setCurrent',
+        'latest' => 'setLatest',
+        'has_usage_rights' => 'setHasUsageRights'
     ];
 
     /**
@@ -194,9 +194,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'review_id' => 'getReviewId',
-        'resource_id' => 'getResourceId',
-        'reviewer_id' => 'getReviewerId'
+        'current' => 'getCurrent',
+        'latest' => 'getLatest',
+        'has_usage_rights' => 'getHasUsageRights'
     ];
 
     /**
@@ -256,9 +256,9 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('review_id', $data ?? [], null);
-        $this->setIfExists('resource_id', $data ?? [], null);
-        $this->setIfExists('reviewer_id', $data ?? [], null);
+        $this->setIfExists('current', $data ?? [], null);
+        $this->setIfExists('latest', $data ?? [], null);
+        $this->setIfExists('has_usage_rights', $data ?? [], null);
     }
 
     /**
@@ -304,82 +304,82 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets review_id
+     * Gets current
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\Version|null
      */
-    public function getReviewId()
+    public function getCurrent()
     {
-        return $this->container['review_id'];
+        return $this->container['current'];
     }
 
     /**
-     * Sets review_id
+     * Sets current
      *
-     * @param string|null $review_id review_id
+     * @param \OpenAPI\Client\Model\Version|null $current current
      *
      * @return self
      */
-    public function setReviewId($review_id)
+    public function setCurrent($current)
     {
-        if (is_null($review_id)) {
-            throw new \InvalidArgumentException('non-nullable review_id cannot be null');
+        if (is_null($current)) {
+            throw new \InvalidArgumentException('non-nullable current cannot be null');
         }
-        $this->container['review_id'] = $review_id;
+        $this->container['current'] = $current;
 
         return $this;
     }
 
     /**
-     * Gets resource_id
+     * Gets latest
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\Version|null
      */
-    public function getResourceId()
+    public function getLatest()
     {
-        return $this->container['resource_id'];
+        return $this->container['latest'];
     }
 
     /**
-     * Sets resource_id
+     * Sets latest
      *
-     * @param string|null $resource_id resource_id
+     * @param \OpenAPI\Client\Model\Version|null $latest latest
      *
      * @return self
      */
-    public function setResourceId($resource_id)
+    public function setLatest($latest)
     {
-        if (is_null($resource_id)) {
-            throw new \InvalidArgumentException('non-nullable resource_id cannot be null');
+        if (is_null($latest)) {
+            throw new \InvalidArgumentException('non-nullable latest cannot be null');
         }
-        $this->container['resource_id'] = $resource_id;
+        $this->container['latest'] = $latest;
 
         return $this;
     }
 
     /**
-     * Gets reviewer_id
+     * Gets has_usage_rights
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getReviewerId()
+    public function getHasUsageRights()
     {
-        return $this->container['reviewer_id'];
+        return $this->container['has_usage_rights'];
     }
 
     /**
-     * Sets reviewer_id
+     * Sets has_usage_rights
      *
-     * @param string|null $reviewer_id reviewer_id
+     * @param bool|null $has_usage_rights has_usage_rights
      *
      * @return self
      */
-    public function setReviewerId($reviewer_id)
+    public function setHasUsageRights($has_usage_rights)
     {
-        if (is_null($reviewer_id)) {
-            throw new \InvalidArgumentException('non-nullable reviewer_id cannot be null');
+        if (is_null($has_usage_rights)) {
+            throw new \InvalidArgumentException('non-nullable has_usage_rights cannot be null');
         }
-        $this->container['reviewer_id'] = $reviewer_id;
+        $this->container['has_usage_rights'] = $has_usage_rights;
 
         return $this;
     }

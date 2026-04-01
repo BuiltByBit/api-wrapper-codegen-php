@@ -1,11 +1,10 @@
-# # Review
+# # GetV2ResourcesCreatorVersions200Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**review_id** | **string** |  | [optional]
-**resource_id** | **string** |  | [optional]
-**reviewer_id** | **string** |  | [optional]
+**result** | **string** |  | [optional]
+**data** | [**\OpenAPI\Client\Model\GetV2ResourcesCreatorVersions200ResponseData**](GetV2ResourcesCreatorVersions200ResponseData.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -88,6 +88,16 @@ Class | Method | HTTP request | Description
 *GlobalApi* | [**postV2EventsComplete**](docs/Api/GlobalApi.md#postv2eventscomplete) | **POST** /v2/events/complete | Mark events as complete
 *Oauth2Api* | [**getOauth2Token**](docs/Api/Oauth2Api.md#getoauth2token) | **POST** /oauth2/token | Request an access token using an existing grant
 *Oauth2Api* | [**getOauth2TokenRevoke**](docs/Api/Oauth2Api.md#getoauth2tokenrevoke) | **POST** /oauth2/token/revoke | Revoke an existing access or refresh token
+*ResourcesBuyerApi* | [**getV2ResourcesBuyerLatest**](docs/Api/ResourcesBuyerApi.md#getv2resourcesbuyerlatest) | **GET** /v2/resources/buyer/latest | Fetches the latest versions &amp; license information
+*ResourcesCreatorApi* | [**getV2ResourcesCreatorAddons**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatoraddons) | **GET** /v2/resources/creator/addons | Fetch a list of your resources&#39; addons
+*ResourcesCreatorApi* | [**getV2ResourcesCreatorBundles**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorbundles) | **GET** /v2/resources/creator/bundles | Fetch a list of your bundles
+*ResourcesCreatorApi* | [**getV2ResourcesCreatorLicenses**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorlicenses) | **GET** /v2/resources/creator/licenses | Fetch a list of your resources&#39; licenses
+*ResourcesCreatorApi* | [**getV2ResourcesCreatorPurchases**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorpurchases) | **GET** /v2/resources/creator/purchases | Fetch a list of your resources&#39; purchases
+*ResourcesCreatorApi* | [**getV2ResourcesCreatorResources**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorresources) | **GET** /v2/resources/creator/resources | Fetch a list of your resources
+*ResourcesCreatorApi* | [**getV2ResourcesCreatorReviews**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorreviews) | **GET** /v2/resources/creator/reviews | Fetch a list of your resources&#39; reviews
+*ResourcesCreatorApi* | [**getV2ResourcesCreatorSaleEvents**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorsaleevents) | **GET** /v2/resources/creator/sale-events | Fetch a list of your sale events
+*ResourcesCreatorApi* | [**getV2ResourcesCreatorUpdates**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorupdates) | **GET** /v2/resources/creator/updates | Fetch a list of your resource&#39;s updates
+*ResourcesCreatorApi* | [**getV2ResourcesCreatorVersions**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorversions) | **GET** /v2/resources/creator/versions | Fetch a list of your resources&#39; versions
 *ResourcesCreatorApi* | [**postV2ResourcesCreatorUpdate**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorupdate) | **POST** /v2/resources/creator/update | Post a resource update
 *ResourcesDiscoveryApi* | [**getResourcesDiscoverCategories**](docs/Api/ResourcesDiscoveryApi.md#getresourcesdiscovercategories) | **GET** /v2/resources/discover/categories | Fetch a list of categories
 *ResourcesDiscoveryApi* | [**getResourcesDiscoverResources**](docs/Api/ResourcesDiscoveryApi.md#getresourcesdiscoverresources) | **GET** /v2/resources/discover/resources | Fetch a list of resources
@@ -107,6 +117,7 @@ Class | Method | HTTP request | Description
 - [AnalyticGraphData](docs/Model/AnalyticGraphData.md)
 - [AnalyticGraphDataPeriod](docs/Model/AnalyticGraphDataPeriod.md)
 - [AnalyticGraphDataPoint](docs/Model/AnalyticGraphDataPoint.md)
+- [Bundle](docs/Model/Bundle.md)
 - [CartItem](docs/Model/CartItem.md)
 - [CartItemDiscountsInner](docs/Model/CartItemDiscountsInner.md)
 - [CartSummary](docs/Model/CartSummary.md)
@@ -132,6 +143,26 @@ Class | Method | HTTP request | Description
 - [GetV2AnalyticsSingle200ResponseDataPeriod](docs/Model/GetV2AnalyticsSingle200ResponseDataPeriod.md)
 - [GetV2Events200Response](docs/Model/GetV2Events200Response.md)
 - [GetV2Events200ResponseData](docs/Model/GetV2Events200ResponseData.md)
+- [GetV2ResourcesBuyerLatest200Response](docs/Model/GetV2ResourcesBuyerLatest200Response.md)
+- [GetV2ResourcesBuyerLatest200ResponseData](docs/Model/GetV2ResourcesBuyerLatest200ResponseData.md)
+- [GetV2ResourcesCreatorAddons200Response](docs/Model/GetV2ResourcesCreatorAddons200Response.md)
+- [GetV2ResourcesCreatorAddons200ResponseData](docs/Model/GetV2ResourcesCreatorAddons200ResponseData.md)
+- [GetV2ResourcesCreatorBundles200Response](docs/Model/GetV2ResourcesCreatorBundles200Response.md)
+- [GetV2ResourcesCreatorBundles200ResponseData](docs/Model/GetV2ResourcesCreatorBundles200ResponseData.md)
+- [GetV2ResourcesCreatorLicenses200Response](docs/Model/GetV2ResourcesCreatorLicenses200Response.md)
+- [GetV2ResourcesCreatorLicenses200ResponseData](docs/Model/GetV2ResourcesCreatorLicenses200ResponseData.md)
+- [GetV2ResourcesCreatorPurchases200Response](docs/Model/GetV2ResourcesCreatorPurchases200Response.md)
+- [GetV2ResourcesCreatorPurchases200ResponseData](docs/Model/GetV2ResourcesCreatorPurchases200ResponseData.md)
+- [GetV2ResourcesCreatorResources200Response](docs/Model/GetV2ResourcesCreatorResources200Response.md)
+- [GetV2ResourcesCreatorResources200ResponseData](docs/Model/GetV2ResourcesCreatorResources200ResponseData.md)
+- [GetV2ResourcesCreatorReviews200Response](docs/Model/GetV2ResourcesCreatorReviews200Response.md)
+- [GetV2ResourcesCreatorReviews200ResponseData](docs/Model/GetV2ResourcesCreatorReviews200ResponseData.md)
+- [GetV2ResourcesCreatorSaleEvents200Response](docs/Model/GetV2ResourcesCreatorSaleEvents200Response.md)
+- [GetV2ResourcesCreatorSaleEvents200ResponseData](docs/Model/GetV2ResourcesCreatorSaleEvents200ResponseData.md)
+- [GetV2ResourcesCreatorUpdates200Response](docs/Model/GetV2ResourcesCreatorUpdates200Response.md)
+- [GetV2ResourcesCreatorUpdates200ResponseData](docs/Model/GetV2ResourcesCreatorUpdates200ResponseData.md)
+- [GetV2ResourcesCreatorVersions200Response](docs/Model/GetV2ResourcesCreatorVersions200Response.md)
+- [GetV2ResourcesCreatorVersions200ResponseData](docs/Model/GetV2ResourcesCreatorVersions200ResponseData.md)
 - [GetV2ResourcesDiscoverCartView200Response](docs/Model/GetV2ResourcesDiscoverCartView200Response.md)
 - [GetV2ResourcesDiscoverCartView200ResponseData](docs/Model/GetV2ResourcesDiscoverCartView200ResponseData.md)
 - [GetV2ResourcesDiscoverLicenses200Response](docs/Model/GetV2ResourcesDiscoverLicenses200Response.md)
@@ -156,6 +187,8 @@ Class | Method | HTTP request | Description
 - [PostV2ResourcesDiscoverCartCouponRemoveRequest](docs/Model/PostV2ResourcesDiscoverCartCouponRemoveRequest.md)
 - [PostV2ResourcesDiscoverCartRemove200Response](docs/Model/PostV2ResourcesDiscoverCartRemove200Response.md)
 - [PostV2ResourcesDiscoverCartRemoveRequest](docs/Model/PostV2ResourcesDiscoverCartRemoveRequest.md)
+- [Price](docs/Model/Price.md)
+- [Purchase](docs/Model/Purchase.md)
 - [Resource](docs/Model/Resource.md)
 - [Review](docs/Model/Review.md)
 - [SaleEvent](docs/Model/SaleEvent.md)
