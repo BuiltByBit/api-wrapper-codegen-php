@@ -59,7 +59,7 @@ $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Au
 // $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\GlobalApi(
+$apiInstance = new OpenAPI\Client\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -67,10 +67,10 @@ $apiInstance = new OpenAPI\Client\Api\GlobalApi(
 );
 
 try {
-    $result = $apiInstance->getV2Analytics();
+    $result = $apiInstance->getV2Health();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling GlobalApi->getV2Analytics: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->getV2Health: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -81,6 +81,9 @@ All URIs are relative to *https://api.builtbybit.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultApi* | [**getV2Health**](docs/Api/DefaultApi.md#getv2health) | **GET** /v2/health | Retrieve a health status
+*DefaultApi* | [**getV2ResourcesCreatorCoupons**](docs/Api/DefaultApi.md#getv2resourcescreatorcoupons) | **GET** /v2/resources/creator/coupons | Fetch a list of your coupons
+*DefaultApi* | [**getV2ResourcesCreatorStores**](docs/Api/DefaultApi.md#getv2resourcescreatorstores) | **GET** /v2/resources/creator/stores | Fetch a list of your stores
 *GlobalApi* | [**getV2Analytics**](docs/Api/GlobalApi.md#getv2analytics) | **GET** /v2/analytics | Fetch a list of analytics definitions
 *GlobalApi* | [**getV2AnalyticsGraph**](docs/Api/GlobalApi.md#getv2analyticsgraph) | **GET** /v2/analytics/graph | Fetch analytics graph data
 *GlobalApi* | [**getV2AnalyticsSingle**](docs/Api/GlobalApi.md#getv2analyticssingle) | **GET** /v2/analytics/single | Fetch a single analytics value
@@ -122,7 +125,7 @@ Class | Method | HTTP request | Description
 - [CartItemDiscountsInner](docs/Model/CartItemDiscountsInner.md)
 - [CartSummary](docs/Model/CartSummary.md)
 - [Category](docs/Model/Category.md)
-- [Description](docs/Model/Description.md)
+- [Coupon](docs/Model/Coupon.md)
 - [Event](docs/Model/Event.md)
 - [Filter](docs/Model/Filter.md)
 - [FilterChoice](docs/Model/FilterChoice.md)
@@ -143,12 +146,15 @@ Class | Method | HTTP request | Description
 - [GetV2AnalyticsSingle200ResponseDataPeriod](docs/Model/GetV2AnalyticsSingle200ResponseDataPeriod.md)
 - [GetV2Events200Response](docs/Model/GetV2Events200Response.md)
 - [GetV2Events200ResponseData](docs/Model/GetV2Events200ResponseData.md)
+- [GetV2Health200Response](docs/Model/GetV2Health200Response.md)
 - [GetV2ResourcesBuyerLatest200Response](docs/Model/GetV2ResourcesBuyerLatest200Response.md)
 - [GetV2ResourcesBuyerLatest200ResponseData](docs/Model/GetV2ResourcesBuyerLatest200ResponseData.md)
 - [GetV2ResourcesCreatorAddons200Response](docs/Model/GetV2ResourcesCreatorAddons200Response.md)
 - [GetV2ResourcesCreatorAddons200ResponseData](docs/Model/GetV2ResourcesCreatorAddons200ResponseData.md)
 - [GetV2ResourcesCreatorBundles200Response](docs/Model/GetV2ResourcesCreatorBundles200Response.md)
 - [GetV2ResourcesCreatorBundles200ResponseData](docs/Model/GetV2ResourcesCreatorBundles200ResponseData.md)
+- [GetV2ResourcesCreatorCoupons200Response](docs/Model/GetV2ResourcesCreatorCoupons200Response.md)
+- [GetV2ResourcesCreatorCoupons200ResponseData](docs/Model/GetV2ResourcesCreatorCoupons200ResponseData.md)
 - [GetV2ResourcesCreatorLicenses200Response](docs/Model/GetV2ResourcesCreatorLicenses200Response.md)
 - [GetV2ResourcesCreatorLicenses200ResponseData](docs/Model/GetV2ResourcesCreatorLicenses200ResponseData.md)
 - [GetV2ResourcesCreatorPurchases200Response](docs/Model/GetV2ResourcesCreatorPurchases200Response.md)
@@ -159,6 +165,8 @@ Class | Method | HTTP request | Description
 - [GetV2ResourcesCreatorReviews200ResponseData](docs/Model/GetV2ResourcesCreatorReviews200ResponseData.md)
 - [GetV2ResourcesCreatorSaleEvents200Response](docs/Model/GetV2ResourcesCreatorSaleEvents200Response.md)
 - [GetV2ResourcesCreatorSaleEvents200ResponseData](docs/Model/GetV2ResourcesCreatorSaleEvents200ResponseData.md)
+- [GetV2ResourcesCreatorStores200Response](docs/Model/GetV2ResourcesCreatorStores200Response.md)
+- [GetV2ResourcesCreatorStores200ResponseData](docs/Model/GetV2ResourcesCreatorStores200ResponseData.md)
 - [GetV2ResourcesCreatorUpdates200Response](docs/Model/GetV2ResourcesCreatorUpdates200Response.md)
 - [GetV2ResourcesCreatorUpdates200ResponseData](docs/Model/GetV2ResourcesCreatorUpdates200ResponseData.md)
 - [GetV2ResourcesCreatorVersions200Response](docs/Model/GetV2ResourcesCreatorVersions200Response.md)
@@ -191,8 +199,10 @@ Class | Method | HTTP request | Description
 - [Purchase](docs/Model/Purchase.md)
 - [Resource](docs/Model/Resource.md)
 - [Review](docs/Model/Review.md)
+- [RichText](docs/Model/RichText.md)
 - [SaleEvent](docs/Model/SaleEvent.md)
 - [SaleEventEntry](docs/Model/SaleEventEntry.md)
+- [Store](docs/Model/Store.md)
 - [Update](docs/Model/Update.md)
 - [Version](docs/Model/Version.md)
 

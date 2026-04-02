@@ -35,7 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * Resource Class Doc Comment
  *
  * @category Class
- * @description Supported &#39;with&#39; values: - &#39;Creator&#39;: the resource creator/owner - &#39;Category&#39;: the resource category  - &#39;Description&#39;: the resource description (rendered HTML and BBCode) - &#39;LatestReviews&#39;: list of the 10 latest reviews - &#39;Filter values&#39;: filter values set by the creator
+ * @description Supported &#39;with&#39; hints: - &#39;Creator&#39;: the resource creator/owner - &#39;Category&#39;: the resource category  - &#39;Description&#39;: the resource description (rendered HTML and BBCode) - &#39;LatestReviews&#39;: list of the 10 latest reviews - &#39;Filter values&#39;: filter values set by the creator
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -78,7 +78,7 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'latest_version' => '\OpenAPI\Client\Model\Version',
         'latest_update' => '\OpenAPI\Client\Model\Version',
         'latest_reviews' => '\OpenAPI\Client\Model\Review[]',
-        'description' => '\OpenAPI\Client\Model\Description',
+        'description' => '\OpenAPI\Client\Model\RichText',
         'category' => '\OpenAPI\Client\Model\Category',
         'addons' => 'array<string,\OpenAPI\Client\Model\Addon[]>'
     ];
@@ -987,7 +987,7 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return \OpenAPI\Client\Model\Description|null
+     * @return \OpenAPI\Client\Model\RichText|null
      */
     public function getDescription()
     {
@@ -997,7 +997,7 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param \OpenAPI\Client\Model\Description|null $description description
+     * @param \OpenAPI\Client\Model\RichText|null $description description
      *
      * @return self
      */

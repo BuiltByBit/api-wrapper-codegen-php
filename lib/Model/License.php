@@ -35,6 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * License Class Doc Comment
  *
  * @category Class
+ * @description Supported &#39;with&#39; hints: - &#39;Resource&#39;: the resource this license is for, if content_type &#x3D; &#39;resource&#39; - &#39;Buyer&#39;: the buyer this license is for
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -59,11 +60,13 @@ class License implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'content_type' => 'string',
         'content_id' => 'int',
+        'buyer_id' => 'int',
         'permanent' => 'bool',
         'active' => 'bool',
         'start_date' => 'int',
         'end_date' => 'int',
-        'resource' => '\OpenAPI\Client\Model\Resource'
+        'resource' => '\OpenAPI\Client\Model\Resource',
+        'buyer' => '\OpenAPI\Client\Model\Member'
     ];
 
     /**
@@ -76,11 +79,13 @@ class License implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'content_type' => null,
         'content_id' => null,
+        'buyer_id' => null,
         'permanent' => null,
         'active' => null,
         'start_date' => null,
         'end_date' => null,
-        'resource' => null
+        'resource' => null,
+        'buyer' => null
     ];
 
     /**
@@ -91,11 +96,13 @@ class License implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'content_type' => false,
         'content_id' => false,
+        'buyer_id' => false,
         'permanent' => false,
         'active' => false,
         'start_date' => false,
         'end_date' => false,
-        'resource' => false
+        'resource' => false,
+        'buyer' => false
     ];
 
     /**
@@ -186,11 +193,13 @@ class License implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'content_type' => 'content_type',
         'content_id' => 'content_id',
+        'buyer_id' => 'buyer_id',
         'permanent' => 'permanent',
         'active' => 'active',
         'start_date' => 'start_date',
         'end_date' => 'end_date',
-        'resource' => 'Resource'
+        'resource' => 'Resource',
+        'buyer' => 'Buyer'
     ];
 
     /**
@@ -201,11 +210,13 @@ class License implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'content_type' => 'setContentType',
         'content_id' => 'setContentId',
+        'buyer_id' => 'setBuyerId',
         'permanent' => 'setPermanent',
         'active' => 'setActive',
         'start_date' => 'setStartDate',
         'end_date' => 'setEndDate',
-        'resource' => 'setResource'
+        'resource' => 'setResource',
+        'buyer' => 'setBuyer'
     ];
 
     /**
@@ -216,11 +227,13 @@ class License implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'content_type' => 'getContentType',
         'content_id' => 'getContentId',
+        'buyer_id' => 'getBuyerId',
         'permanent' => 'getPermanent',
         'active' => 'getActive',
         'start_date' => 'getStartDate',
         'end_date' => 'getEndDate',
-        'resource' => 'getResource'
+        'resource' => 'getResource',
+        'buyer' => 'getBuyer'
     ];
 
     /**
@@ -282,11 +295,13 @@ class License implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('content_type', $data ?? [], null);
         $this->setIfExists('content_id', $data ?? [], null);
+        $this->setIfExists('buyer_id', $data ?? [], null);
         $this->setIfExists('permanent', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('start_date', $data ?? [], null);
         $this->setIfExists('end_date', $data ?? [], null);
         $this->setIfExists('resource', $data ?? [], null);
+        $this->setIfExists('buyer', $data ?? [], null);
     }
 
     /**
@@ -387,6 +402,33 @@ class License implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable content_id cannot be null');
         }
         $this->container['content_id'] = $content_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets buyer_id
+     *
+     * @return int|null
+     */
+    public function getBuyerId()
+    {
+        return $this->container['buyer_id'];
+    }
+
+    /**
+     * Sets buyer_id
+     *
+     * @param int|null $buyer_id buyer_id
+     *
+     * @return self
+     */
+    public function setBuyerId($buyer_id)
+    {
+        if (is_null($buyer_id)) {
+            throw new \InvalidArgumentException('non-nullable buyer_id cannot be null');
+        }
+        $this->container['buyer_id'] = $buyer_id;
 
         return $this;
     }
@@ -522,6 +564,33 @@ class License implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable resource cannot be null');
         }
         $this->container['resource'] = $resource;
+
+        return $this;
+    }
+
+    /**
+     * Gets buyer
+     *
+     * @return \OpenAPI\Client\Model\Member|null
+     */
+    public function getBuyer()
+    {
+        return $this->container['buyer'];
+    }
+
+    /**
+     * Sets buyer
+     *
+     * @param \OpenAPI\Client\Model\Member|null $buyer buyer
+     *
+     * @return self
+     */
+    public function setBuyer($buyer)
+    {
+        if (is_null($buyer)) {
+            throw new \InvalidArgumentException('non-nullable buyer cannot be null');
+        }
+        $this->container['buyer'] = $buyer;
 
         return $this;
     }

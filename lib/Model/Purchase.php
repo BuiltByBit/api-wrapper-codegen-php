@@ -35,6 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * Purchase Class Doc Comment
  *
  * @category Class
+ * @description Supported &#39;with&#39; hints: - &#39;Buyer&#39;: the buyer of the purchase - &#39;Seller&#39;: the seller of the purchase - &#39;Resource&#39;: the resource purchased, if content_type &#x3D; &#39;resource&#39; - &#39;Addon&#39;: the addon purchased, if content_type &#x3D; &#39;addon&#39;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -57,7 +58,26 @@ class Purchase implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string'
+        'purchase_id' => 'int',
+        'content_type' => 'string',
+        'content_id' => 'int',
+        'buyer_id' => 'int',
+        'seller_id' => 'int',
+        'created_at' => 'int',
+        'validated_at' => 'int',
+        'bundle_id' => 'int',
+        'sale_event_id' => 'int',
+        'external_tid' => 'string',
+        'gateway' => 'string',
+        'list_price' => '\OpenAPI\Client\Model\Price',
+        'final_price' => '\OpenAPI\Client\Model\Price',
+        'platform_fee' => '\OpenAPI\Client\Model\Price',
+        'ad_fee_payment' => '\OpenAPI\Client\Model\Price',
+        'ad_fee_credit' => '\OpenAPI\Client\Model\Price',
+        'resource' => '\OpenAPI\Client\Model\Resource',
+        'addon' => '\OpenAPI\Client\Model\Addon',
+        'buyer' => '\OpenAPI\Client\Model\Member',
+        'seller' => '\OpenAPI\Client\Model\Member'
     ];
 
     /**
@@ -68,7 +88,26 @@ class Purchase implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null
+        'purchase_id' => null,
+        'content_type' => null,
+        'content_id' => null,
+        'buyer_id' => null,
+        'seller_id' => null,
+        'created_at' => null,
+        'validated_at' => null,
+        'bundle_id' => null,
+        'sale_event_id' => null,
+        'external_tid' => null,
+        'gateway' => null,
+        'list_price' => null,
+        'final_price' => null,
+        'platform_fee' => null,
+        'ad_fee_payment' => null,
+        'ad_fee_credit' => null,
+        'resource' => null,
+        'addon' => null,
+        'buyer' => null,
+        'seller' => null
     ];
 
     /**
@@ -77,7 +116,26 @@ class Purchase implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false
+        'purchase_id' => false,
+        'content_type' => false,
+        'content_id' => false,
+        'buyer_id' => false,
+        'seller_id' => false,
+        'created_at' => false,
+        'validated_at' => false,
+        'bundle_id' => false,
+        'sale_event_id' => false,
+        'external_tid' => false,
+        'gateway' => false,
+        'list_price' => false,
+        'final_price' => false,
+        'platform_fee' => false,
+        'ad_fee_payment' => false,
+        'ad_fee_credit' => false,
+        'resource' => false,
+        'addon' => false,
+        'buyer' => false,
+        'seller' => false
     ];
 
     /**
@@ -166,7 +224,26 @@ class Purchase implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id'
+        'purchase_id' => 'purchase_id',
+        'content_type' => 'content_type',
+        'content_id' => 'content_id',
+        'buyer_id' => 'buyer_id',
+        'seller_id' => 'seller_id',
+        'created_at' => 'created_at',
+        'validated_at' => 'validated_at',
+        'bundle_id' => 'bundle_id',
+        'sale_event_id' => 'sale_event_id',
+        'external_tid' => 'external_tid',
+        'gateway' => 'gateway',
+        'list_price' => 'ListPrice',
+        'final_price' => 'FinalPrice',
+        'platform_fee' => 'PlatformFee',
+        'ad_fee_payment' => 'AdFeePayment',
+        'ad_fee_credit' => 'AdFeeCredit',
+        'resource' => 'Resource',
+        'addon' => 'Addon',
+        'buyer' => 'Buyer',
+        'seller' => 'Seller'
     ];
 
     /**
@@ -175,7 +252,26 @@ class Purchase implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId'
+        'purchase_id' => 'setPurchaseId',
+        'content_type' => 'setContentType',
+        'content_id' => 'setContentId',
+        'buyer_id' => 'setBuyerId',
+        'seller_id' => 'setSellerId',
+        'created_at' => 'setCreatedAt',
+        'validated_at' => 'setValidatedAt',
+        'bundle_id' => 'setBundleId',
+        'sale_event_id' => 'setSaleEventId',
+        'external_tid' => 'setExternalTid',
+        'gateway' => 'setGateway',
+        'list_price' => 'setListPrice',
+        'final_price' => 'setFinalPrice',
+        'platform_fee' => 'setPlatformFee',
+        'ad_fee_payment' => 'setAdFeePayment',
+        'ad_fee_credit' => 'setAdFeeCredit',
+        'resource' => 'setResource',
+        'addon' => 'setAddon',
+        'buyer' => 'setBuyer',
+        'seller' => 'setSeller'
     ];
 
     /**
@@ -184,7 +280,26 @@ class Purchase implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId'
+        'purchase_id' => 'getPurchaseId',
+        'content_type' => 'getContentType',
+        'content_id' => 'getContentId',
+        'buyer_id' => 'getBuyerId',
+        'seller_id' => 'getSellerId',
+        'created_at' => 'getCreatedAt',
+        'validated_at' => 'getValidatedAt',
+        'bundle_id' => 'getBundleId',
+        'sale_event_id' => 'getSaleEventId',
+        'external_tid' => 'getExternalTid',
+        'gateway' => 'getGateway',
+        'list_price' => 'getListPrice',
+        'final_price' => 'getFinalPrice',
+        'platform_fee' => 'getPlatformFee',
+        'ad_fee_payment' => 'getAdFeePayment',
+        'ad_fee_credit' => 'getAdFeeCredit',
+        'resource' => 'getResource',
+        'addon' => 'getAddon',
+        'buyer' => 'getBuyer',
+        'seller' => 'getSeller'
     ];
 
     /**
@@ -244,7 +359,26 @@ class Purchase implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('purchase_id', $data ?? [], null);
+        $this->setIfExists('content_type', $data ?? [], null);
+        $this->setIfExists('content_id', $data ?? [], null);
+        $this->setIfExists('buyer_id', $data ?? [], null);
+        $this->setIfExists('seller_id', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('validated_at', $data ?? [], null);
+        $this->setIfExists('bundle_id', $data ?? [], null);
+        $this->setIfExists('sale_event_id', $data ?? [], null);
+        $this->setIfExists('external_tid', $data ?? [], null);
+        $this->setIfExists('gateway', $data ?? [], null);
+        $this->setIfExists('list_price', $data ?? [], null);
+        $this->setIfExists('final_price', $data ?? [], null);
+        $this->setIfExists('platform_fee', $data ?? [], null);
+        $this->setIfExists('ad_fee_payment', $data ?? [], null);
+        $this->setIfExists('ad_fee_credit', $data ?? [], null);
+        $this->setIfExists('resource', $data ?? [], null);
+        $this->setIfExists('addon', $data ?? [], null);
+        $this->setIfExists('buyer', $data ?? [], null);
+        $this->setIfExists('seller', $data ?? [], null);
     }
 
     /**
@@ -290,28 +424,541 @@ class Purchase implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets purchase_id
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getId()
+    public function getPurchaseId()
     {
-        return $this->container['id'];
+        return $this->container['purchase_id'];
     }
 
     /**
-     * Sets id
+     * Sets purchase_id
      *
-     * @param string|null $id id
+     * @param int|null $purchase_id purchase_id
      *
      * @return self
      */
-    public function setId($id)
+    public function setPurchaseId($purchase_id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($purchase_id)) {
+            throw new \InvalidArgumentException('non-nullable purchase_id cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['purchase_id'] = $purchase_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets content_type
+     *
+     * @return string|null
+     */
+    public function getContentType()
+    {
+        return $this->container['content_type'];
+    }
+
+    /**
+     * Sets content_type
+     *
+     * @param string|null $content_type content_type
+     *
+     * @return self
+     */
+    public function setContentType($content_type)
+    {
+        if (is_null($content_type)) {
+            throw new \InvalidArgumentException('non-nullable content_type cannot be null');
+        }
+        $this->container['content_type'] = $content_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets content_id
+     *
+     * @return int|null
+     */
+    public function getContentId()
+    {
+        return $this->container['content_id'];
+    }
+
+    /**
+     * Sets content_id
+     *
+     * @param int|null $content_id content_id
+     *
+     * @return self
+     */
+    public function setContentId($content_id)
+    {
+        if (is_null($content_id)) {
+            throw new \InvalidArgumentException('non-nullable content_id cannot be null');
+        }
+        $this->container['content_id'] = $content_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets buyer_id
+     *
+     * @return int|null
+     */
+    public function getBuyerId()
+    {
+        return $this->container['buyer_id'];
+    }
+
+    /**
+     * Sets buyer_id
+     *
+     * @param int|null $buyer_id buyer_id
+     *
+     * @return self
+     */
+    public function setBuyerId($buyer_id)
+    {
+        if (is_null($buyer_id)) {
+            throw new \InvalidArgumentException('non-nullable buyer_id cannot be null');
+        }
+        $this->container['buyer_id'] = $buyer_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets seller_id
+     *
+     * @return int|null
+     */
+    public function getSellerId()
+    {
+        return $this->container['seller_id'];
+    }
+
+    /**
+     * Sets seller_id
+     *
+     * @param int|null $seller_id seller_id
+     *
+     * @return self
+     */
+    public function setSellerId($seller_id)
+    {
+        if (is_null($seller_id)) {
+            throw new \InvalidArgumentException('non-nullable seller_id cannot be null');
+        }
+        $this->container['seller_id'] = $seller_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return int|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param int|null $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets validated_at
+     *
+     * @return int|null
+     */
+    public function getValidatedAt()
+    {
+        return $this->container['validated_at'];
+    }
+
+    /**
+     * Sets validated_at
+     *
+     * @param int|null $validated_at validated_at
+     *
+     * @return self
+     */
+    public function setValidatedAt($validated_at)
+    {
+        if (is_null($validated_at)) {
+            throw new \InvalidArgumentException('non-nullable validated_at cannot be null');
+        }
+        $this->container['validated_at'] = $validated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets bundle_id
+     *
+     * @return int|null
+     */
+    public function getBundleId()
+    {
+        return $this->container['bundle_id'];
+    }
+
+    /**
+     * Sets bundle_id
+     *
+     * @param int|null $bundle_id bundle_id
+     *
+     * @return self
+     */
+    public function setBundleId($bundle_id)
+    {
+        if (is_null($bundle_id)) {
+            throw new \InvalidArgumentException('non-nullable bundle_id cannot be null');
+        }
+        $this->container['bundle_id'] = $bundle_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets sale_event_id
+     *
+     * @return int|null
+     */
+    public function getSaleEventId()
+    {
+        return $this->container['sale_event_id'];
+    }
+
+    /**
+     * Sets sale_event_id
+     *
+     * @param int|null $sale_event_id sale_event_id
+     *
+     * @return self
+     */
+    public function setSaleEventId($sale_event_id)
+    {
+        if (is_null($sale_event_id)) {
+            throw new \InvalidArgumentException('non-nullable sale_event_id cannot be null');
+        }
+        $this->container['sale_event_id'] = $sale_event_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_tid
+     *
+     * @return string|null
+     */
+    public function getExternalTid()
+    {
+        return $this->container['external_tid'];
+    }
+
+    /**
+     * Sets external_tid
+     *
+     * @param string|null $external_tid external_tid
+     *
+     * @return self
+     */
+    public function setExternalTid($external_tid)
+    {
+        if (is_null($external_tid)) {
+            throw new \InvalidArgumentException('non-nullable external_tid cannot be null');
+        }
+        $this->container['external_tid'] = $external_tid;
+
+        return $this;
+    }
+
+    /**
+     * Gets gateway
+     *
+     * @return string|null
+     */
+    public function getGateway()
+    {
+        return $this->container['gateway'];
+    }
+
+    /**
+     * Sets gateway
+     *
+     * @param string|null $gateway gateway
+     *
+     * @return self
+     */
+    public function setGateway($gateway)
+    {
+        if (is_null($gateway)) {
+            throw new \InvalidArgumentException('non-nullable gateway cannot be null');
+        }
+        $this->container['gateway'] = $gateway;
+
+        return $this;
+    }
+
+    /**
+     * Gets list_price
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getListPrice()
+    {
+        return $this->container['list_price'];
+    }
+
+    /**
+     * Sets list_price
+     *
+     * @param \OpenAPI\Client\Model\Price|null $list_price list_price
+     *
+     * @return self
+     */
+    public function setListPrice($list_price)
+    {
+        if (is_null($list_price)) {
+            throw new \InvalidArgumentException('non-nullable list_price cannot be null');
+        }
+        $this->container['list_price'] = $list_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets final_price
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getFinalPrice()
+    {
+        return $this->container['final_price'];
+    }
+
+    /**
+     * Sets final_price
+     *
+     * @param \OpenAPI\Client\Model\Price|null $final_price final_price
+     *
+     * @return self
+     */
+    public function setFinalPrice($final_price)
+    {
+        if (is_null($final_price)) {
+            throw new \InvalidArgumentException('non-nullable final_price cannot be null');
+        }
+        $this->container['final_price'] = $final_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets platform_fee
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getPlatformFee()
+    {
+        return $this->container['platform_fee'];
+    }
+
+    /**
+     * Sets platform_fee
+     *
+     * @param \OpenAPI\Client\Model\Price|null $platform_fee platform_fee
+     *
+     * @return self
+     */
+    public function setPlatformFee($platform_fee)
+    {
+        if (is_null($platform_fee)) {
+            throw new \InvalidArgumentException('non-nullable platform_fee cannot be null');
+        }
+        $this->container['platform_fee'] = $platform_fee;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_fee_payment
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getAdFeePayment()
+    {
+        return $this->container['ad_fee_payment'];
+    }
+
+    /**
+     * Sets ad_fee_payment
+     *
+     * @param \OpenAPI\Client\Model\Price|null $ad_fee_payment ad_fee_payment
+     *
+     * @return self
+     */
+    public function setAdFeePayment($ad_fee_payment)
+    {
+        if (is_null($ad_fee_payment)) {
+            throw new \InvalidArgumentException('non-nullable ad_fee_payment cannot be null');
+        }
+        $this->container['ad_fee_payment'] = $ad_fee_payment;
+
+        return $this;
+    }
+
+    /**
+     * Gets ad_fee_credit
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getAdFeeCredit()
+    {
+        return $this->container['ad_fee_credit'];
+    }
+
+    /**
+     * Sets ad_fee_credit
+     *
+     * @param \OpenAPI\Client\Model\Price|null $ad_fee_credit ad_fee_credit
+     *
+     * @return self
+     */
+    public function setAdFeeCredit($ad_fee_credit)
+    {
+        if (is_null($ad_fee_credit)) {
+            throw new \InvalidArgumentException('non-nullable ad_fee_credit cannot be null');
+        }
+        $this->container['ad_fee_credit'] = $ad_fee_credit;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource
+     *
+     * @return \OpenAPI\Client\Model\Resource|null
+     */
+    public function getResource()
+    {
+        return $this->container['resource'];
+    }
+
+    /**
+     * Sets resource
+     *
+     * @param \OpenAPI\Client\Model\Resource|null $resource resource
+     *
+     * @return self
+     */
+    public function setResource($resource)
+    {
+        if (is_null($resource)) {
+            throw new \InvalidArgumentException('non-nullable resource cannot be null');
+        }
+        $this->container['resource'] = $resource;
+
+        return $this;
+    }
+
+    /**
+     * Gets addon
+     *
+     * @return \OpenAPI\Client\Model\Addon|null
+     */
+    public function getAddon()
+    {
+        return $this->container['addon'];
+    }
+
+    /**
+     * Sets addon
+     *
+     * @param \OpenAPI\Client\Model\Addon|null $addon addon
+     *
+     * @return self
+     */
+    public function setAddon($addon)
+    {
+        if (is_null($addon)) {
+            throw new \InvalidArgumentException('non-nullable addon cannot be null');
+        }
+        $this->container['addon'] = $addon;
+
+        return $this;
+    }
+
+    /**
+     * Gets buyer
+     *
+     * @return \OpenAPI\Client\Model\Member|null
+     */
+    public function getBuyer()
+    {
+        return $this->container['buyer'];
+    }
+
+    /**
+     * Sets buyer
+     *
+     * @param \OpenAPI\Client\Model\Member|null $buyer buyer
+     *
+     * @return self
+     */
+    public function setBuyer($buyer)
+    {
+        if (is_null($buyer)) {
+            throw new \InvalidArgumentException('non-nullable buyer cannot be null');
+        }
+        $this->container['buyer'] = $buyer;
+
+        return $this;
+    }
+
+    /**
+     * Gets seller
+     *
+     * @return \OpenAPI\Client\Model\Member|null
+     */
+    public function getSeller()
+    {
+        return $this->container['seller'];
+    }
+
+    /**
+     * Sets seller
+     *
+     * @param \OpenAPI\Client\Model\Member|null $seller seller
+     *
+     * @return self
+     */
+    public function setSeller($seller)
+    {
+        if (is_null($seller)) {
+            throw new \InvalidArgumentException('non-nullable seller cannot be null');
+        }
+        $this->container['seller'] = $seller;
 
         return $this;
     }

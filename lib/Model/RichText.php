@@ -1,6 +1,6 @@
 <?php
 /**
- * Update
+ * RichText
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Update Class Doc Comment
+ * RichText Class Doc Comment
  *
  * @category Class
- * @description Supported &#39;with&#39; hints: - &#39;Resource&#39;: the resource this update relates to - &#39;Description&#39;: the rendered description of the update
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Update implements ModelInterface, ArrayAccess, \JsonSerializable
+class RichText implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Update';
+    protected static $openAPIModelName = 'RichText';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +57,8 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'update_id' => 'int',
-        'resource_id' => 'int',
-        'created_at' => 'int',
-        'title' => 'string',
-        'description' => '\OpenAPI\Client\Model\RichText',
-        'resource' => '\OpenAPI\Client\Model\Resource'
+        'html' => 'string',
+        'bbcode' => 'string'
     ];
 
     /**
@@ -74,12 +69,8 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'update_id' => null,
-        'resource_id' => null,
-        'created_at' => null,
-        'title' => null,
-        'description' => null,
-        'resource' => null
+        'html' => null,
+        'bbcode' => null
     ];
 
     /**
@@ -88,12 +79,8 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'update_id' => false,
-        'resource_id' => false,
-        'created_at' => false,
-        'title' => false,
-        'description' => false,
-        'resource' => false
+        'html' => false,
+        'bbcode' => false
     ];
 
     /**
@@ -182,12 +169,8 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'update_id' => 'update_id',
-        'resource_id' => 'resource_id',
-        'created_at' => 'created_at',
-        'title' => 'title',
-        'description' => 'Description',
-        'resource' => 'Resource'
+        'html' => 'html',
+        'bbcode' => 'bbcode'
     ];
 
     /**
@@ -196,12 +179,8 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'update_id' => 'setUpdateId',
-        'resource_id' => 'setResourceId',
-        'created_at' => 'setCreatedAt',
-        'title' => 'setTitle',
-        'description' => 'setDescription',
-        'resource' => 'setResource'
+        'html' => 'setHtml',
+        'bbcode' => 'setBbcode'
     ];
 
     /**
@@ -210,12 +189,8 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'update_id' => 'getUpdateId',
-        'resource_id' => 'getResourceId',
-        'created_at' => 'getCreatedAt',
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'resource' => 'getResource'
+        'html' => 'getHtml',
+        'bbcode' => 'getBbcode'
     ];
 
     /**
@@ -275,12 +250,8 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('update_id', $data ?? [], null);
-        $this->setIfExists('resource_id', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('title', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('resource', $data ?? [], null);
+        $this->setIfExists('html', $data ?? [], null);
+        $this->setIfExists('bbcode', $data ?? [], null);
     }
 
     /**
@@ -326,163 +297,55 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets update_id
-     *
-     * @return int|null
-     */
-    public function getUpdateId()
-    {
-        return $this->container['update_id'];
-    }
-
-    /**
-     * Sets update_id
-     *
-     * @param int|null $update_id update_id
-     *
-     * @return self
-     */
-    public function setUpdateId($update_id)
-    {
-        if (is_null($update_id)) {
-            throw new \InvalidArgumentException('non-nullable update_id cannot be null');
-        }
-        $this->container['update_id'] = $update_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets resource_id
-     *
-     * @return int|null
-     */
-    public function getResourceId()
-    {
-        return $this->container['resource_id'];
-    }
-
-    /**
-     * Sets resource_id
-     *
-     * @param int|null $resource_id resource_id
-     *
-     * @return self
-     */
-    public function setResourceId($resource_id)
-    {
-        if (is_null($resource_id)) {
-            throw new \InvalidArgumentException('non-nullable resource_id cannot be null');
-        }
-        $this->container['resource_id'] = $resource_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return int|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param int|null $created_at created_at
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets title
+     * Gets html
      *
      * @return string|null
      */
-    public function getTitle()
+    public function getHtml()
     {
-        return $this->container['title'];
+        return $this->container['html'];
     }
 
     /**
-     * Sets title
+     * Sets html
      *
-     * @param string|null $title title
+     * @param string|null $html html
      *
      * @return self
      */
-    public function setTitle($title)
+    public function setHtml($html)
     {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
+        if (is_null($html)) {
+            throw new \InvalidArgumentException('non-nullable html cannot be null');
         }
-        $this->container['title'] = $title;
+        $this->container['html'] = $html;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets bbcode
      *
-     * @return \OpenAPI\Client\Model\RichText|null
+     * @return string|null
      */
-    public function getDescription()
+    public function getBbcode()
     {
-        return $this->container['description'];
+        return $this->container['bbcode'];
     }
 
     /**
-     * Sets description
+     * Sets bbcode
      *
-     * @param \OpenAPI\Client\Model\RichText|null $description description
+     * @param string|null $bbcode bbcode
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setBbcode($bbcode)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($bbcode)) {
+            throw new \InvalidArgumentException('non-nullable bbcode cannot be null');
         }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets resource
-     *
-     * @return \OpenAPI\Client\Model\Resource|null
-     */
-    public function getResource()
-    {
-        return $this->container['resource'];
-    }
-
-    /**
-     * Sets resource
-     *
-     * @param \OpenAPI\Client\Model\Resource|null $resource resource
-     *
-     * @return self
-     */
-    public function setResource($resource)
-    {
-        if (is_null($resource)) {
-            throw new \InvalidArgumentException('non-nullable resource cannot be null');
-        }
-        $this->container['resource'] = $resource;
+        $this->container['bbcode'] = $bbcode;
 
         return $this;
     }

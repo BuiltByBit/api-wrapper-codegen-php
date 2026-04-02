@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **latest_version** | [**\OpenAPI\Client\Model\Version**](Version.md) |  | [optional]
 **latest_update** | [**\OpenAPI\Client\Model\Version**](Version.md) |  | [optional]
 **latest_reviews** | [**\OpenAPI\Client\Model\Review[]**](Review.md) |  | [optional]
-**description** | [**\OpenAPI\Client\Model\Description**](Description.md) |  | [optional]
+**description** | [**\OpenAPI\Client\Model\RichText**](RichText.md) |  | [optional]
 **category** | [**\OpenAPI\Client\Model\Category**](Category.md) |  | [optional]
 **addons** | **array<string,\OpenAPI\Client\Model\Addon[]>** |  | [optional]
 

@@ -35,6 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * Review Class Doc Comment
  *
  * @category Class
+ * @description Supported &#39;with&#39; hints: - &#39;Resource&#39;: the resource this review relates to - &#39;Version&#39;: the version this review relates to - &#39;Reviewer&#39;: the member who gave this review
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -57,9 +58,17 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'review_id' => 'string',
-        'resource_id' => 'string',
-        'reviewer_id' => 'string'
+        'review_id' => 'int',
+        'resource_id' => 'int',
+        'reviewer_id' => 'int',
+        'version_id' => 'int',
+        'stars' => 'float',
+        'message' => 'string',
+        'created_at' => 'int',
+        'response' => 'string',
+        'resource' => '\OpenAPI\Client\Model\Resource',
+        'version' => '\OpenAPI\Client\Model\Version',
+        'reviewer' => '\OpenAPI\Client\Model\Member'
     ];
 
     /**
@@ -72,7 +81,15 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'review_id' => null,
         'resource_id' => null,
-        'reviewer_id' => null
+        'reviewer_id' => null,
+        'version_id' => null,
+        'stars' => null,
+        'message' => null,
+        'created_at' => null,
+        'response' => null,
+        'resource' => null,
+        'version' => null,
+        'reviewer' => null
     ];
 
     /**
@@ -83,7 +100,15 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'review_id' => false,
         'resource_id' => false,
-        'reviewer_id' => false
+        'reviewer_id' => false,
+        'version_id' => false,
+        'stars' => false,
+        'message' => false,
+        'created_at' => false,
+        'response' => false,
+        'resource' => false,
+        'version' => false,
+        'reviewer' => false
     ];
 
     /**
@@ -174,7 +199,15 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'review_id' => 'review_id',
         'resource_id' => 'resource_id',
-        'reviewer_id' => 'reviewer_id'
+        'reviewer_id' => 'reviewer_id',
+        'version_id' => 'version_id',
+        'stars' => 'stars',
+        'message' => 'message',
+        'created_at' => 'created_at',
+        'response' => 'response',
+        'resource' => 'Resource',
+        'version' => 'Version',
+        'reviewer' => 'Reviewer'
     ];
 
     /**
@@ -185,7 +218,15 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'review_id' => 'setReviewId',
         'resource_id' => 'setResourceId',
-        'reviewer_id' => 'setReviewerId'
+        'reviewer_id' => 'setReviewerId',
+        'version_id' => 'setVersionId',
+        'stars' => 'setStars',
+        'message' => 'setMessage',
+        'created_at' => 'setCreatedAt',
+        'response' => 'setResponse',
+        'resource' => 'setResource',
+        'version' => 'setVersion',
+        'reviewer' => 'setReviewer'
     ];
 
     /**
@@ -196,7 +237,15 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'review_id' => 'getReviewId',
         'resource_id' => 'getResourceId',
-        'reviewer_id' => 'getReviewerId'
+        'reviewer_id' => 'getReviewerId',
+        'version_id' => 'getVersionId',
+        'stars' => 'getStars',
+        'message' => 'getMessage',
+        'created_at' => 'getCreatedAt',
+        'response' => 'getResponse',
+        'resource' => 'getResource',
+        'version' => 'getVersion',
+        'reviewer' => 'getReviewer'
     ];
 
     /**
@@ -259,6 +308,14 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('review_id', $data ?? [], null);
         $this->setIfExists('resource_id', $data ?? [], null);
         $this->setIfExists('reviewer_id', $data ?? [], null);
+        $this->setIfExists('version_id', $data ?? [], null);
+        $this->setIfExists('stars', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('response', $data ?? [], null);
+        $this->setIfExists('resource', $data ?? [], null);
+        $this->setIfExists('version', $data ?? [], null);
+        $this->setIfExists('reviewer', $data ?? [], null);
     }
 
     /**
@@ -306,7 +363,7 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets review_id
      *
-     * @return string|null
+     * @return int|null
      */
     public function getReviewId()
     {
@@ -316,7 +373,7 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets review_id
      *
-     * @param string|null $review_id review_id
+     * @param int|null $review_id review_id
      *
      * @return self
      */
@@ -333,7 +390,7 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets resource_id
      *
-     * @return string|null
+     * @return int|null
      */
     public function getResourceId()
     {
@@ -343,7 +400,7 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets resource_id
      *
-     * @param string|null $resource_id resource_id
+     * @param int|null $resource_id resource_id
      *
      * @return self
      */
@@ -360,7 +417,7 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reviewer_id
      *
-     * @return string|null
+     * @return int|null
      */
     public function getReviewerId()
     {
@@ -370,7 +427,7 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reviewer_id
      *
-     * @param string|null $reviewer_id reviewer_id
+     * @param int|null $reviewer_id reviewer_id
      *
      * @return self
      */
@@ -380,6 +437,222 @@ class Review implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable reviewer_id cannot be null');
         }
         $this->container['reviewer_id'] = $reviewer_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets version_id
+     *
+     * @return int|null
+     */
+    public function getVersionId()
+    {
+        return $this->container['version_id'];
+    }
+
+    /**
+     * Sets version_id
+     *
+     * @param int|null $version_id version_id
+     *
+     * @return self
+     */
+    public function setVersionId($version_id)
+    {
+        if (is_null($version_id)) {
+            throw new \InvalidArgumentException('non-nullable version_id cannot be null');
+        }
+        $this->container['version_id'] = $version_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets stars
+     *
+     * @return float|null
+     */
+    public function getStars()
+    {
+        return $this->container['stars'];
+    }
+
+    /**
+     * Sets stars
+     *
+     * @param float|null $stars stars
+     *
+     * @return self
+     */
+    public function setStars($stars)
+    {
+        if (is_null($stars)) {
+            throw new \InvalidArgumentException('non-nullable stars cannot be null');
+        }
+        $this->container['stars'] = $stars;
+
+        return $this;
+    }
+
+    /**
+     * Gets message
+     *
+     * @return string|null
+     */
+    public function getMessage()
+    {
+        return $this->container['message'];
+    }
+
+    /**
+     * Sets message
+     *
+     * @param string|null $message message
+     *
+     * @return self
+     */
+    public function setMessage($message)
+    {
+        if (is_null($message)) {
+            throw new \InvalidArgumentException('non-nullable message cannot be null');
+        }
+        $this->container['message'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return int|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param int|null $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets response
+     *
+     * @return string|null
+     */
+    public function getResponse()
+    {
+        return $this->container['response'];
+    }
+
+    /**
+     * Sets response
+     *
+     * @param string|null $response response
+     *
+     * @return self
+     */
+    public function setResponse($response)
+    {
+        if (is_null($response)) {
+            throw new \InvalidArgumentException('non-nullable response cannot be null');
+        }
+        $this->container['response'] = $response;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource
+     *
+     * @return \OpenAPI\Client\Model\Resource|null
+     */
+    public function getResource()
+    {
+        return $this->container['resource'];
+    }
+
+    /**
+     * Sets resource
+     *
+     * @param \OpenAPI\Client\Model\Resource|null $resource resource
+     *
+     * @return self
+     */
+    public function setResource($resource)
+    {
+        if (is_null($resource)) {
+            throw new \InvalidArgumentException('non-nullable resource cannot be null');
+        }
+        $this->container['resource'] = $resource;
+
+        return $this;
+    }
+
+    /**
+     * Gets version
+     *
+     * @return \OpenAPI\Client\Model\Version|null
+     */
+    public function getVersion()
+    {
+        return $this->container['version'];
+    }
+
+    /**
+     * Sets version
+     *
+     * @param \OpenAPI\Client\Model\Version|null $version version
+     *
+     * @return self
+     */
+    public function setVersion($version)
+    {
+        if (is_null($version)) {
+            throw new \InvalidArgumentException('non-nullable version cannot be null');
+        }
+        $this->container['version'] = $version;
+
+        return $this;
+    }
+
+    /**
+     * Gets reviewer
+     *
+     * @return \OpenAPI\Client\Model\Member|null
+     */
+    public function getReviewer()
+    {
+        return $this->container['reviewer'];
+    }
+
+    /**
+     * Sets reviewer
+     *
+     * @param \OpenAPI\Client\Model\Member|null $reviewer reviewer
+     *
+     * @return self
+     */
+    public function setReviewer($reviewer)
+    {
+        if (is_null($reviewer)) {
+            throw new \InvalidArgumentException('non-nullable reviewer cannot be null');
+        }
+        $this->container['reviewer'] = $reviewer;
 
         return $this;
     }

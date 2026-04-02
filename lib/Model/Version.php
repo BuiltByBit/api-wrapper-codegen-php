@@ -35,6 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * Version Class Doc Comment
  *
  * @category Class
+ * @description Supported &#39;with&#39; hints: - &#39;Resource&#39;: the resource this version relates to
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -57,8 +58,14 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'version_id' => 'string',
-        'resource_id' => 'string'
+        'version_id' => 'int',
+        'version_string' => 'string',
+        'resource_id' => 'int',
+        'created_at' => 'int',
+        'download_count' => 'int',
+        'review_count' => 'int',
+        'review_average' => 'float',
+        'resource' => '\OpenAPI\Client\Model\Resource'
     ];
 
     /**
@@ -70,7 +77,13 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'version_id' => null,
-        'resource_id' => null
+        'version_string' => null,
+        'resource_id' => null,
+        'created_at' => null,
+        'download_count' => null,
+        'review_count' => null,
+        'review_average' => null,
+        'resource' => null
     ];
 
     /**
@@ -80,7 +93,13 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'version_id' => false,
-        'resource_id' => false
+        'version_string' => false,
+        'resource_id' => false,
+        'created_at' => false,
+        'download_count' => false,
+        'review_count' => false,
+        'review_average' => false,
+        'resource' => false
     ];
 
     /**
@@ -170,7 +189,13 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'version_id' => 'version_id',
-        'resource_id' => 'resource_id'
+        'version_string' => 'version_string',
+        'resource_id' => 'resource_id',
+        'created_at' => 'created_at',
+        'download_count' => 'download_count',
+        'review_count' => 'review_count',
+        'review_average' => 'review_average',
+        'resource' => 'Resource'
     ];
 
     /**
@@ -180,7 +205,13 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'version_id' => 'setVersionId',
-        'resource_id' => 'setResourceId'
+        'version_string' => 'setVersionString',
+        'resource_id' => 'setResourceId',
+        'created_at' => 'setCreatedAt',
+        'download_count' => 'setDownloadCount',
+        'review_count' => 'setReviewCount',
+        'review_average' => 'setReviewAverage',
+        'resource' => 'setResource'
     ];
 
     /**
@@ -190,7 +221,13 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'version_id' => 'getVersionId',
-        'resource_id' => 'getResourceId'
+        'version_string' => 'getVersionString',
+        'resource_id' => 'getResourceId',
+        'created_at' => 'getCreatedAt',
+        'download_count' => 'getDownloadCount',
+        'review_count' => 'getReviewCount',
+        'review_average' => 'getReviewAverage',
+        'resource' => 'getResource'
     ];
 
     /**
@@ -251,7 +288,13 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('version_id', $data ?? [], null);
+        $this->setIfExists('version_string', $data ?? [], null);
         $this->setIfExists('resource_id', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('download_count', $data ?? [], null);
+        $this->setIfExists('review_count', $data ?? [], null);
+        $this->setIfExists('review_average', $data ?? [], null);
+        $this->setIfExists('resource', $data ?? [], null);
     }
 
     /**
@@ -299,7 +342,7 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets version_id
      *
-     * @return string|null
+     * @return int|null
      */
     public function getVersionId()
     {
@@ -309,7 +352,7 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets version_id
      *
-     * @param string|null $version_id version_id
+     * @param int|null $version_id version_id
      *
      * @return self
      */
@@ -324,9 +367,36 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets resource_id
+     * Gets version_string
      *
      * @return string|null
+     */
+    public function getVersionString()
+    {
+        return $this->container['version_string'];
+    }
+
+    /**
+     * Sets version_string
+     *
+     * @param string|null $version_string version_string
+     *
+     * @return self
+     */
+    public function setVersionString($version_string)
+    {
+        if (is_null($version_string)) {
+            throw new \InvalidArgumentException('non-nullable version_string cannot be null');
+        }
+        $this->container['version_string'] = $version_string;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource_id
+     *
+     * @return int|null
      */
     public function getResourceId()
     {
@@ -336,7 +406,7 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets resource_id
      *
-     * @param string|null $resource_id resource_id
+     * @param int|null $resource_id resource_id
      *
      * @return self
      */
@@ -346,6 +416,141 @@ class Version implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable resource_id cannot be null');
         }
         $this->container['resource_id'] = $resource_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return int|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param int|null $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets download_count
+     *
+     * @return int|null
+     */
+    public function getDownloadCount()
+    {
+        return $this->container['download_count'];
+    }
+
+    /**
+     * Sets download_count
+     *
+     * @param int|null $download_count download_count
+     *
+     * @return self
+     */
+    public function setDownloadCount($download_count)
+    {
+        if (is_null($download_count)) {
+            throw new \InvalidArgumentException('non-nullable download_count cannot be null');
+        }
+        $this->container['download_count'] = $download_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets review_count
+     *
+     * @return int|null
+     */
+    public function getReviewCount()
+    {
+        return $this->container['review_count'];
+    }
+
+    /**
+     * Sets review_count
+     *
+     * @param int|null $review_count review_count
+     *
+     * @return self
+     */
+    public function setReviewCount($review_count)
+    {
+        if (is_null($review_count)) {
+            throw new \InvalidArgumentException('non-nullable review_count cannot be null');
+        }
+        $this->container['review_count'] = $review_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets review_average
+     *
+     * @return float|null
+     */
+    public function getReviewAverage()
+    {
+        return $this->container['review_average'];
+    }
+
+    /**
+     * Sets review_average
+     *
+     * @param float|null $review_average review_average
+     *
+     * @return self
+     */
+    public function setReviewAverage($review_average)
+    {
+        if (is_null($review_average)) {
+            throw new \InvalidArgumentException('non-nullable review_average cannot be null');
+        }
+        $this->container['review_average'] = $review_average;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource
+     *
+     * @return \OpenAPI\Client\Model\Resource|null
+     */
+    public function getResource()
+    {
+        return $this->container['resource'];
+    }
+
+    /**
+     * Sets resource
+     *
+     * @param \OpenAPI\Client\Model\Resource|null $resource resource
+     *
+     * @return self
+     */
+    public function setResource($resource)
+    {
+        if (is_null($resource)) {
+            throw new \InvalidArgumentException('non-nullable resource cannot be null');
+        }
+        $this->container['resource'] = $resource;
 
         return $this;
     }

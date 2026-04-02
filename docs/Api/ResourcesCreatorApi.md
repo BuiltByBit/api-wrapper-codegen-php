@@ -196,7 +196,7 @@ try {
 ## `getV2ResourcesCreatorPurchases()`
 
 ```php
-getV2ResourcesCreatorPurchases($resource_ids): \OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response
+getV2ResourcesCreatorPurchases($resource_ids, $buyer_ids, $external_tids): \OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response
 ```
 
 Fetch a list of your resources' purchases
@@ -221,9 +221,11 @@ $apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
     $config
 );
 $resource_ids = NULL; // array | A comma-separated list of resource IDs to filter on. No filter is applied if empty.
+$buyer_ids = NULL; // array | A comma-separated list of buyer IDs to filter on. No filter is applied if empty
+$external_tids = NULL; // array | A comma-separated list of external transaction IDs (TIDs) to filter on. No filter is applied if empty.
 
 try {
-    $result = $apiInstance->getV2ResourcesCreatorPurchases($resource_ids);
+    $result = $apiInstance->getV2ResourcesCreatorPurchases($resource_ids, $buyer_ids, $external_tids);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesCreatorApi->getV2ResourcesCreatorPurchases: ', $e->getMessage(), PHP_EOL;
@@ -235,6 +237,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **resource_ids** | [**array**](../Model/.md)| A comma-separated list of resource IDs to filter on. No filter is applied if empty. | [optional] |
+| **buyer_ids** | [**array**](../Model/.md)| A comma-separated list of buyer IDs to filter on. No filter is applied if empty | [optional] |
+| **external_tids** | [**array**](../Model/.md)| A comma-separated list of external transaction IDs (TIDs) to filter on. No filter is applied if empty. | [optional] |
 
 ### Return type
 

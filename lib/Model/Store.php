@@ -1,6 +1,6 @@
 <?php
 /**
- * Update
+ * Store
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Update Class Doc Comment
+ * Store Class Doc Comment
  *
  * @category Class
- * @description Supported &#39;with&#39; hints: - &#39;Resource&#39;: the resource this update relates to - &#39;Description&#39;: the rendered description of the update
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Update implements ModelInterface, ArrayAccess, \JsonSerializable
+class Store implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Update';
+    protected static $openAPIModelName = 'Store';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +57,12 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'update_id' => 'int',
-        'resource_id' => 'int',
-        'created_at' => 'int',
-        'title' => 'string',
-        'description' => '\OpenAPI\Client\Model\RichText',
-        'resource' => '\OpenAPI\Client\Model\Resource'
+        'store_id' => 'int',
+        'user_id' => 'int',
+        'name' => 'string',
+        'summary' => 'string',
+        'is_default' => 'bool',
+        'created_at' => 'int'
     ];
 
     /**
@@ -74,12 +73,12 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'update_id' => null,
-        'resource_id' => null,
-        'created_at' => null,
-        'title' => null,
-        'description' => null,
-        'resource' => null
+        'store_id' => null,
+        'user_id' => null,
+        'name' => null,
+        'summary' => null,
+        'is_default' => null,
+        'created_at' => null
     ];
 
     /**
@@ -88,12 +87,12 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'update_id' => false,
-        'resource_id' => false,
-        'created_at' => false,
-        'title' => false,
-        'description' => false,
-        'resource' => false
+        'store_id' => false,
+        'user_id' => false,
+        'name' => false,
+        'summary' => false,
+        'is_default' => false,
+        'created_at' => false
     ];
 
     /**
@@ -182,12 +181,12 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'update_id' => 'update_id',
-        'resource_id' => 'resource_id',
-        'created_at' => 'created_at',
-        'title' => 'title',
-        'description' => 'Description',
-        'resource' => 'Resource'
+        'store_id' => 'store_id',
+        'user_id' => 'user_id',
+        'name' => 'name',
+        'summary' => 'summary',
+        'is_default' => 'is_default',
+        'created_at' => 'created_at'
     ];
 
     /**
@@ -196,12 +195,12 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'update_id' => 'setUpdateId',
-        'resource_id' => 'setResourceId',
-        'created_at' => 'setCreatedAt',
-        'title' => 'setTitle',
-        'description' => 'setDescription',
-        'resource' => 'setResource'
+        'store_id' => 'setStoreId',
+        'user_id' => 'setUserId',
+        'name' => 'setName',
+        'summary' => 'setSummary',
+        'is_default' => 'setIsDefault',
+        'created_at' => 'setCreatedAt'
     ];
 
     /**
@@ -210,12 +209,12 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'update_id' => 'getUpdateId',
-        'resource_id' => 'getResourceId',
-        'created_at' => 'getCreatedAt',
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'resource' => 'getResource'
+        'store_id' => 'getStoreId',
+        'user_id' => 'getUserId',
+        'name' => 'getName',
+        'summary' => 'getSummary',
+        'is_default' => 'getIsDefault',
+        'created_at' => 'getCreatedAt'
     ];
 
     /**
@@ -275,12 +274,12 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('update_id', $data ?? [], null);
-        $this->setIfExists('resource_id', $data ?? [], null);
+        $this->setIfExists('store_id', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('summary', $data ?? [], null);
+        $this->setIfExists('is_default', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('title', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('resource', $data ?? [], null);
     }
 
     /**
@@ -326,55 +325,136 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets update_id
+     * Gets store_id
      *
      * @return int|null
      */
-    public function getUpdateId()
+    public function getStoreId()
     {
-        return $this->container['update_id'];
+        return $this->container['store_id'];
     }
 
     /**
-     * Sets update_id
+     * Sets store_id
      *
-     * @param int|null $update_id update_id
+     * @param int|null $store_id store_id
      *
      * @return self
      */
-    public function setUpdateId($update_id)
+    public function setStoreId($store_id)
     {
-        if (is_null($update_id)) {
-            throw new \InvalidArgumentException('non-nullable update_id cannot be null');
+        if (is_null($store_id)) {
+            throw new \InvalidArgumentException('non-nullable store_id cannot be null');
         }
-        $this->container['update_id'] = $update_id;
+        $this->container['store_id'] = $store_id;
 
         return $this;
     }
 
     /**
-     * Gets resource_id
+     * Gets user_id
      *
      * @return int|null
      */
-    public function getResourceId()
+    public function getUserId()
     {
-        return $this->container['resource_id'];
+        return $this->container['user_id'];
     }
 
     /**
-     * Sets resource_id
+     * Sets user_id
      *
-     * @param int|null $resource_id resource_id
+     * @param int|null $user_id user_id
      *
      * @return self
      */
-    public function setResourceId($resource_id)
+    public function setUserId($user_id)
     {
-        if (is_null($resource_id)) {
-            throw new \InvalidArgumentException('non-nullable resource_id cannot be null');
+        if (is_null($user_id)) {
+            throw new \InvalidArgumentException('non-nullable user_id cannot be null');
         }
-        $this->container['resource_id'] = $resource_id;
+        $this->container['user_id'] = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets summary
+     *
+     * @return string|null
+     */
+    public function getSummary()
+    {
+        return $this->container['summary'];
+    }
+
+    /**
+     * Sets summary
+     *
+     * @param string|null $summary summary
+     *
+     * @return self
+     */
+    public function setSummary($summary)
+    {
+        if (is_null($summary)) {
+            throw new \InvalidArgumentException('non-nullable summary cannot be null');
+        }
+        $this->container['summary'] = $summary;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_default
+     *
+     * @return bool|null
+     */
+    public function getIsDefault()
+    {
+        return $this->container['is_default'];
+    }
+
+    /**
+     * Sets is_default
+     *
+     * @param bool|null $is_default is_default
+     *
+     * @return self
+     */
+    public function setIsDefault($is_default)
+    {
+        if (is_null($is_default)) {
+            throw new \InvalidArgumentException('non-nullable is_default cannot be null');
+        }
+        $this->container['is_default'] = $is_default;
 
         return $this;
     }
@@ -402,87 +482,6 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets title
-     *
-     * @return string|null
-     */
-    public function getTitle()
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
-        }
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return \OpenAPI\Client\Model\RichText|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param \OpenAPI\Client\Model\RichText|null $description description
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets resource
-     *
-     * @return \OpenAPI\Client\Model\Resource|null
-     */
-    public function getResource()
-    {
-        return $this->container['resource'];
-    }
-
-    /**
-     * Sets resource
-     *
-     * @param \OpenAPI\Client\Model\Resource|null $resource resource
-     *
-     * @return self
-     */
-    public function setResource($resource)
-    {
-        if (is_null($resource)) {
-            throw new \InvalidArgumentException('non-nullable resource cannot be null');
-        }
-        $this->container['resource'] = $resource;
 
         return $this;
     }

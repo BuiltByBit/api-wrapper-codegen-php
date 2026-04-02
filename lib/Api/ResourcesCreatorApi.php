@@ -1061,15 +1061,17 @@ class ResourcesCreatorApi
      * Fetch a list of your resources&#39; purchases
      *
      * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  array $buyer_ids A comma-separated list of buyer IDs to filter on. No filter is applied if empty (optional)
+     * @param  array $external_tids A comma-separated list of external transaction IDs (TIDs) to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorPurchases'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response
      */
-    public function getV2ResourcesCreatorPurchases($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
+    public function getV2ResourcesCreatorPurchases($resource_ids = null, $buyer_ids = null, $external_tids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
     {
-        list($response) = $this->getV2ResourcesCreatorPurchasesWithHttpInfo($resource_ids, $contentType);
+        list($response) = $this->getV2ResourcesCreatorPurchasesWithHttpInfo($resource_ids, $buyer_ids, $external_tids, $contentType);
         return $response;
     }
 
@@ -1079,15 +1081,17 @@ class ResourcesCreatorApi
      * Fetch a list of your resources&#39; purchases
      *
      * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  array $buyer_ids A comma-separated list of buyer IDs to filter on. No filter is applied if empty (optional)
+     * @param  array $external_tids A comma-separated list of external transaction IDs (TIDs) to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorPurchases'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getV2ResourcesCreatorPurchasesWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
+    public function getV2ResourcesCreatorPurchasesWithHttpInfo($resource_ids = null, $buyer_ids = null, $external_tids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
     {
-        $request = $this->getV2ResourcesCreatorPurchasesRequest($resource_ids, $contentType);
+        $request = $this->getV2ResourcesCreatorPurchasesRequest($resource_ids, $buyer_ids, $external_tids, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1203,14 +1207,16 @@ class ResourcesCreatorApi
      * Fetch a list of your resources&#39; purchases
      *
      * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  array $buyer_ids A comma-separated list of buyer IDs to filter on. No filter is applied if empty (optional)
+     * @param  array $external_tids A comma-separated list of external transaction IDs (TIDs) to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorPurchases'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getV2ResourcesCreatorPurchasesAsync($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
+    public function getV2ResourcesCreatorPurchasesAsync($resource_ids = null, $buyer_ids = null, $external_tids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
     {
-        return $this->getV2ResourcesCreatorPurchasesAsyncWithHttpInfo($resource_ids, $contentType)
+        return $this->getV2ResourcesCreatorPurchasesAsyncWithHttpInfo($resource_ids, $buyer_ids, $external_tids, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1224,15 +1230,17 @@ class ResourcesCreatorApi
      * Fetch a list of your resources&#39; purchases
      *
      * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  array $buyer_ids A comma-separated list of buyer IDs to filter on. No filter is applied if empty (optional)
+     * @param  array $external_tids A comma-separated list of external transaction IDs (TIDs) to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorPurchases'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getV2ResourcesCreatorPurchasesAsyncWithHttpInfo($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
+    public function getV2ResourcesCreatorPurchasesAsyncWithHttpInfo($resource_ids = null, $buyer_ids = null, $external_tids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
     {
         $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorPurchases200Response';
-        $request = $this->getV2ResourcesCreatorPurchasesRequest($resource_ids, $contentType);
+        $request = $this->getV2ResourcesCreatorPurchasesRequest($resource_ids, $buyer_ids, $external_tids, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1274,13 +1282,17 @@ class ResourcesCreatorApi
      * Create request for operation 'getV2ResourcesCreatorPurchases'
      *
      * @param  array $resource_ids A comma-separated list of resource IDs to filter on. No filter is applied if empty. (optional)
+     * @param  array $buyer_ids A comma-separated list of buyer IDs to filter on. No filter is applied if empty (optional)
+     * @param  array $external_tids A comma-separated list of external transaction IDs (TIDs) to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorPurchases'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getV2ResourcesCreatorPurchasesRequest($resource_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
+    public function getV2ResourcesCreatorPurchasesRequest($resource_ids = null, $buyer_ids = null, $external_tids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorPurchases'][0])
     {
+
+
 
 
 
@@ -1295,6 +1307,24 @@ class ResourcesCreatorApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $resource_ids,
             'resource_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $buyer_ids,
+            'buyer_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $external_tids,
+            'external_tids', // param base name
             'array', // openApiType
             'form', // style
             true, // explode

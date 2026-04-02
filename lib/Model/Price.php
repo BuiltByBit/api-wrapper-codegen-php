@@ -343,7 +343,7 @@ class Price implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param string|null $currency currency
+     * @param string|null $currency The currency code (ISO 4217) of the currency.
      *
      * @return self
      */
@@ -370,7 +370,7 @@ class Price implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets formatted
      *
-     * @param string|null $formatted formatted
+     * @param string|null $formatted A formatted version of the value, including any prefix/postfix currency symbols.
      *
      * @return self
      */

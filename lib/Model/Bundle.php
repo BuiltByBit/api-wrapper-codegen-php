@@ -57,7 +57,12 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string'
+        'bundle_id' => 'int',
+        'user_id' => 'int',
+        'title' => 'string',
+        'description' => 'string',
+        'discount' => 'float',
+        'created_at' => 'int'
     ];
 
     /**
@@ -68,7 +73,12 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null
+        'bundle_id' => null,
+        'user_id' => null,
+        'title' => null,
+        'description' => null,
+        'discount' => null,
+        'created_at' => null
     ];
 
     /**
@@ -77,7 +87,12 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false
+        'bundle_id' => false,
+        'user_id' => false,
+        'title' => false,
+        'description' => false,
+        'discount' => false,
+        'created_at' => false
     ];
 
     /**
@@ -166,7 +181,12 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id'
+        'bundle_id' => 'bundle_id',
+        'user_id' => 'user_id',
+        'title' => 'title',
+        'description' => 'description',
+        'discount' => 'discount',
+        'created_at' => 'created_at'
     ];
 
     /**
@@ -175,7 +195,12 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId'
+        'bundle_id' => 'setBundleId',
+        'user_id' => 'setUserId',
+        'title' => 'setTitle',
+        'description' => 'setDescription',
+        'discount' => 'setDiscount',
+        'created_at' => 'setCreatedAt'
     ];
 
     /**
@@ -184,7 +209,12 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId'
+        'bundle_id' => 'getBundleId',
+        'user_id' => 'getUserId',
+        'title' => 'getTitle',
+        'description' => 'getDescription',
+        'discount' => 'getDiscount',
+        'created_at' => 'getCreatedAt'
     ];
 
     /**
@@ -244,7 +274,12 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('bundle_id', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('discount', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
     }
 
     /**
@@ -290,28 +325,163 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets bundle_id
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getId()
+    public function getBundleId()
     {
-        return $this->container['id'];
+        return $this->container['bundle_id'];
     }
 
     /**
-     * Sets id
+     * Sets bundle_id
      *
-     * @param string|null $id id
+     * @param int|null $bundle_id bundle_id
      *
      * @return self
      */
-    public function setId($id)
+    public function setBundleId($bundle_id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($bundle_id)) {
+            throw new \InvalidArgumentException('non-nullable bundle_id cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['bundle_id'] = $bundle_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_id
+     *
+     * @return int|null
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     *
+     * @param int|null $user_id user_id
+     *
+     * @return self
+     */
+    public function setUserId($user_id)
+    {
+        if (is_null($user_id)) {
+            throw new \InvalidArgumentException('non-nullable user_id cannot be null');
+        }
+        $this->container['user_id'] = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string|null $title title
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        if (is_null($title)) {
+            throw new \InvalidArgumentException('non-nullable title cannot be null');
+        }
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets discount
+     *
+     * @return float|null
+     */
+    public function getDiscount()
+    {
+        return $this->container['discount'];
+    }
+
+    /**
+     * Sets discount
+     *
+     * @param float|null $discount discount
+     *
+     * @return self
+     */
+    public function setDiscount($discount)
+    {
+        if (is_null($discount)) {
+            throw new \InvalidArgumentException('non-nullable discount cannot be null');
+        }
+        $this->container['discount'] = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return int|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param int|null $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }

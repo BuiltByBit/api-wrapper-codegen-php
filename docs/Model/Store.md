@@ -1,14 +1,14 @@
-# # Bundle
+# # Store
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bundle_id** | **int** |  | [optional]
+**store_id** | **int** |  | [optional]
 **user_id** | **int** |  | [optional]
-**title** | **string** |  | [optional]
-**description** | **string** |  | [optional]
-**discount** | **float** |  | [optional]
+**name** | **string** |  | [optional]
+**summary** | **string** |  | [optional]
+**is_default** | **bool** |  | [optional]
 **created_at** | **int** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

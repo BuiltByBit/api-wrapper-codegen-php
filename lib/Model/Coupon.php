@@ -1,6 +1,6 @@
 <?php
 /**
- * Update
+ * Coupon
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Update Class Doc Comment
+ * Coupon Class Doc Comment
  *
  * @category Class
- * @description Supported &#39;with&#39; hints: - &#39;Resource&#39;: the resource this update relates to - &#39;Description&#39;: the rendered description of the update
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Update implements ModelInterface, ArrayAccess, \JsonSerializable
+class Coupon implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Update';
+    protected static $openAPIModelName = 'Coupon';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +57,18 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'update_id' => 'int',
-        'resource_id' => 'int',
+        'coupon_id' => 'int',
+        'user_id' => 'int',
+        'label' => 'string',
+        'discount' => 'float',
+        'percent' => 'bool',
+        'all_content_types' => 'string[]',
         'created_at' => 'int',
-        'title' => 'string',
-        'description' => '\OpenAPI\Client\Model\RichText',
-        'resource' => '\OpenAPI\Client\Model\Resource'
+        'expires_at' => 'int',
+        'max_uses' => 'int',
+        'max_per_user_uses' => 'int',
+        'uses' => 'int',
+        'active' => 'bool'
     ];
 
     /**
@@ -74,12 +79,18 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'update_id' => null,
-        'resource_id' => null,
+        'coupon_id' => null,
+        'user_id' => null,
+        'label' => null,
+        'discount' => null,
+        'percent' => null,
+        'all_content_types' => null,
         'created_at' => null,
-        'title' => null,
-        'description' => null,
-        'resource' => null
+        'expires_at' => null,
+        'max_uses' => null,
+        'max_per_user_uses' => null,
+        'uses' => null,
+        'active' => null
     ];
 
     /**
@@ -88,12 +99,18 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'update_id' => false,
-        'resource_id' => false,
+        'coupon_id' => false,
+        'user_id' => false,
+        'label' => false,
+        'discount' => false,
+        'percent' => false,
+        'all_content_types' => false,
         'created_at' => false,
-        'title' => false,
-        'description' => false,
-        'resource' => false
+        'expires_at' => false,
+        'max_uses' => false,
+        'max_per_user_uses' => false,
+        'uses' => false,
+        'active' => false
     ];
 
     /**
@@ -182,12 +199,18 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'update_id' => 'update_id',
-        'resource_id' => 'resource_id',
+        'coupon_id' => 'coupon_id',
+        'user_id' => 'user_id',
+        'label' => 'label',
+        'discount' => 'discount',
+        'percent' => 'percent',
+        'all_content_types' => 'all_content_types',
         'created_at' => 'created_at',
-        'title' => 'title',
-        'description' => 'Description',
-        'resource' => 'Resource'
+        'expires_at' => 'expires_at',
+        'max_uses' => 'max_uses',
+        'max_per_user_uses' => 'max_per_user_uses',
+        'uses' => 'uses',
+        'active' => 'active'
     ];
 
     /**
@@ -196,12 +219,18 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'update_id' => 'setUpdateId',
-        'resource_id' => 'setResourceId',
+        'coupon_id' => 'setCouponId',
+        'user_id' => 'setUserId',
+        'label' => 'setLabel',
+        'discount' => 'setDiscount',
+        'percent' => 'setPercent',
+        'all_content_types' => 'setAllContentTypes',
         'created_at' => 'setCreatedAt',
-        'title' => 'setTitle',
-        'description' => 'setDescription',
-        'resource' => 'setResource'
+        'expires_at' => 'setExpiresAt',
+        'max_uses' => 'setMaxUses',
+        'max_per_user_uses' => 'setMaxPerUserUses',
+        'uses' => 'setUses',
+        'active' => 'setActive'
     ];
 
     /**
@@ -210,12 +239,18 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'update_id' => 'getUpdateId',
-        'resource_id' => 'getResourceId',
+        'coupon_id' => 'getCouponId',
+        'user_id' => 'getUserId',
+        'label' => 'getLabel',
+        'discount' => 'getDiscount',
+        'percent' => 'getPercent',
+        'all_content_types' => 'getAllContentTypes',
         'created_at' => 'getCreatedAt',
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'resource' => 'getResource'
+        'expires_at' => 'getExpiresAt',
+        'max_uses' => 'getMaxUses',
+        'max_per_user_uses' => 'getMaxPerUserUses',
+        'uses' => 'getUses',
+        'active' => 'getActive'
     ];
 
     /**
@@ -275,12 +310,18 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('update_id', $data ?? [], null);
-        $this->setIfExists('resource_id', $data ?? [], null);
+        $this->setIfExists('coupon_id', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
+        $this->setIfExists('label', $data ?? [], null);
+        $this->setIfExists('discount', $data ?? [], null);
+        $this->setIfExists('percent', $data ?? [], null);
+        $this->setIfExists('all_content_types', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('title', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('resource', $data ?? [], null);
+        $this->setIfExists('expires_at', $data ?? [], null);
+        $this->setIfExists('max_uses', $data ?? [], null);
+        $this->setIfExists('max_per_user_uses', $data ?? [], null);
+        $this->setIfExists('uses', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
     }
 
     /**
@@ -326,55 +367,163 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets update_id
+     * Gets coupon_id
      *
      * @return int|null
      */
-    public function getUpdateId()
+    public function getCouponId()
     {
-        return $this->container['update_id'];
+        return $this->container['coupon_id'];
     }
 
     /**
-     * Sets update_id
+     * Sets coupon_id
      *
-     * @param int|null $update_id update_id
+     * @param int|null $coupon_id coupon_id
      *
      * @return self
      */
-    public function setUpdateId($update_id)
+    public function setCouponId($coupon_id)
     {
-        if (is_null($update_id)) {
-            throw new \InvalidArgumentException('non-nullable update_id cannot be null');
+        if (is_null($coupon_id)) {
+            throw new \InvalidArgumentException('non-nullable coupon_id cannot be null');
         }
-        $this->container['update_id'] = $update_id;
+        $this->container['coupon_id'] = $coupon_id;
 
         return $this;
     }
 
     /**
-     * Gets resource_id
+     * Gets user_id
      *
      * @return int|null
      */
-    public function getResourceId()
+    public function getUserId()
     {
-        return $this->container['resource_id'];
+        return $this->container['user_id'];
     }
 
     /**
-     * Sets resource_id
+     * Sets user_id
      *
-     * @param int|null $resource_id resource_id
+     * @param int|null $user_id user_id
      *
      * @return self
      */
-    public function setResourceId($resource_id)
+    public function setUserId($user_id)
     {
-        if (is_null($resource_id)) {
-            throw new \InvalidArgumentException('non-nullable resource_id cannot be null');
+        if (is_null($user_id)) {
+            throw new \InvalidArgumentException('non-nullable user_id cannot be null');
         }
-        $this->container['resource_id'] = $resource_id;
+        $this->container['user_id'] = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets label
+     *
+     * @return string|null
+     */
+    public function getLabel()
+    {
+        return $this->container['label'];
+    }
+
+    /**
+     * Sets label
+     *
+     * @param string|null $label This is the code a buyer would enter at checkout.
+     *
+     * @return self
+     */
+    public function setLabel($label)
+    {
+        if (is_null($label)) {
+            throw new \InvalidArgumentException('non-nullable label cannot be null');
+        }
+        $this->container['label'] = $label;
+
+        return $this;
+    }
+
+    /**
+     * Gets discount
+     *
+     * @return float|null
+     */
+    public function getDiscount()
+    {
+        return $this->container['discount'];
+    }
+
+    /**
+     * Sets discount
+     *
+     * @param float|null $discount The discount to apply. Either a fixed value, or a decimal percent. Depends on the 'percent' field.
+     *
+     * @return self
+     */
+    public function setDiscount($discount)
+    {
+        if (is_null($discount)) {
+            throw new \InvalidArgumentException('non-nullable discount cannot be null');
+        }
+        $this->container['discount'] = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Gets percent
+     *
+     * @return bool|null
+     */
+    public function getPercent()
+    {
+        return $this->container['percent'];
+    }
+
+    /**
+     * Sets percent
+     *
+     * @param bool|null $percent If true, the 'discount' field represents a decimal percentage.  If false, the 'discount' field represents an absolute $ USD value.
+     *
+     * @return self
+     */
+    public function setPercent($percent)
+    {
+        if (is_null($percent)) {
+            throw new \InvalidArgumentException('non-nullable percent cannot be null');
+        }
+        $this->container['percent'] = $percent;
+
+        return $this;
+    }
+
+    /**
+     * Gets all_content_types
+     *
+     * @return string[]|null
+     */
+    public function getAllContentTypes()
+    {
+        return $this->container['all_content_types'];
+    }
+
+    /**
+     * Sets all_content_types
+     *
+     * @param string[]|null $all_content_types A list of content types for which this coupon code applies to without requiring an entry. Eg. if you created the coupon with the 'All resources' option selected, this list will include \"resource\".
+     *
+     * @return self
+     */
+    public function setAllContentTypes($all_content_types)
+    {
+        if (is_null($all_content_types)) {
+            throw new \InvalidArgumentException('non-nullable all_content_types cannot be null');
+        }
+        $this->container['all_content_types'] = $all_content_types;
 
         return $this;
     }
@@ -392,7 +541,7 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      *
-     * @param int|null $created_at created_at
+     * @param int|null $created_at A UNIX timestamp.
      *
      * @return self
      */
@@ -407,82 +556,136 @@ class Update implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets title
+     * Gets expires_at
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getTitle()
+    public function getExpiresAt()
     {
-        return $this->container['title'];
+        return $this->container['expires_at'];
     }
 
     /**
-     * Sets title
+     * Sets expires_at
      *
-     * @param string|null $title title
+     * @param int|null $expires_at A UNIX timestamp.
      *
      * @return self
      */
-    public function setTitle($title)
+    public function setExpiresAt($expires_at)
     {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
+        if (is_null($expires_at)) {
+            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
         }
-        $this->container['title'] = $title;
+        $this->container['expires_at'] = $expires_at;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets max_uses
      *
-     * @return \OpenAPI\Client\Model\RichText|null
+     * @return int|null
      */
-    public function getDescription()
+    public function getMaxUses()
     {
-        return $this->container['description'];
+        return $this->container['max_uses'];
     }
 
     /**
-     * Sets description
+     * Sets max_uses
      *
-     * @param \OpenAPI\Client\Model\RichText|null $description description
+     * @param int|null $max_uses max_uses
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setMaxUses($max_uses)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($max_uses)) {
+            throw new \InvalidArgumentException('non-nullable max_uses cannot be null');
         }
-        $this->container['description'] = $description;
+        $this->container['max_uses'] = $max_uses;
 
         return $this;
     }
 
     /**
-     * Gets resource
+     * Gets max_per_user_uses
      *
-     * @return \OpenAPI\Client\Model\Resource|null
+     * @return int|null
      */
-    public function getResource()
+    public function getMaxPerUserUses()
     {
-        return $this->container['resource'];
+        return $this->container['max_per_user_uses'];
     }
 
     /**
-     * Sets resource
+     * Sets max_per_user_uses
      *
-     * @param \OpenAPI\Client\Model\Resource|null $resource resource
+     * @param int|null $max_per_user_uses max_per_user_uses
      *
      * @return self
      */
-    public function setResource($resource)
+    public function setMaxPerUserUses($max_per_user_uses)
     {
-        if (is_null($resource)) {
-            throw new \InvalidArgumentException('non-nullable resource cannot be null');
+        if (is_null($max_per_user_uses)) {
+            throw new \InvalidArgumentException('non-nullable max_per_user_uses cannot be null');
         }
-        $this->container['resource'] = $resource;
+        $this->container['max_per_user_uses'] = $max_per_user_uses;
+
+        return $this;
+    }
+
+    /**
+     * Gets uses
+     *
+     * @return int|null
+     */
+    public function getUses()
+    {
+        return $this->container['uses'];
+    }
+
+    /**
+     * Sets uses
+     *
+     * @param int|null $uses uses
+     *
+     * @return self
+     */
+    public function setUses($uses)
+    {
+        if (is_null($uses)) {
+            throw new \InvalidArgumentException('non-nullable uses cannot be null');
+        }
+        $this->container['uses'] = $uses;
+
+        return $this;
+    }
+
+    /**
+     * Gets active
+     *
+     * @return bool|null
+     */
+    public function getActive()
+    {
+        return $this->container['active'];
+    }
+
+    /**
+     * Sets active
+     *
+     * @param bool|null $active Whether or not the coupon code is active and can still be used at checkout. Accounts for the expiry date if set and the max use limit if set.
+     *
+     * @return self
+     */
+    public function setActive($active)
+    {
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+        $this->container['active'] = $active;
 
         return $this;
     }
