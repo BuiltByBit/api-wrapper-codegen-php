@@ -1,6 +1,6 @@
 <?php
 /**
- * AnalyticGraphDataPoint
+ * GetV2ResourcesCreatorBatch200Response
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * AnalyticGraphDataPoint Class Doc Comment
+ * GetV2ResourcesCreatorBatch200Response Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetV2ResourcesCreatorBatch200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AnalyticGraphDataPoint';
+    protected static $openAPIModelName = 'get_v2_resources_creator_batch_200_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'label' => 'string',
-        'count' => 'int',
-        'ts' => 'int',
-        'days' => 'int',
-        'values' => 'array<string,float>'
+        'result' => 'string',
+        'data' => '\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200ResponseData'
     ];
 
     /**
@@ -72,11 +69,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'label' => null,
-        'count' => null,
-        'ts' => null,
-        'days' => null,
-        'values' => null
+        'result' => null,
+        'data' => null
     ];
 
     /**
@@ -85,11 +79,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'label' => false,
-        'count' => false,
-        'ts' => false,
-        'days' => false,
-        'values' => false
+        'result' => false,
+        'data' => false
     ];
 
     /**
@@ -178,11 +169,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'label' => 'label',
-        'count' => 'count',
-        'ts' => 'ts',
-        'days' => 'days',
-        'values' => 'values'
+        'result' => 'result',
+        'data' => 'data'
     ];
 
     /**
@@ -191,11 +179,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'label' => 'setLabel',
-        'count' => 'setCount',
-        'ts' => 'setTs',
-        'days' => 'setDays',
-        'values' => 'setValues'
+        'result' => 'setResult',
+        'data' => 'setData'
     ];
 
     /**
@@ -204,11 +189,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'label' => 'getLabel',
-        'count' => 'getCount',
-        'ts' => 'getTs',
-        'days' => 'getDays',
-        'values' => 'getValues'
+        'result' => 'getResult',
+        'data' => 'getData'
     ];
 
     /**
@@ -252,6 +234,19 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
+    public const RESULT_SUCCESS = 'success';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getResultAllowableValues()
+    {
+        return [
+            self::RESULT_SUCCESS,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -268,11 +263,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('label', $data ?? [], null);
-        $this->setIfExists('count', $data ?? [], null);
-        $this->setIfExists('ts', $data ?? [], null);
-        $this->setIfExists('days', $data ?? [], null);
-        $this->setIfExists('values', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
     }
 
     /**
@@ -302,6 +294,15 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getResultAllowableValues();
+        if (!is_null($this->container['result']) && !in_array($this->container['result'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'result', must be one of '%s'",
+                $this->container['result'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -318,136 +319,65 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets label
+     * Gets result
      *
      * @return string|null
      */
-    public function getLabel()
+    public function getResult()
     {
-        return $this->container['label'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets label
+     * Sets result
      *
-     * @param string|null $label label
+     * @param string|null $result result
      *
      * @return self
      */
-    public function setLabel($label)
+    public function setResult($result)
     {
-        if (is_null($label)) {
-            throw new \InvalidArgumentException('non-nullable label cannot be null');
+        if (is_null($result)) {
+            throw new \InvalidArgumentException('non-nullable result cannot be null');
         }
-        $this->container['label'] = $label;
+        $allowedValues = $this->getResultAllowableValues();
+        if (!in_array($result, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'result', must be one of '%s'",
+                    $result,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['result'] = $result;
 
         return $this;
     }
 
     /**
-     * Gets count
+     * Gets data
      *
-     * @return int|null
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200ResponseData|null
      */
-    public function getCount()
+    public function getData()
     {
-        return $this->container['count'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets count
+     * Sets data
      *
-     * @param int|null $count count
+     * @param \OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200ResponseData|null $data data
      *
      * @return self
      */
-    public function setCount($count)
+    public function setData($data)
     {
-        if (is_null($count)) {
-            throw new \InvalidArgumentException('non-nullable count cannot be null');
+        if (is_null($data)) {
+            throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
-        $this->container['count'] = $count;
-
-        return $this;
-    }
-
-    /**
-     * Gets ts
-     *
-     * @return int|null
-     */
-    public function getTs()
-    {
-        return $this->container['ts'];
-    }
-
-    /**
-     * Sets ts
-     *
-     * @param int|null $ts ts
-     *
-     * @return self
-     */
-    public function setTs($ts)
-    {
-        if (is_null($ts)) {
-            throw new \InvalidArgumentException('non-nullable ts cannot be null');
-        }
-        $this->container['ts'] = $ts;
-
-        return $this;
-    }
-
-    /**
-     * Gets days
-     *
-     * @return int|null
-     */
-    public function getDays()
-    {
-        return $this->container['days'];
-    }
-
-    /**
-     * Sets days
-     *
-     * @param int|null $days days
-     *
-     * @return self
-     */
-    public function setDays($days)
-    {
-        if (is_null($days)) {
-            throw new \InvalidArgumentException('non-nullable days cannot be null');
-        }
-        $this->container['days'] = $days;
-
-        return $this;
-    }
-
-    /**
-     * Gets values
-     *
-     * @return array<string,float>|null
-     */
-    public function getValues()
-    {
-        return $this->container['values'];
-    }
-
-    /**
-     * Sets values
-     *
-     * @param array<string,float>|null $values values
-     *
-     * @return self
-     */
-    public function setValues($values)
-    {
-        if (is_null($values)) {
-            throw new \InvalidArgumentException('non-nullable values cannot be null');
-        }
-        $this->container['values'] = $values;
+        $this->container['data'] = $data;
 
         return $this;
     }

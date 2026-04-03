@@ -1,6 +1,6 @@
 <?php
 /**
- * AnalyticGraphDataPoint
+ * Batch
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * AnalyticGraphDataPoint Class Doc Comment
+ * Batch Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerializable
+class Batch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AnalyticGraphDataPoint';
+    protected static $openAPIModelName = 'Batch';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,12 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'label' => 'string',
-        'count' => 'int',
-        'ts' => 'int',
-        'days' => 'int',
-        'values' => 'array<string,float>'
+        'batch_id' => 'int',
+        'user_id' => 'int',
+        'errors' => 'array<string,string[]>',
+        'data' => 'string',
+        'created_at' => 'int',
+        'completed_at' => 'int'
     ];
 
     /**
@@ -72,11 +73,12 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'label' => null,
-        'count' => null,
-        'ts' => null,
-        'days' => null,
-        'values' => null
+        'batch_id' => null,
+        'user_id' => null,
+        'errors' => null,
+        'data' => null,
+        'created_at' => null,
+        'completed_at' => null
     ];
 
     /**
@@ -85,11 +87,12 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'label' => false,
-        'count' => false,
-        'ts' => false,
-        'days' => false,
-        'values' => false
+        'batch_id' => false,
+        'user_id' => false,
+        'errors' => false,
+        'data' => false,
+        'created_at' => false,
+        'completed_at' => false
     ];
 
     /**
@@ -178,11 +181,12 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'label' => 'label',
-        'count' => 'count',
-        'ts' => 'ts',
-        'days' => 'days',
-        'values' => 'values'
+        'batch_id' => 'batch_id',
+        'user_id' => 'user_id',
+        'errors' => 'errors',
+        'data' => 'data',
+        'created_at' => 'created_at',
+        'completed_at' => 'completed_at'
     ];
 
     /**
@@ -191,11 +195,12 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'label' => 'setLabel',
-        'count' => 'setCount',
-        'ts' => 'setTs',
-        'days' => 'setDays',
-        'values' => 'setValues'
+        'batch_id' => 'setBatchId',
+        'user_id' => 'setUserId',
+        'errors' => 'setErrors',
+        'data' => 'setData',
+        'created_at' => 'setCreatedAt',
+        'completed_at' => 'setCompletedAt'
     ];
 
     /**
@@ -204,11 +209,12 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'label' => 'getLabel',
-        'count' => 'getCount',
-        'ts' => 'getTs',
-        'days' => 'getDays',
-        'values' => 'getValues'
+        'batch_id' => 'getBatchId',
+        'user_id' => 'getUserId',
+        'errors' => 'getErrors',
+        'data' => 'getData',
+        'created_at' => 'getCreatedAt',
+        'completed_at' => 'getCompletedAt'
     ];
 
     /**
@@ -268,11 +274,12 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('label', $data ?? [], null);
-        $this->setIfExists('count', $data ?? [], null);
-        $this->setIfExists('ts', $data ?? [], null);
-        $this->setIfExists('days', $data ?? [], null);
-        $this->setIfExists('values', $data ?? [], null);
+        $this->setIfExists('batch_id', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
+        $this->setIfExists('errors', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('completed_at', $data ?? [], null);
     }
 
     /**
@@ -318,136 +325,163 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets label
+     * Gets batch_id
+     *
+     * @return int|null
+     */
+    public function getBatchId()
+    {
+        return $this->container['batch_id'];
+    }
+
+    /**
+     * Sets batch_id
+     *
+     * @param int|null $batch_id batch_id
+     *
+     * @return self
+     */
+    public function setBatchId($batch_id)
+    {
+        if (is_null($batch_id)) {
+            throw new \InvalidArgumentException('non-nullable batch_id cannot be null');
+        }
+        $this->container['batch_id'] = $batch_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_id
+     *
+     * @return int|null
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     *
+     * @param int|null $user_id user_id
+     *
+     * @return self
+     */
+    public function setUserId($user_id)
+    {
+        if (is_null($user_id)) {
+            throw new \InvalidArgumentException('non-nullable user_id cannot be null');
+        }
+        $this->container['user_id'] = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets errors
+     *
+     * @return array<string,string[]>|null
+     */
+    public function getErrors()
+    {
+        return $this->container['errors'];
+    }
+
+    /**
+     * Sets errors
+     *
+     * @param array<string,string[]>|null $errors errors
+     *
+     * @return self
+     */
+    public function setErrors($errors)
+    {
+        if (is_null($errors)) {
+            throw new \InvalidArgumentException('non-nullable errors cannot be null');
+        }
+        $this->container['errors'] = $errors;
+
+        return $this;
+    }
+
+    /**
+     * Gets data
      *
      * @return string|null
      */
-    public function getLabel()
+    public function getData()
     {
-        return $this->container['label'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets label
+     * Sets data
      *
-     * @param string|null $label label
+     * @param string|null $data data
      *
      * @return self
      */
-    public function setLabel($label)
+    public function setData($data)
     {
-        if (is_null($label)) {
-            throw new \InvalidArgumentException('non-nullable label cannot be null');
+        if (is_null($data)) {
+            throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
-        $this->container['label'] = $label;
+        $this->container['data'] = $data;
 
         return $this;
     }
 
     /**
-     * Gets count
+     * Gets created_at
      *
      * @return int|null
      */
-    public function getCount()
+    public function getCreatedAt()
     {
-        return $this->container['count'];
+        return $this->container['created_at'];
     }
 
     /**
-     * Sets count
+     * Sets created_at
      *
-     * @param int|null $count count
+     * @param int|null $created_at created_at
      *
      * @return self
      */
-    public function setCount($count)
+    public function setCreatedAt($created_at)
     {
-        if (is_null($count)) {
-            throw new \InvalidArgumentException('non-nullable count cannot be null');
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
-        $this->container['count'] = $count;
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }
 
     /**
-     * Gets ts
+     * Gets completed_at
      *
      * @return int|null
      */
-    public function getTs()
+    public function getCompletedAt()
     {
-        return $this->container['ts'];
+        return $this->container['completed_at'];
     }
 
     /**
-     * Sets ts
+     * Sets completed_at
      *
-     * @param int|null $ts ts
+     * @param int|null $completed_at completed_at
      *
      * @return self
      */
-    public function setTs($ts)
+    public function setCompletedAt($completed_at)
     {
-        if (is_null($ts)) {
-            throw new \InvalidArgumentException('non-nullable ts cannot be null');
+        if (is_null($completed_at)) {
+            throw new \InvalidArgumentException('non-nullable completed_at cannot be null');
         }
-        $this->container['ts'] = $ts;
-
-        return $this;
-    }
-
-    /**
-     * Gets days
-     *
-     * @return int|null
-     */
-    public function getDays()
-    {
-        return $this->container['days'];
-    }
-
-    /**
-     * Sets days
-     *
-     * @param int|null $days days
-     *
-     * @return self
-     */
-    public function setDays($days)
-    {
-        if (is_null($days)) {
-            throw new \InvalidArgumentException('non-nullable days cannot be null');
-        }
-        $this->container['days'] = $days;
-
-        return $this;
-    }
-
-    /**
-     * Gets values
-     *
-     * @return array<string,float>|null
-     */
-    public function getValues()
-    {
-        return $this->container['values'];
-    }
-
-    /**
-     * Sets values
-     *
-     * @param array<string,float>|null $values values
-     *
-     * @return self
-     */
-    public function setValues($values)
-    {
-        if (is_null($values)) {
-            throw new \InvalidArgumentException('non-nullable values cannot be null');
-        }
-        $this->container['values'] = $values;
+        $this->container['completed_at'] = $completed_at;
 
         return $this;
     }

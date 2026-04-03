@@ -1,6 +1,6 @@
 <?php
 /**
- * AnalyticGraphDataPoint
+ * GetV2ResourcesCreatorBatch200ResponseData
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * AnalyticGraphDataPoint Class Doc Comment
+ * GetV2ResourcesCreatorBatch200ResponseData Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetV2ResourcesCreatorBatch200ResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AnalyticGraphDataPoint';
+    protected static $openAPIModelName = 'get_v2_resources_creator_batch_200_response_data';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'label' => 'string',
-        'count' => 'int',
-        'ts' => 'int',
-        'days' => 'int',
-        'values' => 'array<string,float>'
+        'batches' => '\OpenAPI\Client\Model\Batch[]',
+        'stats' => '\OpenAPI\Client\Model\ListStats'
     ];
 
     /**
@@ -72,11 +69,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'label' => null,
-        'count' => null,
-        'ts' => null,
-        'days' => null,
-        'values' => null
+        'batches' => null,
+        'stats' => null
     ];
 
     /**
@@ -85,11 +79,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'label' => false,
-        'count' => false,
-        'ts' => false,
-        'days' => false,
-        'values' => false
+        'batches' => false,
+        'stats' => false
     ];
 
     /**
@@ -178,11 +169,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'label' => 'label',
-        'count' => 'count',
-        'ts' => 'ts',
-        'days' => 'days',
-        'values' => 'values'
+        'batches' => 'batches',
+        'stats' => 'stats'
     ];
 
     /**
@@ -191,11 +179,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'label' => 'setLabel',
-        'count' => 'setCount',
-        'ts' => 'setTs',
-        'days' => 'setDays',
-        'values' => 'setValues'
+        'batches' => 'setBatches',
+        'stats' => 'setStats'
     ];
 
     /**
@@ -204,11 +189,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'label' => 'getLabel',
-        'count' => 'getCount',
-        'ts' => 'getTs',
-        'days' => 'getDays',
-        'values' => 'getValues'
+        'batches' => 'getBatches',
+        'stats' => 'getStats'
     ];
 
     /**
@@ -268,11 +250,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('label', $data ?? [], null);
-        $this->setIfExists('count', $data ?? [], null);
-        $this->setIfExists('ts', $data ?? [], null);
-        $this->setIfExists('days', $data ?? [], null);
-        $this->setIfExists('values', $data ?? [], null);
+        $this->setIfExists('batches', $data ?? [], null);
+        $this->setIfExists('stats', $data ?? [], null);
     }
 
     /**
@@ -318,136 +297,55 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets label
+     * Gets batches
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\Batch[]|null
      */
-    public function getLabel()
+    public function getBatches()
     {
-        return $this->container['label'];
+        return $this->container['batches'];
     }
 
     /**
-     * Sets label
+     * Sets batches
      *
-     * @param string|null $label label
+     * @param \OpenAPI\Client\Model\Batch[]|null $batches batches
      *
      * @return self
      */
-    public function setLabel($label)
+    public function setBatches($batches)
     {
-        if (is_null($label)) {
-            throw new \InvalidArgumentException('non-nullable label cannot be null');
+        if (is_null($batches)) {
+            throw new \InvalidArgumentException('non-nullable batches cannot be null');
         }
-        $this->container['label'] = $label;
+        $this->container['batches'] = $batches;
 
         return $this;
     }
 
     /**
-     * Gets count
+     * Gets stats
      *
-     * @return int|null
+     * @return \OpenAPI\Client\Model\ListStats|null
      */
-    public function getCount()
+    public function getStats()
     {
-        return $this->container['count'];
+        return $this->container['stats'];
     }
 
     /**
-     * Sets count
+     * Sets stats
      *
-     * @param int|null $count count
+     * @param \OpenAPI\Client\Model\ListStats|null $stats stats
      *
      * @return self
      */
-    public function setCount($count)
+    public function setStats($stats)
     {
-        if (is_null($count)) {
-            throw new \InvalidArgumentException('non-nullable count cannot be null');
+        if (is_null($stats)) {
+            throw new \InvalidArgumentException('non-nullable stats cannot be null');
         }
-        $this->container['count'] = $count;
-
-        return $this;
-    }
-
-    /**
-     * Gets ts
-     *
-     * @return int|null
-     */
-    public function getTs()
-    {
-        return $this->container['ts'];
-    }
-
-    /**
-     * Sets ts
-     *
-     * @param int|null $ts ts
-     *
-     * @return self
-     */
-    public function setTs($ts)
-    {
-        if (is_null($ts)) {
-            throw new \InvalidArgumentException('non-nullable ts cannot be null');
-        }
-        $this->container['ts'] = $ts;
-
-        return $this;
-    }
-
-    /**
-     * Gets days
-     *
-     * @return int|null
-     */
-    public function getDays()
-    {
-        return $this->container['days'];
-    }
-
-    /**
-     * Sets days
-     *
-     * @param int|null $days days
-     *
-     * @return self
-     */
-    public function setDays($days)
-    {
-        if (is_null($days)) {
-            throw new \InvalidArgumentException('non-nullable days cannot be null');
-        }
-        $this->container['days'] = $days;
-
-        return $this;
-    }
-
-    /**
-     * Gets values
-     *
-     * @return array<string,float>|null
-     */
-    public function getValues()
-    {
-        return $this->container['values'];
-    }
-
-    /**
-     * Sets values
-     *
-     * @param array<string,float>|null $values values
-     *
-     * @return self
-     */
-    public function setValues($values)
-    {
-        if (is_null($values)) {
-            throw new \InvalidArgumentException('non-nullable values cannot be null');
-        }
-        $this->container['values'] = $values;
+        $this->container['stats'] = $stats;
 
         return $this;
     }

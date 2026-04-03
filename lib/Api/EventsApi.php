@@ -1,6 +1,6 @@
 <?php
 /**
- * DefaultApi
+ * EventsApi
  * PHP version 7.4
  *
  * @category Class
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * DefaultApi Class Doc Comment
+ * EventsApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class DefaultApi
+class EventsApi
 {
     /**
      * @var ClientInterface
@@ -71,10 +71,10 @@ class DefaultApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'getV2ResourcesCreatorBatch' => [
+        'getV2Events' => [
             'application/json',
         ],
-        'postV2ResourcesCreatorBatch' => [
+        'postV2EventsComplete' => [
             'application/json',
         ],
     ];
@@ -126,38 +126,36 @@ class DefaultApi
     }
 
     /**
-     * Operation getV2ResourcesCreatorBatch
+     * Operation getV2Events
      *
-     * Fetch a list of your batches edits
+     * Fetch a list of pending events
      *
-     * @param  array $batch_ids A comma-separated list of batch IDs to filter on. No filter is applied if empty. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2Events'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response
+     * @return \OpenAPI\Client\Model\GetV2Events200Response
      */
-    public function getV2ResourcesCreatorBatch($batch_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBatch'][0])
+    public function getV2Events(string $contentType = self::contentTypes['getV2Events'][0])
     {
-        list($response) = $this->getV2ResourcesCreatorBatchWithHttpInfo($batch_ids, $contentType);
+        list($response) = $this->getV2EventsWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation getV2ResourcesCreatorBatchWithHttpInfo
+     * Operation getV2EventsWithHttpInfo
      *
-     * Fetch a list of your batches edits
+     * Fetch a list of pending events
      *
-     * @param  array $batch_ids A comma-separated list of batch IDs to filter on. No filter is applied if empty. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2Events'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\GetV2Events200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getV2ResourcesCreatorBatchWithHttpInfo($batch_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBatch'][0])
+    public function getV2EventsWithHttpInfo(string $contentType = self::contentTypes['getV2Events'][0])
     {
-        $request = $this->getV2ResourcesCreatorBatchRequest($batch_ids, $contentType);
+        $request = $this->getV2EventsRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -196,11 +194,11 @@ class DefaultApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\GetV2Events200Response' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response' !== 'string') {
+                        if ('\OpenAPI\Client\Model\GetV2Events200Response' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -218,13 +216,13 @@ class DefaultApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2Events200Response', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response';
+            $returnType = '\OpenAPI\Client\Model\GetV2Events200Response';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -257,7 +255,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response',
+                        '\OpenAPI\Client\Model\GetV2Events200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -268,19 +266,18 @@ class DefaultApi
     }
 
     /**
-     * Operation getV2ResourcesCreatorBatchAsync
+     * Operation getV2EventsAsync
      *
-     * Fetch a list of your batches edits
+     * Fetch a list of pending events
      *
-     * @param  array $batch_ids A comma-separated list of batch IDs to filter on. No filter is applied if empty. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2Events'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getV2ResourcesCreatorBatchAsync($batch_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBatch'][0])
+    public function getV2EventsAsync(string $contentType = self::contentTypes['getV2Events'][0])
     {
-        return $this->getV2ResourcesCreatorBatchAsyncWithHttpInfo($batch_ids, $contentType)
+        return $this->getV2EventsAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -289,20 +286,19 @@ class DefaultApi
     }
 
     /**
-     * Operation getV2ResourcesCreatorBatchAsyncWithHttpInfo
+     * Operation getV2EventsAsyncWithHttpInfo
      *
-     * Fetch a list of your batches edits
+     * Fetch a list of pending events
      *
-     * @param  array $batch_ids A comma-separated list of batch IDs to filter on. No filter is applied if empty. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2Events'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getV2ResourcesCreatorBatchAsyncWithHttpInfo($batch_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBatch'][0])
+    public function getV2EventsAsyncWithHttpInfo(string $contentType = self::contentTypes['getV2Events'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response';
-        $request = $this->getV2ResourcesCreatorBatchRequest($batch_ids, $contentType);
+        $returnType = '\OpenAPI\Client\Model\GetV2Events200Response';
+        $request = $this->getV2EventsRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -341,35 +337,24 @@ class DefaultApi
     }
 
     /**
-     * Create request for operation 'getV2ResourcesCreatorBatch'
+     * Create request for operation 'getV2Events'
      *
-     * @param  array $batch_ids A comma-separated list of batch IDs to filter on. No filter is applied if empty. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2Events'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getV2ResourcesCreatorBatchRequest($batch_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBatch'][0])
+    public function getV2EventsRequest(string $contentType = self::contentTypes['getV2Events'][0])
     {
 
 
-
-        $resourcePath = '/v2/resources/creator/batch';
+        $resourcePath = '/v2/events';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $batch_ids,
-            'batch_ids', // param base name
-            'array', // openApiType
-            'form', // style
-            false, // explode
-            false // required
-        ) ?? []);
 
 
 
@@ -433,38 +418,38 @@ class DefaultApi
     }
 
     /**
-     * Operation postV2ResourcesCreatorBatch
+     * Operation postV2EventsComplete
      *
-     * Submit a new batch edit
+     * Mark events as complete
      *
-     * @param  \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest $post_v2_resources_creator_batch_request post_v2_resources_creator_batch_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2ResourcesCreatorBatch'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PostV2EventsCompleteRequest $post_v2_events_complete_request post_v2_events_complete_request (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2EventsComplete'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response
+     * @return \OpenAPI\Client\Model\PostV2EventsComplete200Response
      */
-    public function postV2ResourcesCreatorBatch($post_v2_resources_creator_batch_request = null, string $contentType = self::contentTypes['postV2ResourcesCreatorBatch'][0])
+    public function postV2EventsComplete($post_v2_events_complete_request = null, string $contentType = self::contentTypes['postV2EventsComplete'][0])
     {
-        list($response) = $this->postV2ResourcesCreatorBatchWithHttpInfo($post_v2_resources_creator_batch_request, $contentType);
+        list($response) = $this->postV2EventsCompleteWithHttpInfo($post_v2_events_complete_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation postV2ResourcesCreatorBatchWithHttpInfo
+     * Operation postV2EventsCompleteWithHttpInfo
      *
-     * Submit a new batch edit
+     * Mark events as complete
      *
-     * @param  \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest $post_v2_resources_creator_batch_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2ResourcesCreatorBatch'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PostV2EventsCompleteRequest $post_v2_events_complete_request (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2EventsComplete'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\PostV2EventsComplete200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postV2ResourcesCreatorBatchWithHttpInfo($post_v2_resources_creator_batch_request = null, string $contentType = self::contentTypes['postV2ResourcesCreatorBatch'][0])
+    public function postV2EventsCompleteWithHttpInfo($post_v2_events_complete_request = null, string $contentType = self::contentTypes['postV2EventsComplete'][0])
     {
-        $request = $this->postV2ResourcesCreatorBatchRequest($post_v2_resources_creator_batch_request, $contentType);
+        $request = $this->postV2EventsCompleteRequest($post_v2_events_complete_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -503,11 +488,11 @@ class DefaultApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\PostV2EventsComplete200Response' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response' !== 'string') {
+                        if ('\OpenAPI\Client\Model\PostV2EventsComplete200Response' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -525,13 +510,13 @@ class DefaultApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\PostV2EventsComplete200Response', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response';
+            $returnType = '\OpenAPI\Client\Model\PostV2EventsComplete200Response';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -564,7 +549,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response',
+                        '\OpenAPI\Client\Model\PostV2EventsComplete200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -575,19 +560,19 @@ class DefaultApi
     }
 
     /**
-     * Operation postV2ResourcesCreatorBatchAsync
+     * Operation postV2EventsCompleteAsync
      *
-     * Submit a new batch edit
+     * Mark events as complete
      *
-     * @param  \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest $post_v2_resources_creator_batch_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2ResourcesCreatorBatch'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PostV2EventsCompleteRequest $post_v2_events_complete_request (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2EventsComplete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postV2ResourcesCreatorBatchAsync($post_v2_resources_creator_batch_request = null, string $contentType = self::contentTypes['postV2ResourcesCreatorBatch'][0])
+    public function postV2EventsCompleteAsync($post_v2_events_complete_request = null, string $contentType = self::contentTypes['postV2EventsComplete'][0])
     {
-        return $this->postV2ResourcesCreatorBatchAsyncWithHttpInfo($post_v2_resources_creator_batch_request, $contentType)
+        return $this->postV2EventsCompleteAsyncWithHttpInfo($post_v2_events_complete_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -596,20 +581,20 @@ class DefaultApi
     }
 
     /**
-     * Operation postV2ResourcesCreatorBatchAsyncWithHttpInfo
+     * Operation postV2EventsCompleteAsyncWithHttpInfo
      *
-     * Submit a new batch edit
+     * Mark events as complete
      *
-     * @param  \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest $post_v2_resources_creator_batch_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2ResourcesCreatorBatch'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PostV2EventsCompleteRequest $post_v2_events_complete_request (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2EventsComplete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postV2ResourcesCreatorBatchAsyncWithHttpInfo($post_v2_resources_creator_batch_request = null, string $contentType = self::contentTypes['postV2ResourcesCreatorBatch'][0])
+    public function postV2EventsCompleteAsyncWithHttpInfo($post_v2_events_complete_request = null, string $contentType = self::contentTypes['postV2EventsComplete'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response';
-        $request = $this->postV2ResourcesCreatorBatchRequest($post_v2_resources_creator_batch_request, $contentType);
+        $returnType = '\OpenAPI\Client\Model\PostV2EventsComplete200Response';
+        $request = $this->postV2EventsCompleteRequest($post_v2_events_complete_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -648,20 +633,20 @@ class DefaultApi
     }
 
     /**
-     * Create request for operation 'postV2ResourcesCreatorBatch'
+     * Create request for operation 'postV2EventsComplete'
      *
-     * @param  \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest $post_v2_resources_creator_batch_request (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2ResourcesCreatorBatch'] to see the possible values for this operation
+     * @param  \OpenAPI\Client\Model\PostV2EventsCompleteRequest $post_v2_events_complete_request (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2EventsComplete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postV2ResourcesCreatorBatchRequest($post_v2_resources_creator_batch_request = null, string $contentType = self::contentTypes['postV2ResourcesCreatorBatch'][0])
+    public function postV2EventsCompleteRequest($post_v2_events_complete_request = null, string $contentType = self::contentTypes['postV2EventsComplete'][0])
     {
 
 
 
-        $resourcePath = '/v2/resources/creator/batch';
+        $resourcePath = '/v2/events/complete';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -679,12 +664,12 @@ class DefaultApi
         );
 
         // for model (json/xml)
-        if (isset($post_v2_resources_creator_batch_request)) {
+        if (isset($post_v2_events_complete_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($post_v2_resources_creator_batch_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($post_v2_events_complete_request));
             } else {
-                $httpBody = $post_v2_resources_creator_batch_request;
+                $httpBody = $post_v2_events_complete_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

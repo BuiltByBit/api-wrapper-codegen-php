@@ -1,13 +1,12 @@
-# # AnalyticGraphDataPoint
+# # PostV2ResourcesCreatorBatchRequestChangesInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**label** | **string** |  | [optional]
-**count** | **int** |  | [optional]
-**ts** | **int** |  | [optional]
-**days** | **int** |  | [optional]
-**values** | **array<string,float>** |  | [optional]
+**field** | **string** |  |
+**type** | **string** |  |
+**search** | **string** |  | [optional]
+**value** | **mixed[]** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

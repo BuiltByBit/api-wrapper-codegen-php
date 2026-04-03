@@ -1,6 +1,6 @@
 <?php
 /**
- * AnalyticGraphDataPoint
+ * PostV2ResourcesCreatorBatchRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * AnalyticGraphDataPoint Class Doc Comment
+ * PostV2ResourcesCreatorBatchRequest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerializable
+class PostV2ResourcesCreatorBatchRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AnalyticGraphDataPoint';
+    protected static $openAPIModelName = 'post_v2_resources_creator_batch_request';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'label' => 'string',
-        'count' => 'int',
-        'ts' => 'int',
-        'days' => 'int',
-        'values' => 'array<string,float>'
+        'resources' => 'mixed[]',
+        'changes' => '\OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequestChangesInner[]'
     ];
 
     /**
@@ -72,11 +69,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'label' => null,
-        'count' => null,
-        'ts' => null,
-        'days' => null,
-        'values' => null
+        'resources' => null,
+        'changes' => null
     ];
 
     /**
@@ -85,11 +79,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'label' => false,
-        'count' => false,
-        'ts' => false,
-        'days' => false,
-        'values' => false
+        'resources' => false,
+        'changes' => false
     ];
 
     /**
@@ -178,11 +169,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'label' => 'label',
-        'count' => 'count',
-        'ts' => 'ts',
-        'days' => 'days',
-        'values' => 'values'
+        'resources' => 'resources',
+        'changes' => 'changes'
     ];
 
     /**
@@ -191,11 +179,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'label' => 'setLabel',
-        'count' => 'setCount',
-        'ts' => 'setTs',
-        'days' => 'setDays',
-        'values' => 'setValues'
+        'resources' => 'setResources',
+        'changes' => 'setChanges'
     ];
 
     /**
@@ -204,11 +189,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'label' => 'getLabel',
-        'count' => 'getCount',
-        'ts' => 'getTs',
-        'days' => 'getDays',
-        'values' => 'getValues'
+        'resources' => 'getResources',
+        'changes' => 'getChanges'
     ];
 
     /**
@@ -268,11 +250,8 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('label', $data ?? [], null);
-        $this->setIfExists('count', $data ?? [], null);
-        $this->setIfExists('ts', $data ?? [], null);
-        $this->setIfExists('days', $data ?? [], null);
-        $this->setIfExists('values', $data ?? [], null);
+        $this->setIfExists('resources', $data ?? [], null);
+        $this->setIfExists('changes', $data ?? [], null);
     }
 
     /**
@@ -302,6 +281,12 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
+        if ($this->container['resources'] === null) {
+            $invalidProperties[] = "'resources' can't be null";
+        }
+        if ($this->container['changes'] === null) {
+            $invalidProperties[] = "'changes' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -318,136 +303,55 @@ class AnalyticGraphDataPoint implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets label
+     * Gets resources
      *
-     * @return string|null
+     * @return mixed[]
      */
-    public function getLabel()
+    public function getResources()
     {
-        return $this->container['label'];
+        return $this->container['resources'];
     }
 
     /**
-     * Sets label
+     * Sets resources
      *
-     * @param string|null $label label
+     * @param mixed[] $resources A list of resource IDs to edit.
      *
      * @return self
      */
-    public function setLabel($label)
+    public function setResources($resources)
     {
-        if (is_null($label)) {
-            throw new \InvalidArgumentException('non-nullable label cannot be null');
+        if (is_null($resources)) {
+            throw new \InvalidArgumentException('non-nullable resources cannot be null');
         }
-        $this->container['label'] = $label;
+        $this->container['resources'] = $resources;
 
         return $this;
     }
 
     /**
-     * Gets count
+     * Gets changes
      *
-     * @return int|null
+     * @return \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequestChangesInner[]
      */
-    public function getCount()
+    public function getChanges()
     {
-        return $this->container['count'];
+        return $this->container['changes'];
     }
 
     /**
-     * Sets count
+     * Sets changes
      *
-     * @param int|null $count count
+     * @param \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequestChangesInner[] $changes changes
      *
      * @return self
      */
-    public function setCount($count)
+    public function setChanges($changes)
     {
-        if (is_null($count)) {
-            throw new \InvalidArgumentException('non-nullable count cannot be null');
+        if (is_null($changes)) {
+            throw new \InvalidArgumentException('non-nullable changes cannot be null');
         }
-        $this->container['count'] = $count;
-
-        return $this;
-    }
-
-    /**
-     * Gets ts
-     *
-     * @return int|null
-     */
-    public function getTs()
-    {
-        return $this->container['ts'];
-    }
-
-    /**
-     * Sets ts
-     *
-     * @param int|null $ts ts
-     *
-     * @return self
-     */
-    public function setTs($ts)
-    {
-        if (is_null($ts)) {
-            throw new \InvalidArgumentException('non-nullable ts cannot be null');
-        }
-        $this->container['ts'] = $ts;
-
-        return $this;
-    }
-
-    /**
-     * Gets days
-     *
-     * @return int|null
-     */
-    public function getDays()
-    {
-        return $this->container['days'];
-    }
-
-    /**
-     * Sets days
-     *
-     * @param int|null $days days
-     *
-     * @return self
-     */
-    public function setDays($days)
-    {
-        if (is_null($days)) {
-            throw new \InvalidArgumentException('non-nullable days cannot be null');
-        }
-        $this->container['days'] = $days;
-
-        return $this;
-    }
-
-    /**
-     * Gets values
-     *
-     * @return array<string,float>|null
-     */
-    public function getValues()
-    {
-        return $this->container['values'];
-    }
-
-    /**
-     * Sets values
-     *
-     * @param array<string,float>|null $values values
-     *
-     * @return self
-     */
-    public function setValues($values)
-    {
-        if (is_null($values)) {
-            throw new \InvalidArgumentException('non-nullable values cannot be null');
-        }
-        $this->container['values'] = $values;
+        $this->container['changes'] = $changes;
 
         return $this;
     }

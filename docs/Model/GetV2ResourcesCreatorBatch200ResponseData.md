@@ -1,13 +1,10 @@
-# # AnalyticGraphDataPoint
+# # GetV2ResourcesCreatorBatch200ResponseData
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**label** | **string** |  | [optional]
-**count** | **int** |  | [optional]
-**ts** | **int** |  | [optional]
-**days** | **int** |  | [optional]
-**values** | **array<string,float>** |  | [optional]
+**batches** | [**\OpenAPI\Client\Model\Batch[]**](Batch.md) |  | [optional]
+**stats** | [**\OpenAPI\Client\Model\ListStats**](ListStats.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
