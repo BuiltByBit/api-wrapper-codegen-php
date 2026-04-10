@@ -103,6 +103,7 @@ Class | Method | HTTP request | Description
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorStores**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorstores) | **GET** /v2/resources/creator/stores | Fetch a list of your stores
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorUpdates**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorupdates) | **GET** /v2/resources/creator/updates | Fetch a list of your resource&#39;s updates
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorVersions**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorversions) | **GET** /v2/resources/creator/versions | Fetch a list of your resources&#39; versions
+*ResourcesCreatorApi* | [**postV2ResourcesCreatorCoupons**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorcoupons) | **POST** /v2/resources/creator/coupons | Create a new coupon
 *ResourcesCreatorApi* | [**postV2ResourcesCreatorUpdate**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorupdate) | **POST** /v2/resources/creator/update | Post a resource update
 *ResourcesDiscoveryApi* | [**getResourcesDiscoverCategories**](docs/Api/ResourcesDiscoveryApi.md#getresourcesdiscovercategories) | **GET** /v2/resources/discover/categories | Fetch a list of categories
 *ResourcesDiscoveryApi* | [**getResourcesDiscoverResources**](docs/Api/ResourcesDiscoveryApi.md#getresourcesdiscoverresources) | **GET** /v2/resources/discover/resources | Fetch a list of resources
@@ -189,6 +190,9 @@ Class | Method | HTTP request | Description
 - [PostV2ResourcesCreatorBatch200ResponseData](docs/Model/PostV2ResourcesCreatorBatch200ResponseData.md)
 - [PostV2ResourcesCreatorBatchRequest](docs/Model/PostV2ResourcesCreatorBatchRequest.md)
 - [PostV2ResourcesCreatorBatchRequestChangesInner](docs/Model/PostV2ResourcesCreatorBatchRequestChangesInner.md)
+- [PostV2ResourcesCreatorCoupons200Response](docs/Model/PostV2ResourcesCreatorCoupons200Response.md)
+- [PostV2ResourcesCreatorCoupons200ResponseData](docs/Model/PostV2ResourcesCreatorCoupons200ResponseData.md)
+- [PostV2ResourcesCreatorCouponsRequest](docs/Model/PostV2ResourcesCreatorCouponsRequest.md)
 - [PostV2ResourcesCreatorUpdate200Response](docs/Model/PostV2ResourcesCreatorUpdate200Response.md)
 - [PostV2ResourcesCreatorUpdate200ResponseData](docs/Model/PostV2ResourcesCreatorUpdate200ResponseData.md)
 - [PostV2ResourcesCreatorUpdateRequest](docs/Model/PostV2ResourcesCreatorUpdateRequest.md)
