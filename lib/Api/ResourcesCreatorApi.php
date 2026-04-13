@@ -74,10 +74,19 @@ class ResourcesCreatorApi
         'getV2ResourcesCreatorAddons' => [
             'application/json',
         ],
+        'getV2ResourcesCreatorBatch' => [
+            'application/json',
+        ],
         'getV2ResourcesCreatorBundles' => [
             'application/json',
         ],
+        'getV2ResourcesCreatorBundlesEntries' => [
+            'application/json',
+        ],
         'getV2ResourcesCreatorCoupons' => [
+            'application/json',
+        ],
+        'getV2ResourcesCreatorCouponsEntries' => [
             'application/json',
         ],
         'getV2ResourcesCreatorLicenses' => [
@@ -95,6 +104,9 @@ class ResourcesCreatorApi
         'getV2ResourcesCreatorSaleEvents' => [
             'application/json',
         ],
+        'getV2ResourcesCreatorSaleEventsEntries' => [
+            'application/json',
+        ],
         'getV2ResourcesCreatorStores' => [
             'application/json',
         ],
@@ -102,6 +114,9 @@ class ResourcesCreatorApi
             'application/json',
         ],
         'getV2ResourcesCreatorVersions' => [
+            'application/json',
+        ],
+        'postV2ResourcesCreatorBatch' => [
             'application/json',
         ],
         'postV2ResourcesCreatorCoupons' => [
@@ -466,19 +481,327 @@ class ResourcesCreatorApi
     }
 
     /**
+     * Operation getV2ResourcesCreatorBatch
+     *
+     * Fetch a list of your batches edits
+     *
+     * @param  array $batch_ids A comma-separated list of batch IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response
+     */
+    public function getV2ResourcesCreatorBatch($batch_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBatch'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorBatchWithHttpInfo($batch_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBatchWithHttpInfo
+     *
+     * Fetch a list of your batches edits
+     *
+     * @param  array $batch_ids A comma-separated list of batch IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorBatchWithHttpInfo($batch_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBatch'][0])
+    {
+        $request = $this->getV2ResourcesCreatorBatchRequest($batch_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBatchAsync
+     *
+     * Fetch a list of your batches edits
+     *
+     * @param  array $batch_ids A comma-separated list of batch IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorBatchAsync($batch_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBatch'][0])
+    {
+        return $this->getV2ResourcesCreatorBatchAsyncWithHttpInfo($batch_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBatchAsyncWithHttpInfo
+     *
+     * Fetch a list of your batches edits
+     *
+     * @param  array $batch_ids A comma-separated list of batch IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorBatchAsyncWithHttpInfo($batch_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBatch'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response';
+        $request = $this->getV2ResourcesCreatorBatchRequest($batch_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorBatch'
+     *
+     * @param  array $batch_ids A comma-separated list of batch IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorBatchRequest($batch_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBatch'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $batch_ids,
+            'batch_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getV2ResourcesCreatorBundles
      *
      * Fetch a list of your bundles
      *
+     * @param  array $bundle_ids A comma-separated list of bundle IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundles'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response
      */
-    public function getV2ResourcesCreatorBundles(string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
+    public function getV2ResourcesCreatorBundles($bundle_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
     {
-        list($response) = $this->getV2ResourcesCreatorBundlesWithHttpInfo($contentType);
+        list($response) = $this->getV2ResourcesCreatorBundlesWithHttpInfo($bundle_ids, $contentType);
         return $response;
     }
 
@@ -487,15 +810,16 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your bundles
      *
+     * @param  array $bundle_ids A comma-separated list of bundle IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundles'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getV2ResourcesCreatorBundlesWithHttpInfo(string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
+    public function getV2ResourcesCreatorBundlesWithHttpInfo($bundle_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
     {
-        $request = $this->getV2ResourcesCreatorBundlesRequest($contentType);
+        $request = $this->getV2ResourcesCreatorBundlesRequest($bundle_ids, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -610,14 +934,15 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your bundles
      *
+     * @param  array $bundle_ids A comma-separated list of bundle IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getV2ResourcesCreatorBundlesAsync(string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
+    public function getV2ResourcesCreatorBundlesAsync($bundle_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
     {
-        return $this->getV2ResourcesCreatorBundlesAsyncWithHttpInfo($contentType)
+        return $this->getV2ResourcesCreatorBundlesAsyncWithHttpInfo($bundle_ids, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -630,15 +955,16 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your bundles
      *
+     * @param  array $bundle_ids A comma-separated list of bundle IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getV2ResourcesCreatorBundlesAsyncWithHttpInfo(string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
+    public function getV2ResourcesCreatorBundlesAsyncWithHttpInfo($bundle_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
     {
         $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response';
-        $request = $this->getV2ResourcesCreatorBundlesRequest($contentType);
+        $request = $this->getV2ResourcesCreatorBundlesRequest($bundle_ids, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -679,13 +1005,15 @@ class ResourcesCreatorApi
     /**
      * Create request for operation 'getV2ResourcesCreatorBundles'
      *
+     * @param  array $bundle_ids A comma-separated list of bundle IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundles'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getV2ResourcesCreatorBundlesRequest(string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
+    public function getV2ResourcesCreatorBundlesRequest($bundle_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBundles'][0])
     {
+
 
 
         $resourcePath = '/v2/resources/creator/bundles';
@@ -695,6 +1023,322 @@ class ResourcesCreatorApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $bundle_ids,
+            'bundle_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBundlesEntries
+     *
+     * Fetch a list of your bundle entries
+     *
+     * @param  array $bundle_ids A comma-separated list of bundle IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundlesEntries'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorBundlesEntries200Response
+     */
+    public function getV2ResourcesCreatorBundlesEntries($bundle_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBundlesEntries'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorBundlesEntriesWithHttpInfo($bundle_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBundlesEntriesWithHttpInfo
+     *
+     * Fetch a list of your bundle entries
+     *
+     * @param  array $bundle_ids A comma-separated list of bundle IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundlesEntries'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorBundlesEntries200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorBundlesEntriesWithHttpInfo($bundle_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBundlesEntries'][0])
+    {
+        $request = $this->getV2ResourcesCreatorBundlesEntriesRequest($bundle_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorBundlesEntries200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorBundlesEntries200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorBundlesEntries200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorBundlesEntries200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorBundlesEntries200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBundlesEntriesAsync
+     *
+     * Fetch a list of your bundle entries
+     *
+     * @param  array $bundle_ids A comma-separated list of bundle IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundlesEntries'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorBundlesEntriesAsync($bundle_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBundlesEntries'][0])
+    {
+        return $this->getV2ResourcesCreatorBundlesEntriesAsyncWithHttpInfo($bundle_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorBundlesEntriesAsyncWithHttpInfo
+     *
+     * Fetch a list of your bundle entries
+     *
+     * @param  array $bundle_ids A comma-separated list of bundle IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundlesEntries'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorBundlesEntriesAsyncWithHttpInfo($bundle_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBundlesEntries'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorBundlesEntries200Response';
+        $request = $this->getV2ResourcesCreatorBundlesEntriesRequest($bundle_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorBundlesEntries'
+     *
+     * @param  array $bundle_ids A comma-separated list of bundle IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorBundlesEntries'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorBundlesEntriesRequest($bundle_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorBundlesEntries'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/bundles/entries';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $bundle_ids,
+            'bundle_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
 
@@ -762,15 +1406,16 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your coupons
      *
+     * @param  array $coupon_ids A comma-separated list of coupon IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorCoupons'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorCoupons200Response
      */
-    public function getV2ResourcesCreatorCoupons(string $contentType = self::contentTypes['getV2ResourcesCreatorCoupons'][0])
+    public function getV2ResourcesCreatorCoupons($coupon_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorCoupons'][0])
     {
-        list($response) = $this->getV2ResourcesCreatorCouponsWithHttpInfo($contentType);
+        list($response) = $this->getV2ResourcesCreatorCouponsWithHttpInfo($coupon_ids, $contentType);
         return $response;
     }
 
@@ -779,15 +1424,16 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your coupons
      *
+     * @param  array $coupon_ids A comma-separated list of coupon IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorCoupons'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorCoupons200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getV2ResourcesCreatorCouponsWithHttpInfo(string $contentType = self::contentTypes['getV2ResourcesCreatorCoupons'][0])
+    public function getV2ResourcesCreatorCouponsWithHttpInfo($coupon_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorCoupons'][0])
     {
-        $request = $this->getV2ResourcesCreatorCouponsRequest($contentType);
+        $request = $this->getV2ResourcesCreatorCouponsRequest($coupon_ids, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -902,14 +1548,15 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your coupons
      *
+     * @param  array $coupon_ids A comma-separated list of coupon IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorCoupons'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getV2ResourcesCreatorCouponsAsync(string $contentType = self::contentTypes['getV2ResourcesCreatorCoupons'][0])
+    public function getV2ResourcesCreatorCouponsAsync($coupon_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorCoupons'][0])
     {
-        return $this->getV2ResourcesCreatorCouponsAsyncWithHttpInfo($contentType)
+        return $this->getV2ResourcesCreatorCouponsAsyncWithHttpInfo($coupon_ids, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -922,15 +1569,16 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your coupons
      *
+     * @param  array $coupon_ids A comma-separated list of coupon IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorCoupons'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getV2ResourcesCreatorCouponsAsyncWithHttpInfo(string $contentType = self::contentTypes['getV2ResourcesCreatorCoupons'][0])
+    public function getV2ResourcesCreatorCouponsAsyncWithHttpInfo($coupon_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorCoupons'][0])
     {
         $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorCoupons200Response';
-        $request = $this->getV2ResourcesCreatorCouponsRequest($contentType);
+        $request = $this->getV2ResourcesCreatorCouponsRequest($coupon_ids, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -971,13 +1619,15 @@ class ResourcesCreatorApi
     /**
      * Create request for operation 'getV2ResourcesCreatorCoupons'
      *
+     * @param  array $coupon_ids A comma-separated list of coupon IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorCoupons'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getV2ResourcesCreatorCouponsRequest(string $contentType = self::contentTypes['getV2ResourcesCreatorCoupons'][0])
+    public function getV2ResourcesCreatorCouponsRequest($coupon_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorCoupons'][0])
     {
+
 
 
         $resourcePath = '/v2/resources/creator/coupons';
@@ -987,6 +1637,322 @@ class ResourcesCreatorApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $coupon_ids,
+            'coupon_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorCouponsEntries
+     *
+     * Fetch a list of your coupon entries
+     *
+     * @param  array $coupon_ids A comma-separated list of coupon IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorCouponsEntries'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorCouponsEntries200Response
+     */
+    public function getV2ResourcesCreatorCouponsEntries($coupon_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorCouponsEntries'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorCouponsEntriesWithHttpInfo($coupon_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorCouponsEntriesWithHttpInfo
+     *
+     * Fetch a list of your coupon entries
+     *
+     * @param  array $coupon_ids A comma-separated list of coupon IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorCouponsEntries'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorCouponsEntries200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorCouponsEntriesWithHttpInfo($coupon_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorCouponsEntries'][0])
+    {
+        $request = $this->getV2ResourcesCreatorCouponsEntriesRequest($coupon_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorCouponsEntries200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorCouponsEntries200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorCouponsEntries200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorCouponsEntries200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorCouponsEntries200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorCouponsEntriesAsync
+     *
+     * Fetch a list of your coupon entries
+     *
+     * @param  array $coupon_ids A comma-separated list of coupon IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorCouponsEntries'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorCouponsEntriesAsync($coupon_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorCouponsEntries'][0])
+    {
+        return $this->getV2ResourcesCreatorCouponsEntriesAsyncWithHttpInfo($coupon_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorCouponsEntriesAsyncWithHttpInfo
+     *
+     * Fetch a list of your coupon entries
+     *
+     * @param  array $coupon_ids A comma-separated list of coupon IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorCouponsEntries'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorCouponsEntriesAsyncWithHttpInfo($coupon_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorCouponsEntries'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorCouponsEntries200Response';
+        $request = $this->getV2ResourcesCreatorCouponsEntriesRequest($coupon_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorCouponsEntries'
+     *
+     * @param  array $coupon_ids A comma-separated list of coupon IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorCouponsEntries'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorCouponsEntriesRequest($coupon_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorCouponsEntries'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/coupons/entries';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $coupon_ids,
+            'coupon_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
 
 
 
@@ -2307,15 +3273,16 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your sale events
      *
+     * @param  array $sale_event_ids A comma-separated list of sale event IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEvents'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response
      */
-    public function getV2ResourcesCreatorSaleEvents(string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
+    public function getV2ResourcesCreatorSaleEvents($sale_event_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
     {
-        list($response) = $this->getV2ResourcesCreatorSaleEventsWithHttpInfo($contentType);
+        list($response) = $this->getV2ResourcesCreatorSaleEventsWithHttpInfo($sale_event_ids, $contentType);
         return $response;
     }
 
@@ -2324,15 +3291,16 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your sale events
      *
+     * @param  array $sale_event_ids A comma-separated list of sale event IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEvents'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getV2ResourcesCreatorSaleEventsWithHttpInfo(string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
+    public function getV2ResourcesCreatorSaleEventsWithHttpInfo($sale_event_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
     {
-        $request = $this->getV2ResourcesCreatorSaleEventsRequest($contentType);
+        $request = $this->getV2ResourcesCreatorSaleEventsRequest($sale_event_ids, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2447,14 +3415,15 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your sale events
      *
+     * @param  array $sale_event_ids A comma-separated list of sale event IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getV2ResourcesCreatorSaleEventsAsync(string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
+    public function getV2ResourcesCreatorSaleEventsAsync($sale_event_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
     {
-        return $this->getV2ResourcesCreatorSaleEventsAsyncWithHttpInfo($contentType)
+        return $this->getV2ResourcesCreatorSaleEventsAsyncWithHttpInfo($sale_event_ids, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2467,15 +3436,16 @@ class ResourcesCreatorApi
      *
      * Fetch a list of your sale events
      *
+     * @param  array $sale_event_ids A comma-separated list of sale event IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getV2ResourcesCreatorSaleEventsAsyncWithHttpInfo(string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
+    public function getV2ResourcesCreatorSaleEventsAsyncWithHttpInfo($sale_event_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
     {
         $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response';
-        $request = $this->getV2ResourcesCreatorSaleEventsRequest($contentType);
+        $request = $this->getV2ResourcesCreatorSaleEventsRequest($sale_event_ids, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2516,13 +3486,15 @@ class ResourcesCreatorApi
     /**
      * Create request for operation 'getV2ResourcesCreatorSaleEvents'
      *
+     * @param  array $sale_event_ids A comma-separated list of sale event IDs to filter on. No filter is applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getV2ResourcesCreatorSaleEventsRequest(string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
+    public function getV2ResourcesCreatorSaleEventsRequest($sale_event_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEvents'][0])
     {
+
 
 
         $resourcePath = '/v2/resources/creator/sale-events';
@@ -2532,6 +3504,322 @@ class ResourcesCreatorApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sale_event_ids,
+            'sale_event_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorSaleEventsEntries
+     *
+     * Fetch a list of your sale event entries
+     *
+     * @param  array $sale_event_ids A comma-separated list of sale event IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEventsEntries'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEventsEntries200Response
+     */
+    public function getV2ResourcesCreatorSaleEventsEntries($sale_event_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEventsEntries'][0])
+    {
+        list($response) = $this->getV2ResourcesCreatorSaleEventsEntriesWithHttpInfo($sale_event_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorSaleEventsEntriesWithHttpInfo
+     *
+     * Fetch a list of your sale event entries
+     *
+     * @param  array $sale_event_ids A comma-separated list of sale event IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEventsEntries'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEventsEntries200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesCreatorSaleEventsEntriesWithHttpInfo($sale_event_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEventsEntries'][0])
+    {
+        $request = $this->getV2ResourcesCreatorSaleEventsEntriesRequest($sale_event_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEventsEntries200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEventsEntries200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEventsEntries200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEventsEntries200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEventsEntries200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorSaleEventsEntriesAsync
+     *
+     * Fetch a list of your sale event entries
+     *
+     * @param  array $sale_event_ids A comma-separated list of sale event IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEventsEntries'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorSaleEventsEntriesAsync($sale_event_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEventsEntries'][0])
+    {
+        return $this->getV2ResourcesCreatorSaleEventsEntriesAsyncWithHttpInfo($sale_event_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesCreatorSaleEventsEntriesAsyncWithHttpInfo
+     *
+     * Fetch a list of your sale event entries
+     *
+     * @param  array $sale_event_ids A comma-separated list of sale event IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEventsEntries'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesCreatorSaleEventsEntriesAsyncWithHttpInfo($sale_event_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEventsEntries'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEventsEntries200Response';
+        $request = $this->getV2ResourcesCreatorSaleEventsEntriesRequest($sale_event_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesCreatorSaleEventsEntries'
+     *
+     * @param  array $sale_event_ids A comma-separated list of sale event IDs to filter on. No filter is applied if empty. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesCreatorSaleEventsEntries'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesCreatorSaleEventsEntriesRequest($sale_event_ids = null, string $contentType = self::contentTypes['getV2ResourcesCreatorSaleEventsEntries'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/sale-events/entries';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sale_event_ids,
+            'sale_event_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
 
@@ -3494,6 +4782,306 @@ class ResourcesCreatorApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation postV2ResourcesCreatorBatch
+     *
+     * Submit a new batch edit
+     *
+     * @param  \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest $post_v2_resources_creator_batch_request post_v2_resources_creator_batch_request (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2ResourcesCreatorBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response
+     */
+    public function postV2ResourcesCreatorBatch($post_v2_resources_creator_batch_request = null, string $contentType = self::contentTypes['postV2ResourcesCreatorBatch'][0])
+    {
+        list($response) = $this->postV2ResourcesCreatorBatchWithHttpInfo($post_v2_resources_creator_batch_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation postV2ResourcesCreatorBatchWithHttpInfo
+     *
+     * Submit a new batch edit
+     *
+     * @param  \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest $post_v2_resources_creator_batch_request (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2ResourcesCreatorBatch'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function postV2ResourcesCreatorBatchWithHttpInfo($post_v2_resources_creator_batch_request = null, string $contentType = self::contentTypes['postV2ResourcesCreatorBatch'][0])
+    {
+        $request = $this->postV2ResourcesCreatorBatchRequest($post_v2_resources_creator_batch_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation postV2ResourcesCreatorBatchAsync
+     *
+     * Submit a new batch edit
+     *
+     * @param  \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest $post_v2_resources_creator_batch_request (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2ResourcesCreatorBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postV2ResourcesCreatorBatchAsync($post_v2_resources_creator_batch_request = null, string $contentType = self::contentTypes['postV2ResourcesCreatorBatch'][0])
+    {
+        return $this->postV2ResourcesCreatorBatchAsyncWithHttpInfo($post_v2_resources_creator_batch_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation postV2ResourcesCreatorBatchAsyncWithHttpInfo
+     *
+     * Submit a new batch edit
+     *
+     * @param  \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest $post_v2_resources_creator_batch_request (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2ResourcesCreatorBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function postV2ResourcesCreatorBatchAsyncWithHttpInfo($post_v2_resources_creator_batch_request = null, string $contentType = self::contentTypes['postV2ResourcesCreatorBatch'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response';
+        $request = $this->postV2ResourcesCreatorBatchRequest($post_v2_resources_creator_batch_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'postV2ResourcesCreatorBatch'
+     *
+     * @param  \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest $post_v2_resources_creator_batch_request (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postV2ResourcesCreatorBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function postV2ResourcesCreatorBatchRequest($post_v2_resources_creator_batch_request = null, string $contentType = self::contentTypes['postV2ResourcesCreatorBatch'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/creator/batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($post_v2_resources_creator_batch_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($post_v2_resources_creator_batch_request));
+            } else {
+                $httpBody = $post_v2_resources_creator_batch_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

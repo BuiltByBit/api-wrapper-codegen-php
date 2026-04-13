@@ -1,6 +1,6 @@
 <?php
 /**
- * Bundle
+ * BundleEntry
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Bundle Class Doc Comment
+ * BundleEntry Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
+class BundleEntry implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Bundle';
+    protected static $openAPIModelName = 'BundleEntry';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,14 +57,16 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'entry_id' => 'int',
         'bundle_id' => 'int',
-        'user_id' => 'int',
-        'title' => 'string',
-        'description' => 'string',
-        'discount' => 'float',
+        'content_type' => 'string',
+        'content_id' => 'int',
         'created_at' => 'int',
+        'accepted_at' => 'int',
         'list_price' => '\OpenAPI\Client\Model\Price',
-        'final_price' => '\OpenAPI\Client\Model\Price'
+        'final_price' => '\OpenAPI\Client\Model\Price',
+        'resource' => '\OpenAPI\Client\Model\Resource',
+        'addon' => '\OpenAPI\Client\Model\Addon'
     ];
 
     /**
@@ -75,14 +77,16 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'entry_id' => null,
         'bundle_id' => null,
-        'user_id' => null,
-        'title' => null,
-        'description' => null,
-        'discount' => null,
+        'content_type' => null,
+        'content_id' => null,
         'created_at' => null,
+        'accepted_at' => null,
         'list_price' => null,
-        'final_price' => null
+        'final_price' => null,
+        'resource' => null,
+        'addon' => null
     ];
 
     /**
@@ -91,14 +95,16 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'entry_id' => false,
         'bundle_id' => false,
-        'user_id' => false,
-        'title' => false,
-        'description' => false,
-        'discount' => false,
+        'content_type' => false,
+        'content_id' => false,
         'created_at' => false,
+        'accepted_at' => false,
         'list_price' => false,
-        'final_price' => false
+        'final_price' => false,
+        'resource' => false,
+        'addon' => false
     ];
 
     /**
@@ -187,14 +193,16 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'entry_id' => 'entry_id',
         'bundle_id' => 'bundle_id',
-        'user_id' => 'user_id',
-        'title' => 'title',
-        'description' => 'description',
-        'discount' => 'discount',
+        'content_type' => 'content_type',
+        'content_id' => 'content_id',
         'created_at' => 'created_at',
+        'accepted_at' => 'accepted_at',
         'list_price' => 'ListPrice',
-        'final_price' => 'FinalPrice'
+        'final_price' => 'FinalPrice',
+        'resource' => 'Resource',
+        'addon' => 'Addon'
     ];
 
     /**
@@ -203,14 +211,16 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'entry_id' => 'setEntryId',
         'bundle_id' => 'setBundleId',
-        'user_id' => 'setUserId',
-        'title' => 'setTitle',
-        'description' => 'setDescription',
-        'discount' => 'setDiscount',
+        'content_type' => 'setContentType',
+        'content_id' => 'setContentId',
         'created_at' => 'setCreatedAt',
+        'accepted_at' => 'setAcceptedAt',
         'list_price' => 'setListPrice',
-        'final_price' => 'setFinalPrice'
+        'final_price' => 'setFinalPrice',
+        'resource' => 'setResource',
+        'addon' => 'setAddon'
     ];
 
     /**
@@ -219,14 +229,16 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'entry_id' => 'getEntryId',
         'bundle_id' => 'getBundleId',
-        'user_id' => 'getUserId',
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'discount' => 'getDiscount',
+        'content_type' => 'getContentType',
+        'content_id' => 'getContentId',
         'created_at' => 'getCreatedAt',
+        'accepted_at' => 'getAcceptedAt',
         'list_price' => 'getListPrice',
-        'final_price' => 'getFinalPrice'
+        'final_price' => 'getFinalPrice',
+        'resource' => 'getResource',
+        'addon' => 'getAddon'
     ];
 
     /**
@@ -286,14 +298,16 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('entry_id', $data ?? [], null);
         $this->setIfExists('bundle_id', $data ?? [], null);
-        $this->setIfExists('user_id', $data ?? [], null);
-        $this->setIfExists('title', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('discount', $data ?? [], null);
+        $this->setIfExists('content_type', $data ?? [], null);
+        $this->setIfExists('content_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('accepted_at', $data ?? [], null);
         $this->setIfExists('list_price', $data ?? [], null);
         $this->setIfExists('final_price', $data ?? [], null);
+        $this->setIfExists('resource', $data ?? [], null);
+        $this->setIfExists('addon', $data ?? [], null);
     }
 
     /**
@@ -339,6 +353,33 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets entry_id
+     *
+     * @return int|null
+     */
+    public function getEntryId()
+    {
+        return $this->container['entry_id'];
+    }
+
+    /**
+     * Sets entry_id
+     *
+     * @param int|null $entry_id entry_id
+     *
+     * @return self
+     */
+    public function setEntryId($entry_id)
+    {
+        if (is_null($entry_id)) {
+            throw new \InvalidArgumentException('non-nullable entry_id cannot be null');
+        }
+        $this->container['entry_id'] = $entry_id;
+
+        return $this;
+    }
+
+    /**
      * Gets bundle_id
      *
      * @return int|null
@@ -366,109 +407,55 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets user_id
+     * Gets content_type
+     *
+     * @return string|null
+     */
+    public function getContentType()
+    {
+        return $this->container['content_type'];
+    }
+
+    /**
+     * Sets content_type
+     *
+     * @param string|null $content_type content_type
+     *
+     * @return self
+     */
+    public function setContentType($content_type)
+    {
+        if (is_null($content_type)) {
+            throw new \InvalidArgumentException('non-nullable content_type cannot be null');
+        }
+        $this->container['content_type'] = $content_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets content_id
      *
      * @return int|null
      */
-    public function getUserId()
+    public function getContentId()
     {
-        return $this->container['user_id'];
+        return $this->container['content_id'];
     }
 
     /**
-     * Sets user_id
+     * Sets content_id
      *
-     * @param int|null $user_id user_id
+     * @param int|null $content_id content_id
      *
      * @return self
      */
-    public function setUserId($user_id)
+    public function setContentId($content_id)
     {
-        if (is_null($user_id)) {
-            throw new \InvalidArgumentException('non-nullable user_id cannot be null');
+        if (is_null($content_id)) {
+            throw new \InvalidArgumentException('non-nullable content_id cannot be null');
         }
-        $this->container['user_id'] = $user_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets title
-     *
-     * @return string|null
-     */
-    public function getTitle()
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
-        }
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description description
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets discount
-     *
-     * @return float|null
-     */
-    public function getDiscount()
-    {
-        return $this->container['discount'];
-    }
-
-    /**
-     * Sets discount
-     *
-     * @param float|null $discount discount
-     *
-     * @return self
-     */
-    public function setDiscount($discount)
-    {
-        if (is_null($discount)) {
-            throw new \InvalidArgumentException('non-nullable discount cannot be null');
-        }
-        $this->container['discount'] = $discount;
+        $this->container['content_id'] = $content_id;
 
         return $this;
     }
@@ -496,6 +483,33 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets accepted_at
+     *
+     * @return int|null
+     */
+    public function getAcceptedAt()
+    {
+        return $this->container['accepted_at'];
+    }
+
+    /**
+     * Sets accepted_at
+     *
+     * @param int|null $accepted_at accepted_at
+     *
+     * @return self
+     */
+    public function setAcceptedAt($accepted_at)
+    {
+        if (is_null($accepted_at)) {
+            throw new \InvalidArgumentException('non-nullable accepted_at cannot be null');
+        }
+        $this->container['accepted_at'] = $accepted_at;
 
         return $this;
     }
@@ -550,6 +564,60 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable final_price cannot be null');
         }
         $this->container['final_price'] = $final_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource
+     *
+     * @return \OpenAPI\Client\Model\Resource|null
+     */
+    public function getResource()
+    {
+        return $this->container['resource'];
+    }
+
+    /**
+     * Sets resource
+     *
+     * @param \OpenAPI\Client\Model\Resource|null $resource resource
+     *
+     * @return self
+     */
+    public function setResource($resource)
+    {
+        if (is_null($resource)) {
+            throw new \InvalidArgumentException('non-nullable resource cannot be null');
+        }
+        $this->container['resource'] = $resource;
+
+        return $this;
+    }
+
+    /**
+     * Gets addon
+     *
+     * @return \OpenAPI\Client\Model\Addon|null
+     */
+    public function getAddon()
+    {
+        return $this->container['addon'];
+    }
+
+    /**
+     * Sets addon
+     *
+     * @param \OpenAPI\Client\Model\Addon|null $addon addon
+     *
+     * @return self
+     */
+    public function setAddon($addon)
+    {
+        if (is_null($addon)) {
+            throw new \InvalidArgumentException('non-nullable addon cannot be null');
+        }
+        $this->container['addon'] = $addon;
 
         return $this;
     }

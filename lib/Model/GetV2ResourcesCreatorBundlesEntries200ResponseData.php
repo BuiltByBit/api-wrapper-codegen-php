@@ -1,6 +1,6 @@
 <?php
 /**
- * Bundle
+ * GetV2ResourcesCreatorBundlesEntries200ResponseData
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Bundle Class Doc Comment
+ * GetV2ResourcesCreatorBundlesEntries200ResponseData Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetV2ResourcesCreatorBundlesEntries200ResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Bundle';
+    protected static $openAPIModelName = 'get_v2_resources_creator_bundles_entries_200_response_data';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,14 +57,8 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bundle_id' => 'int',
-        'user_id' => 'int',
-        'title' => 'string',
-        'description' => 'string',
-        'discount' => 'float',
-        'created_at' => 'int',
-        'list_price' => '\OpenAPI\Client\Model\Price',
-        'final_price' => '\OpenAPI\Client\Model\Price'
+        'bundle_entries' => '\OpenAPI\Client\Model\BundleEntry[]',
+        'stats' => '\OpenAPI\Client\Model\ListStats'
     ];
 
     /**
@@ -75,14 +69,8 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bundle_id' => null,
-        'user_id' => null,
-        'title' => null,
-        'description' => null,
-        'discount' => null,
-        'created_at' => null,
-        'list_price' => null,
-        'final_price' => null
+        'bundle_entries' => null,
+        'stats' => null
     ];
 
     /**
@@ -91,14 +79,8 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'bundle_id' => false,
-        'user_id' => false,
-        'title' => false,
-        'description' => false,
-        'discount' => false,
-        'created_at' => false,
-        'list_price' => false,
-        'final_price' => false
+        'bundle_entries' => false,
+        'stats' => false
     ];
 
     /**
@@ -187,14 +169,8 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'bundle_id' => 'bundle_id',
-        'user_id' => 'user_id',
-        'title' => 'title',
-        'description' => 'description',
-        'discount' => 'discount',
-        'created_at' => 'created_at',
-        'list_price' => 'ListPrice',
-        'final_price' => 'FinalPrice'
+        'bundle_entries' => 'bundle-entries',
+        'stats' => 'stats'
     ];
 
     /**
@@ -203,14 +179,8 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'bundle_id' => 'setBundleId',
-        'user_id' => 'setUserId',
-        'title' => 'setTitle',
-        'description' => 'setDescription',
-        'discount' => 'setDiscount',
-        'created_at' => 'setCreatedAt',
-        'list_price' => 'setListPrice',
-        'final_price' => 'setFinalPrice'
+        'bundle_entries' => 'setBundleEntries',
+        'stats' => 'setStats'
     ];
 
     /**
@@ -219,14 +189,8 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'bundle_id' => 'getBundleId',
-        'user_id' => 'getUserId',
-        'title' => 'getTitle',
-        'description' => 'getDescription',
-        'discount' => 'getDiscount',
-        'created_at' => 'getCreatedAt',
-        'list_price' => 'getListPrice',
-        'final_price' => 'getFinalPrice'
+        'bundle_entries' => 'getBundleEntries',
+        'stats' => 'getStats'
     ];
 
     /**
@@ -286,14 +250,8 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('bundle_id', $data ?? [], null);
-        $this->setIfExists('user_id', $data ?? [], null);
-        $this->setIfExists('title', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('discount', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('list_price', $data ?? [], null);
-        $this->setIfExists('final_price', $data ?? [], null);
+        $this->setIfExists('bundle_entries', $data ?? [], null);
+        $this->setIfExists('stats', $data ?? [], null);
     }
 
     /**
@@ -339,217 +297,55 @@ class Bundle implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets bundle_id
+     * Gets bundle_entries
      *
-     * @return int|null
+     * @return \OpenAPI\Client\Model\BundleEntry[]|null
      */
-    public function getBundleId()
+    public function getBundleEntries()
     {
-        return $this->container['bundle_id'];
+        return $this->container['bundle_entries'];
     }
 
     /**
-     * Sets bundle_id
+     * Sets bundle_entries
      *
-     * @param int|null $bundle_id bundle_id
+     * @param \OpenAPI\Client\Model\BundleEntry[]|null $bundle_entries bundle_entries
      *
      * @return self
      */
-    public function setBundleId($bundle_id)
+    public function setBundleEntries($bundle_entries)
     {
-        if (is_null($bundle_id)) {
-            throw new \InvalidArgumentException('non-nullable bundle_id cannot be null');
+        if (is_null($bundle_entries)) {
+            throw new \InvalidArgumentException('non-nullable bundle_entries cannot be null');
         }
-        $this->container['bundle_id'] = $bundle_id;
+        $this->container['bundle_entries'] = $bundle_entries;
 
         return $this;
     }
 
     /**
-     * Gets user_id
+     * Gets stats
      *
-     * @return int|null
+     * @return \OpenAPI\Client\Model\ListStats|null
      */
-    public function getUserId()
+    public function getStats()
     {
-        return $this->container['user_id'];
+        return $this->container['stats'];
     }
 
     /**
-     * Sets user_id
+     * Sets stats
      *
-     * @param int|null $user_id user_id
+     * @param \OpenAPI\Client\Model\ListStats|null $stats stats
      *
      * @return self
      */
-    public function setUserId($user_id)
+    public function setStats($stats)
     {
-        if (is_null($user_id)) {
-            throw new \InvalidArgumentException('non-nullable user_id cannot be null');
+        if (is_null($stats)) {
+            throw new \InvalidArgumentException('non-nullable stats cannot be null');
         }
-        $this->container['user_id'] = $user_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets title
-     *
-     * @return string|null
-     */
-    public function getTitle()
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string|null $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
-        }
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description description
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets discount
-     *
-     * @return float|null
-     */
-    public function getDiscount()
-    {
-        return $this->container['discount'];
-    }
-
-    /**
-     * Sets discount
-     *
-     * @param float|null $discount discount
-     *
-     * @return self
-     */
-    public function setDiscount($discount)
-    {
-        if (is_null($discount)) {
-            throw new \InvalidArgumentException('non-nullable discount cannot be null');
-        }
-        $this->container['discount'] = $discount;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return int|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param int|null $created_at created_at
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets list_price
-     *
-     * @return \OpenAPI\Client\Model\Price|null
-     */
-    public function getListPrice()
-    {
-        return $this->container['list_price'];
-    }
-
-    /**
-     * Sets list_price
-     *
-     * @param \OpenAPI\Client\Model\Price|null $list_price list_price
-     *
-     * @return self
-     */
-    public function setListPrice($list_price)
-    {
-        if (is_null($list_price)) {
-            throw new \InvalidArgumentException('non-nullable list_price cannot be null');
-        }
-        $this->container['list_price'] = $list_price;
-
-        return $this;
-    }
-
-    /**
-     * Gets final_price
-     *
-     * @return \OpenAPI\Client\Model\Price|null
-     */
-    public function getFinalPrice()
-    {
-        return $this->container['final_price'];
-    }
-
-    /**
-     * Sets final_price
-     *
-     * @param \OpenAPI\Client\Model\Price|null $final_price final_price
-     *
-     * @return self
-     */
-    public function setFinalPrice($final_price)
-    {
-        if (is_null($final_price)) {
-            throw new \InvalidArgumentException('non-nullable final_price cannot be null');
-        }
-        $this->container['final_price'] = $final_price;
+        $this->container['stats'] = $stats;
 
         return $this;
     }

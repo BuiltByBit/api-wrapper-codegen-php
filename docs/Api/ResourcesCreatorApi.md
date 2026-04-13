@@ -5,16 +5,21 @@ All URIs are relative to https://api.builtbybit.com, except if the operation def
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**getV2ResourcesCreatorAddons()**](ResourcesCreatorApi.md#getV2ResourcesCreatorAddons) | **GET** /v2/resources/creator/addons | Fetch a list of your resources&#39; addons |
+| [**getV2ResourcesCreatorBatch()**](ResourcesCreatorApi.md#getV2ResourcesCreatorBatch) | **GET** /v2/resources/creator/batch | Fetch a list of your batches edits |
 | [**getV2ResourcesCreatorBundles()**](ResourcesCreatorApi.md#getV2ResourcesCreatorBundles) | **GET** /v2/resources/creator/bundles | Fetch a list of your bundles |
+| [**getV2ResourcesCreatorBundlesEntries()**](ResourcesCreatorApi.md#getV2ResourcesCreatorBundlesEntries) | **GET** /v2/resources/creator/bundles/entries | Fetch a list of your bundle entries |
 | [**getV2ResourcesCreatorCoupons()**](ResourcesCreatorApi.md#getV2ResourcesCreatorCoupons) | **GET** /v2/resources/creator/coupons | Fetch a list of your coupons |
+| [**getV2ResourcesCreatorCouponsEntries()**](ResourcesCreatorApi.md#getV2ResourcesCreatorCouponsEntries) | **GET** /v2/resources/creator/coupons/entries | Fetch a list of your coupon entries |
 | [**getV2ResourcesCreatorLicenses()**](ResourcesCreatorApi.md#getV2ResourcesCreatorLicenses) | **GET** /v2/resources/creator/licenses | Fetch a list of your resources&#39; licenses |
 | [**getV2ResourcesCreatorPurchases()**](ResourcesCreatorApi.md#getV2ResourcesCreatorPurchases) | **GET** /v2/resources/creator/purchases | Fetch a list of your resources&#39; purchases |
 | [**getV2ResourcesCreatorResources()**](ResourcesCreatorApi.md#getV2ResourcesCreatorResources) | **GET** /v2/resources/creator/resources | Fetch a list of your resources |
 | [**getV2ResourcesCreatorReviews()**](ResourcesCreatorApi.md#getV2ResourcesCreatorReviews) | **GET** /v2/resources/creator/reviews | Fetch a list of your resources&#39; reviews |
 | [**getV2ResourcesCreatorSaleEvents()**](ResourcesCreatorApi.md#getV2ResourcesCreatorSaleEvents) | **GET** /v2/resources/creator/sale-events | Fetch a list of your sale events |
+| [**getV2ResourcesCreatorSaleEventsEntries()**](ResourcesCreatorApi.md#getV2ResourcesCreatorSaleEventsEntries) | **GET** /v2/resources/creator/sale-events/entries | Fetch a list of your sale event entries |
 | [**getV2ResourcesCreatorStores()**](ResourcesCreatorApi.md#getV2ResourcesCreatorStores) | **GET** /v2/resources/creator/stores | Fetch a list of your stores |
 | [**getV2ResourcesCreatorUpdates()**](ResourcesCreatorApi.md#getV2ResourcesCreatorUpdates) | **GET** /v2/resources/creator/updates | Fetch a list of your resource&#39;s updates |
 | [**getV2ResourcesCreatorVersions()**](ResourcesCreatorApi.md#getV2ResourcesCreatorVersions) | **GET** /v2/resources/creator/versions | Fetch a list of your resources&#39; versions |
+| [**postV2ResourcesCreatorBatch()**](ResourcesCreatorApi.md#postV2ResourcesCreatorBatch) | **POST** /v2/resources/creator/batch | Submit a new batch edit |
 | [**postV2ResourcesCreatorCoupons()**](ResourcesCreatorApi.md#postV2ResourcesCreatorCoupons) | **POST** /v2/resources/creator/coupons | Create a new coupon |
 | [**postV2ResourcesCreatorUpdate()**](ResourcesCreatorApi.md#postV2ResourcesCreatorUpdate) | **POST** /v2/resources/creator/update | Post a resource update |
 
@@ -79,10 +84,70 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getV2ResourcesCreatorBatch()`
+
+```php
+getV2ResourcesCreatorBatch($batch_ids): \OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response
+```
+
+Fetch a list of your batches edits
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$batch_ids = NULL; // array | A comma-separated list of batch IDs to filter on. No filter is applied if empty.
+
+try {
+    $result = $apiInstance->getV2ResourcesCreatorBatch($batch_ids);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesCreatorApi->getV2ResourcesCreatorBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **batch_ids** | [**array**](../Model/.md)| A comma-separated list of batch IDs to filter on. No filter is applied if empty. | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetV2ResourcesCreatorBatch200Response**](../Model/GetV2ResourcesCreatorBatch200Response.md)
+
+### Authorization
+
+[token](../../README.md#token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getV2ResourcesCreatorBundles()`
 
 ```php
-getV2ResourcesCreatorBundles(): \OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response
+getV2ResourcesCreatorBundles($bundle_ids): \OpenAPI\Client\Model\GetV2ResourcesCreatorBundles200Response
 ```
 
 Fetch a list of your bundles
@@ -106,9 +171,10 @@ $apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
     new GuzzleHttp\Client(),
     $config
 );
+$bundle_ids = NULL; // array | A comma-separated list of bundle IDs to filter on. No filter is applied if empty.
 
 try {
-    $result = $apiInstance->getV2ResourcesCreatorBundles();
+    $result = $apiInstance->getV2ResourcesCreatorBundles($bundle_ids);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesCreatorApi->getV2ResourcesCreatorBundles: ', $e->getMessage(), PHP_EOL;
@@ -117,7 +183,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **bundle_ids** | [**array**](../Model/.md)| A comma-separated list of bundle IDs to filter on. No filter is applied if empty. | [optional] |
 
 ### Return type
 
@@ -136,10 +204,70 @@ This endpoint does not need any parameter.
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getV2ResourcesCreatorBundlesEntries()`
+
+```php
+getV2ResourcesCreatorBundlesEntries($bundle_ids): \OpenAPI\Client\Model\GetV2ResourcesCreatorBundlesEntries200Response
+```
+
+Fetch a list of your bundle entries
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$bundle_ids = NULL; // array | A comma-separated list of bundle IDs to filter on. No filter is applied if empty.
+
+try {
+    $result = $apiInstance->getV2ResourcesCreatorBundlesEntries($bundle_ids);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesCreatorApi->getV2ResourcesCreatorBundlesEntries: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **bundle_ids** | [**array**](../Model/.md)| A comma-separated list of bundle IDs to filter on. No filter is applied if empty. | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetV2ResourcesCreatorBundlesEntries200Response**](../Model/GetV2ResourcesCreatorBundlesEntries200Response.md)
+
+### Authorization
+
+[token](../../README.md#token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getV2ResourcesCreatorCoupons()`
 
 ```php
-getV2ResourcesCreatorCoupons(): \OpenAPI\Client\Model\GetV2ResourcesCreatorCoupons200Response
+getV2ResourcesCreatorCoupons($coupon_ids): \OpenAPI\Client\Model\GetV2ResourcesCreatorCoupons200Response
 ```
 
 Fetch a list of your coupons
@@ -163,9 +291,10 @@ $apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
     new GuzzleHttp\Client(),
     $config
 );
+$coupon_ids = NULL; // array | A comma-separated list of coupon IDs to filter on. No filter is applied if empty.
 
 try {
-    $result = $apiInstance->getV2ResourcesCreatorCoupons();
+    $result = $apiInstance->getV2ResourcesCreatorCoupons($coupon_ids);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesCreatorApi->getV2ResourcesCreatorCoupons: ', $e->getMessage(), PHP_EOL;
@@ -174,11 +303,73 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **coupon_ids** | [**array**](../Model/.md)| A comma-separated list of coupon IDs to filter on. No filter is applied if empty. | [optional] |
 
 ### Return type
 
 [**\OpenAPI\Client\Model\GetV2ResourcesCreatorCoupons200Response**](../Model/GetV2ResourcesCreatorCoupons200Response.md)
+
+### Authorization
+
+[token](../../README.md#token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getV2ResourcesCreatorCouponsEntries()`
+
+```php
+getV2ResourcesCreatorCouponsEntries($coupon_ids): \OpenAPI\Client\Model\GetV2ResourcesCreatorCouponsEntries200Response
+```
+
+Fetch a list of your coupon entries
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$coupon_ids = NULL; // array | A comma-separated list of coupon IDs to filter on. No filter is applied if empty.
+
+try {
+    $result = $apiInstance->getV2ResourcesCreatorCouponsEntries($coupon_ids);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesCreatorApi->getV2ResourcesCreatorCouponsEntries: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **coupon_ids** | [**array**](../Model/.md)| A comma-separated list of coupon IDs to filter on. No filter is applied if empty. | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetV2ResourcesCreatorCouponsEntries200Response**](../Model/GetV2ResourcesCreatorCouponsEntries200Response.md)
 
 ### Authorization
 
@@ -434,7 +625,7 @@ No authorization required
 ## `getV2ResourcesCreatorSaleEvents()`
 
 ```php
-getV2ResourcesCreatorSaleEvents(): \OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response
+getV2ResourcesCreatorSaleEvents($sale_event_ids): \OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response
 ```
 
 Fetch a list of your sale events
@@ -458,9 +649,10 @@ $apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
     new GuzzleHttp\Client(),
     $config
 );
+$sale_event_ids = NULL; // array | A comma-separated list of sale event IDs to filter on. No filter is applied if empty.
 
 try {
-    $result = $apiInstance->getV2ResourcesCreatorSaleEvents();
+    $result = $apiInstance->getV2ResourcesCreatorSaleEvents($sale_event_ids);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesCreatorApi->getV2ResourcesCreatorSaleEvents: ', $e->getMessage(), PHP_EOL;
@@ -469,11 +661,73 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sale_event_ids** | [**array**](../Model/.md)| A comma-separated list of sale event IDs to filter on. No filter is applied if empty. | [optional] |
 
 ### Return type
 
 [**\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEvents200Response**](../Model/GetV2ResourcesCreatorSaleEvents200Response.md)
+
+### Authorization
+
+[token](../../README.md#token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getV2ResourcesCreatorSaleEventsEntries()`
+
+```php
+getV2ResourcesCreatorSaleEventsEntries($sale_event_ids): \OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEventsEntries200Response
+```
+
+Fetch a list of your sale event entries
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$sale_event_ids = NULL; // array | A comma-separated list of sale event IDs to filter on. No filter is applied if empty.
+
+try {
+    $result = $apiInstance->getV2ResourcesCreatorSaleEventsEntries($sale_event_ids);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesCreatorApi->getV2ResourcesCreatorSaleEventsEntries: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sale_event_ids** | [**array**](../Model/.md)| A comma-separated list of sale event IDs to filter on. No filter is applied if empty. | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetV2ResourcesCreatorSaleEventsEntries200Response**](../Model/GetV2ResourcesCreatorSaleEventsEntries200Response.md)
 
 ### Authorization
 
@@ -659,6 +913,62 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `postV2ResourcesCreatorBatch()`
+
+```php
+postV2ResourcesCreatorBatch($post_v2_resources_creator_batch_request): \OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response
+```
+
+Submit a new batch edit
+
+Batch edits will be processed in the background meaning a successful call to this endpoint does not guarantee that the edits have been completed. You will instead receive an identifier to a batch edit which you can then use to fetch the status of via the below endpoint. This is not an atomic operation meaning some resources may be edited successfully and others may not be due to an error. You may only batch edit resources you own currently.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$post_v2_resources_creator_batch_request = new \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest(); // \OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest
+
+try {
+    $result = $apiInstance->postV2ResourcesCreatorBatch($post_v2_resources_creator_batch_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesCreatorApi->postV2ResourcesCreatorBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **post_v2_resources_creator_batch_request** | [**\OpenAPI\Client\Model\PostV2ResourcesCreatorBatchRequest**](../Model/PostV2ResourcesCreatorBatchRequest.md)|  | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\PostV2ResourcesCreatorBatch200Response**](../Model/PostV2ResourcesCreatorBatch200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

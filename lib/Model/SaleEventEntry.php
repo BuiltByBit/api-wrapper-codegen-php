@@ -62,7 +62,9 @@ class SaleEventEntry implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_type' => 'string',
         'content_id' => 'int',
         'discount' => 'float',
-        'sale_event' => '\OpenAPI\Client\Model\SaleEvent'
+        'sale_event' => '\OpenAPI\Client\Model\SaleEvent',
+        'resource' => '\OpenAPI\Client\Model\Resource',
+        'addon' => '\OpenAPI\Client\Model\Addon'
     ];
 
     /**
@@ -78,7 +80,9 @@ class SaleEventEntry implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_type' => null,
         'content_id' => null,
         'discount' => null,
-        'sale_event' => null
+        'sale_event' => null,
+        'resource' => null,
+        'addon' => null
     ];
 
     /**
@@ -92,7 +96,9 @@ class SaleEventEntry implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_type' => false,
         'content_id' => false,
         'discount' => false,
-        'sale_event' => false
+        'sale_event' => false,
+        'resource' => false,
+        'addon' => false
     ];
 
     /**
@@ -186,7 +192,9 @@ class SaleEventEntry implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_type' => 'content_type',
         'content_id' => 'content_id',
         'discount' => 'discount',
-        'sale_event' => 'SaleEvent'
+        'sale_event' => 'SaleEvent',
+        'resource' => 'Resource',
+        'addon' => 'Addon'
     ];
 
     /**
@@ -200,7 +208,9 @@ class SaleEventEntry implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_type' => 'setContentType',
         'content_id' => 'setContentId',
         'discount' => 'setDiscount',
-        'sale_event' => 'setSaleEvent'
+        'sale_event' => 'setSaleEvent',
+        'resource' => 'setResource',
+        'addon' => 'setAddon'
     ];
 
     /**
@@ -214,7 +224,9 @@ class SaleEventEntry implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_type' => 'getContentType',
         'content_id' => 'getContentId',
         'discount' => 'getDiscount',
-        'sale_event' => 'getSaleEvent'
+        'sale_event' => 'getSaleEvent',
+        'resource' => 'getResource',
+        'addon' => 'getAddon'
     ];
 
     /**
@@ -280,6 +292,8 @@ class SaleEventEntry implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('content_id', $data ?? [], null);
         $this->setIfExists('discount', $data ?? [], null);
         $this->setIfExists('sale_event', $data ?? [], null);
+        $this->setIfExists('resource', $data ?? [], null);
+        $this->setIfExists('addon', $data ?? [], null);
     }
 
     /**
@@ -482,6 +496,60 @@ class SaleEventEntry implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable sale_event cannot be null');
         }
         $this->container['sale_event'] = $sale_event;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource
+     *
+     * @return \OpenAPI\Client\Model\Resource|null
+     */
+    public function getResource()
+    {
+        return $this->container['resource'];
+    }
+
+    /**
+     * Sets resource
+     *
+     * @param \OpenAPI\Client\Model\Resource|null $resource resource
+     *
+     * @return self
+     */
+    public function setResource($resource)
+    {
+        if (is_null($resource)) {
+            throw new \InvalidArgumentException('non-nullable resource cannot be null');
+        }
+        $this->container['resource'] = $resource;
+
+        return $this;
+    }
+
+    /**
+     * Gets addon
+     *
+     * @return \OpenAPI\Client\Model\Addon|null
+     */
+    public function getAddon()
+    {
+        return $this->container['addon'];
+    }
+
+    /**
+     * Sets addon
+     *
+     * @param \OpenAPI\Client\Model\Addon|null $addon addon
+     *
+     * @return self
+     */
+    public function setAddon($addon)
+    {
+        if (is_null($addon)) {
+            throw new \InvalidArgumentException('non-nullable addon cannot be null');
+        }
+        $this->container['addon'] = $addon;
 
         return $this;
     }
