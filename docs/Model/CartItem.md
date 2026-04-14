@@ -10,10 +10,8 @@ Name | Type | Description | Notes
 **content_title** | **string** |  | [optional]
 **content_summary** | **string** |  | [optional]
 **content_cover_image_url** | **string** |  | [optional]
-**list_price** | **float** |  | [optional]
-**list_price_formatted** | **string** |  | [optional]
-**final_price** | **float** |  | [optional]
-**final_price_formatted** | **string** |  | [optional]
-**discounts** | [**\OpenAPI\Client\Model\CartItemDiscountsInner[]**](CartItemDiscountsInner.md) |  | [optional]
+**list_price** | [**\OpenAPI\Client\Model\Price**](Price.md) |  | [optional]
+**final_price** | [**\OpenAPI\Client\Model\Price**](Price.md) |  | [optional]
+**discounts** | [**array<string,\OpenAPI\Client\Model\Price>**](Price.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

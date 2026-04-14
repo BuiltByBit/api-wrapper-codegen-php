@@ -57,12 +57,9 @@ class CartSummary implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'list_price' => 'float',
-        'list_price_formatted' => 'string',
-        'final_price' => 'float',
-        'final_price_formatted' => 'string',
-        'currency' => 'string',
-        'notice' => 'string'
+        'notice' => 'string',
+        'list_price' => '\OpenAPI\Client\Model\Price',
+        'final_price' => '\OpenAPI\Client\Model\Price'
     ];
 
     /**
@@ -73,12 +70,9 @@ class CartSummary implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'notice' => null,
         'list_price' => null,
-        'list_price_formatted' => null,
-        'final_price' => null,
-        'final_price_formatted' => null,
-        'currency' => null,
-        'notice' => null
+        'final_price' => null
     ];
 
     /**
@@ -87,12 +81,9 @@ class CartSummary implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'notice' => false,
         'list_price' => false,
-        'list_price_formatted' => false,
-        'final_price' => false,
-        'final_price_formatted' => false,
-        'currency' => false,
-        'notice' => false
+        'final_price' => false
     ];
 
     /**
@@ -181,12 +172,9 @@ class CartSummary implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'list_price' => 'list_price',
-        'list_price_formatted' => 'list_price_formatted',
-        'final_price' => 'final_price',
-        'final_price_formatted' => 'final_price_formatted',
-        'currency' => 'currency',
-        'notice' => 'notice'
+        'notice' => 'notice',
+        'list_price' => 'ListPrice',
+        'final_price' => 'FinalPrice'
     ];
 
     /**
@@ -195,12 +183,9 @@ class CartSummary implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'notice' => 'setNotice',
         'list_price' => 'setListPrice',
-        'list_price_formatted' => 'setListPriceFormatted',
-        'final_price' => 'setFinalPrice',
-        'final_price_formatted' => 'setFinalPriceFormatted',
-        'currency' => 'setCurrency',
-        'notice' => 'setNotice'
+        'final_price' => 'setFinalPrice'
     ];
 
     /**
@@ -209,12 +194,9 @@ class CartSummary implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'notice' => 'getNotice',
         'list_price' => 'getListPrice',
-        'list_price_formatted' => 'getListPriceFormatted',
-        'final_price' => 'getFinalPrice',
-        'final_price_formatted' => 'getFinalPriceFormatted',
-        'currency' => 'getCurrency',
-        'notice' => 'getNotice'
+        'final_price' => 'getFinalPrice'
     ];
 
     /**
@@ -274,12 +256,9 @@ class CartSummary implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('list_price', $data ?? [], null);
-        $this->setIfExists('list_price_formatted', $data ?? [], null);
-        $this->setIfExists('final_price', $data ?? [], null);
-        $this->setIfExists('final_price_formatted', $data ?? [], null);
-        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('notice', $data ?? [], null);
+        $this->setIfExists('list_price', $data ?? [], null);
+        $this->setIfExists('final_price', $data ?? [], null);
     }
 
     /**
@@ -309,21 +288,6 @@ class CartSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['list_price'] === null) {
-            $invalidProperties[] = "'list_price' can't be null";
-        }
-        if ($this->container['list_price_formatted'] === null) {
-            $invalidProperties[] = "'list_price_formatted' can't be null";
-        }
-        if ($this->container['final_price'] === null) {
-            $invalidProperties[] = "'final_price' can't be null";
-        }
-        if ($this->container['final_price_formatted'] === null) {
-            $invalidProperties[] = "'final_price_formatted' can't be null";
-        }
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -338,141 +302,6 @@ class CartSummary implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets list_price
-     *
-     * @return float
-     */
-    public function getListPrice()
-    {
-        return $this->container['list_price'];
-    }
-
-    /**
-     * Sets list_price
-     *
-     * @param float $list_price The combined listed price of all items in the cart (ie. the original prices without any discounts applied).
-     *
-     * @return self
-     */
-    public function setListPrice($list_price)
-    {
-        if (is_null($list_price)) {
-            throw new \InvalidArgumentException('non-nullable list_price cannot be null');
-        }
-        $this->container['list_price'] = $list_price;
-
-        return $this;
-    }
-
-    /**
-     * Gets list_price_formatted
-     *
-     * @return string
-     */
-    public function getListPriceFormatted()
-    {
-        return $this->container['list_price_formatted'];
-    }
-
-    /**
-     * Sets list_price_formatted
-     *
-     * @param string $list_price_formatted The list price formatted as a string using the given currency.  A list price of 5 would be formatted as `$5.00`.
-     *
-     * @return self
-     */
-    public function setListPriceFormatted($list_price_formatted)
-    {
-        if (is_null($list_price_formatted)) {
-            throw new \InvalidArgumentException('non-nullable list_price_formatted cannot be null');
-        }
-        $this->container['list_price_formatted'] = $list_price_formatted;
-
-        return $this;
-    }
-
-    /**
-     * Gets final_price
-     *
-     * @return float
-     */
-    public function getFinalPrice()
-    {
-        return $this->container['final_price'];
-    }
-
-    /**
-     * Sets final_price
-     *
-     * @param float $final_price The combined final price of all items in the cart (ie. with discounts applied). This is the subtotal the user would pay upon checkout initiation, minus any applicable sales tax.
-     *
-     * @return self
-     */
-    public function setFinalPrice($final_price)
-    {
-        if (is_null($final_price)) {
-            throw new \InvalidArgumentException('non-nullable final_price cannot be null');
-        }
-        $this->container['final_price'] = $final_price;
-
-        return $this;
-    }
-
-    /**
-     * Gets final_price_formatted
-     *
-     * @return string
-     */
-    public function getFinalPriceFormatted()
-    {
-        return $this->container['final_price_formatted'];
-    }
-
-    /**
-     * Sets final_price_formatted
-     *
-     * @param string $final_price_formatted The final price formatted as a string using the given currency.  A final price of 5 would be formatted as `$5.00`.
-     *
-     * @return self
-     */
-    public function setFinalPriceFormatted($final_price_formatted)
-    {
-        if (is_null($final_price_formatted)) {
-            throw new \InvalidArgumentException('non-nullable final_price_formatted cannot be null');
-        }
-        $this->container['final_price_formatted'] = $final_price_formatted;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency
-     *
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->container['currency'];
-    }
-
-    /**
-     * Sets currency
-     *
-     * @param string $currency The currency code (ISO 4217) of the prices in this summary.  Will be USD for all transactions through BuiltByBit.
-     *
-     * @return self
-     */
-    public function setCurrency($currency)
-    {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
 
     /**
      * Gets notice
@@ -497,6 +326,60 @@ class CartSummary implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable notice cannot be null');
         }
         $this->container['notice'] = $notice;
+
+        return $this;
+    }
+
+    /**
+     * Gets list_price
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getListPrice()
+    {
+        return $this->container['list_price'];
+    }
+
+    /**
+     * Sets list_price
+     *
+     * @param \OpenAPI\Client\Model\Price|null $list_price list_price
+     *
+     * @return self
+     */
+    public function setListPrice($list_price)
+    {
+        if (is_null($list_price)) {
+            throw new \InvalidArgumentException('non-nullable list_price cannot be null');
+        }
+        $this->container['list_price'] = $list_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets final_price
+     *
+     * @return \OpenAPI\Client\Model\Price|null
+     */
+    public function getFinalPrice()
+    {
+        return $this->container['final_price'];
+    }
+
+    /**
+     * Sets final_price
+     *
+     * @param \OpenAPI\Client\Model\Price|null $final_price final_price
+     *
+     * @return self
+     */
+    public function setFinalPrice($final_price)
+    {
+        if (is_null($final_price)) {
+            throw new \InvalidArgumentException('non-nullable final_price cannot be null');
+        }
+        $this->container['final_price'] = $final_price;
 
         return $this;
     }

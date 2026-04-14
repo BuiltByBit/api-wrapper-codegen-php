@@ -63,11 +63,9 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_title' => 'string',
         'content_summary' => 'string',
         'content_cover_image_url' => 'string',
-        'list_price' => 'float',
-        'list_price_formatted' => 'string',
-        'final_price' => 'float',
-        'final_price_formatted' => 'string',
-        'discounts' => '\OpenAPI\Client\Model\CartItemDiscountsInner[]'
+        'list_price' => '\OpenAPI\Client\Model\Price',
+        'final_price' => '\OpenAPI\Client\Model\Price',
+        'discounts' => 'array<string,\OpenAPI\Client\Model\Price>'
     ];
 
     /**
@@ -85,9 +83,7 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_summary' => null,
         'content_cover_image_url' => null,
         'list_price' => null,
-        'list_price_formatted' => null,
         'final_price' => null,
-        'final_price_formatted' => null,
         'discounts' => null
     ];
 
@@ -104,9 +100,7 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_summary' => false,
         'content_cover_image_url' => false,
         'list_price' => false,
-        'list_price_formatted' => false,
         'final_price' => false,
-        'final_price_formatted' => false,
         'discounts' => false
     ];
 
@@ -202,10 +196,8 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_title' => 'content_title',
         'content_summary' => 'content_summary',
         'content_cover_image_url' => 'content_cover_image_url',
-        'list_price' => 'list_price',
-        'list_price_formatted' => 'list_price_formatted',
-        'final_price' => 'final_price',
-        'final_price_formatted' => 'final_price_formatted',
+        'list_price' => 'ListPrice',
+        'final_price' => 'FinalPrice',
         'discounts' => 'discounts'
     ];
 
@@ -222,9 +214,7 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_summary' => 'setContentSummary',
         'content_cover_image_url' => 'setContentCoverImageUrl',
         'list_price' => 'setListPrice',
-        'list_price_formatted' => 'setListPriceFormatted',
         'final_price' => 'setFinalPrice',
-        'final_price_formatted' => 'setFinalPriceFormatted',
         'discounts' => 'setDiscounts'
     ];
 
@@ -241,9 +231,7 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'content_summary' => 'getContentSummary',
         'content_cover_image_url' => 'getContentCoverImageUrl',
         'list_price' => 'getListPrice',
-        'list_price_formatted' => 'getListPriceFormatted',
         'final_price' => 'getFinalPrice',
-        'final_price_formatted' => 'getFinalPriceFormatted',
         'discounts' => 'getDiscounts'
     ];
 
@@ -311,9 +299,7 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('content_summary', $data ?? [], null);
         $this->setIfExists('content_cover_image_url', $data ?? [], null);
         $this->setIfExists('list_price', $data ?? [], null);
-        $this->setIfExists('list_price_formatted', $data ?? [], null);
         $this->setIfExists('final_price', $data ?? [], null);
-        $this->setIfExists('final_price_formatted', $data ?? [], null);
         $this->setIfExists('discounts', $data ?? [], null);
     }
 
@@ -524,7 +510,7 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets list_price
      *
-     * @return float|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getListPrice()
     {
@@ -534,7 +520,7 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets list_price
      *
-     * @param float|null $list_price list_price
+     * @param \OpenAPI\Client\Model\Price|null $list_price list_price
      *
      * @return self
      */
@@ -549,36 +535,9 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets list_price_formatted
-     *
-     * @return string|null
-     */
-    public function getListPriceFormatted()
-    {
-        return $this->container['list_price_formatted'];
-    }
-
-    /**
-     * Sets list_price_formatted
-     *
-     * @param string|null $list_price_formatted list_price_formatted
-     *
-     * @return self
-     */
-    public function setListPriceFormatted($list_price_formatted)
-    {
-        if (is_null($list_price_formatted)) {
-            throw new \InvalidArgumentException('non-nullable list_price_formatted cannot be null');
-        }
-        $this->container['list_price_formatted'] = $list_price_formatted;
-
-        return $this;
-    }
-
-    /**
      * Gets final_price
      *
-     * @return float|null
+     * @return \OpenAPI\Client\Model\Price|null
      */
     public function getFinalPrice()
     {
@@ -588,7 +547,7 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets final_price
      *
-     * @param float|null $final_price final_price
+     * @param \OpenAPI\Client\Model\Price|null $final_price final_price
      *
      * @return self
      */
@@ -603,36 +562,9 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets final_price_formatted
-     *
-     * @return string|null
-     */
-    public function getFinalPriceFormatted()
-    {
-        return $this->container['final_price_formatted'];
-    }
-
-    /**
-     * Sets final_price_formatted
-     *
-     * @param string|null $final_price_formatted final_price_formatted
-     *
-     * @return self
-     */
-    public function setFinalPriceFormatted($final_price_formatted)
-    {
-        if (is_null($final_price_formatted)) {
-            throw new \InvalidArgumentException('non-nullable final_price_formatted cannot be null');
-        }
-        $this->container['final_price_formatted'] = $final_price_formatted;
-
-        return $this;
-    }
-
-    /**
      * Gets discounts
      *
-     * @return \OpenAPI\Client\Model\CartItemDiscountsInner[]|null
+     * @return array<string,\OpenAPI\Client\Model\Price>|null
      */
     public function getDiscounts()
     {
@@ -642,7 +574,7 @@ class CartItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets discounts
      *
-     * @param \OpenAPI\Client\Model\CartItemDiscountsInner[]|null $discounts discounts
+     * @param array<string,\OpenAPI\Client\Model\Price>|null $discounts discounts
      *
      * @return self
      */

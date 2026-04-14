@@ -108,6 +108,13 @@ Class | Method | HTTP request | Description
 *ResourcesCreatorApi* | [**postV2ResourcesCreatorBatch**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorbatch) | **POST** /v2/resources/creator/batch | Submit a new batch edit
 *ResourcesCreatorApi* | [**postV2ResourcesCreatorCoupons**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorcoupons) | **POST** /v2/resources/creator/coupons | Create a new coupon
 *ResourcesCreatorApi* | [**postV2ResourcesCreatorUpdate**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorupdate) | **POST** /v2/resources/creator/update | Post a resource update
+*ResourcesCreatorBundlesApi* | [**getV2ResourcesCreatorBundles**](docs/Api/ResourcesCreatorBundlesApi.md#getv2resourcescreatorbundles) | **GET** /v2/resources/creator/bundles | Fetch a list of your bundles
+*ResourcesCreatorBundlesApi* | [**getV2ResourcesCreatorBundlesEntries**](docs/Api/ResourcesCreatorBundlesApi.md#getv2resourcescreatorbundlesentries) | **GET** /v2/resources/creator/bundles/entries | Fetch a list of your bundle entries
+*ResourcesCreatorCouponsApi* | [**getV2ResourcesCreatorCoupons**](docs/Api/ResourcesCreatorCouponsApi.md#getv2resourcescreatorcoupons) | **GET** /v2/resources/creator/coupons | Fetch a list of your coupons
+*ResourcesCreatorCouponsApi* | [**getV2ResourcesCreatorCouponsEntries**](docs/Api/ResourcesCreatorCouponsApi.md#getv2resourcescreatorcouponsentries) | **GET** /v2/resources/creator/coupons/entries | Fetch a list of your coupon entries
+*ResourcesCreatorCouponsApi* | [**postV2ResourcesCreatorCoupons**](docs/Api/ResourcesCreatorCouponsApi.md#postv2resourcescreatorcoupons) | **POST** /v2/resources/creator/coupons | Create a new coupon
+*ResourcesCreatorSaleEventsApi* | [**getV2ResourcesCreatorSaleEvents**](docs/Api/ResourcesCreatorSaleEventsApi.md#getv2resourcescreatorsaleevents) | **GET** /v2/resources/creator/sale-events | Fetch a list of your sale events
+*ResourcesCreatorSaleEventsApi* | [**getV2ResourcesCreatorSaleEventsEntries**](docs/Api/ResourcesCreatorSaleEventsApi.md#getv2resourcescreatorsaleeventsentries) | **GET** /v2/resources/creator/sale-events/entries | Fetch a list of your sale event entries
 *ResourcesDiscoveryApi* | [**getResourcesDiscoverCategories**](docs/Api/ResourcesDiscoveryApi.md#getresourcesdiscovercategories) | **GET** /v2/resources/discover/categories | Fetch a list of categories
 *ResourcesDiscoveryApi* | [**getResourcesDiscoverResources**](docs/Api/ResourcesDiscoveryApi.md#getresourcesdiscoverresources) | **GET** /v2/resources/discover/resources | Fetch a list of resources
 *ResourcesDiscoveryApi* | [**getV2ResourcesDiscoverCartView**](docs/Api/ResourcesDiscoveryApi.md#getv2resourcesdiscovercartview) | **GET** /v2/resources/discover/cart/view | View the user&#39;s cart items
@@ -130,7 +137,6 @@ Class | Method | HTTP request | Description
 - [Bundle](docs/Model/Bundle.md)
 - [BundleEntry](docs/Model/BundleEntry.md)
 - [CartItem](docs/Model/CartItem.md)
-- [CartItemDiscountsInner](docs/Model/CartItemDiscountsInner.md)
 - [CartSummary](docs/Model/CartSummary.md)
 - [Category](docs/Model/Category.md)
 - [Coupon](docs/Model/Coupon.md)
