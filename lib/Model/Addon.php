@@ -35,6 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * Addon Class Doc Comment
  *
  * @category Class
+ * @description Supported &#39;with&#39; hints: - Resource: the resource this addon belongs to
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -58,6 +59,7 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'addon_id' => 'int',
+        'resource_id' => 'int',
         'title' => 'string',
         'description' => 'string',
         'type' => 'string',
@@ -65,7 +67,8 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_order' => 'int',
         'default' => 'bool',
         'list_price' => '\OpenAPI\Client\Model\Price',
-        'final_price' => '\OpenAPI\Client\Model\Price'
+        'final_price' => '\OpenAPI\Client\Model\Price',
+        'resource' => '\OpenAPI\Client\Model\Resource'
     ];
 
     /**
@@ -77,6 +80,7 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'addon_id' => null,
+        'resource_id' => null,
         'title' => null,
         'description' => null,
         'type' => null,
@@ -84,7 +88,8 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_order' => null,
         'default' => null,
         'list_price' => null,
-        'final_price' => null
+        'final_price' => null,
+        'resource' => null
     ];
 
     /**
@@ -94,6 +99,7 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'addon_id' => false,
+        'resource_id' => false,
         'title' => false,
         'description' => false,
         'type' => false,
@@ -101,7 +107,8 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_order' => false,
         'default' => false,
         'list_price' => false,
-        'final_price' => false
+        'final_price' => false,
+        'resource' => false
     ];
 
     /**
@@ -191,6 +198,7 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'addon_id' => 'addon_id',
+        'resource_id' => 'resource_id',
         'title' => 'title',
         'description' => 'description',
         'type' => 'type',
@@ -198,7 +206,8 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_order' => 'display_order',
         'default' => 'default',
         'list_price' => 'ListPrice',
-        'final_price' => 'FinalPrice'
+        'final_price' => 'FinalPrice',
+        'resource' => 'Resource'
     ];
 
     /**
@@ -208,6 +217,7 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'addon_id' => 'setAddonId',
+        'resource_id' => 'setResourceId',
         'title' => 'setTitle',
         'description' => 'setDescription',
         'type' => 'setType',
@@ -215,7 +225,8 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_order' => 'setDisplayOrder',
         'default' => 'setDefault',
         'list_price' => 'setListPrice',
-        'final_price' => 'setFinalPrice'
+        'final_price' => 'setFinalPrice',
+        'resource' => 'setResource'
     ];
 
     /**
@@ -225,6 +236,7 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'addon_id' => 'getAddonId',
+        'resource_id' => 'getResourceId',
         'title' => 'getTitle',
         'description' => 'getDescription',
         'type' => 'getType',
@@ -232,7 +244,8 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_order' => 'getDisplayOrder',
         'default' => 'getDefault',
         'list_price' => 'getListPrice',
-        'final_price' => 'getFinalPrice'
+        'final_price' => 'getFinalPrice',
+        'resource' => 'getResource'
     ];
 
     /**
@@ -308,6 +321,7 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('addon_id', $data ?? [], null);
+        $this->setIfExists('resource_id', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
@@ -316,6 +330,7 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('default', $data ?? [], null);
         $this->setIfExists('list_price', $data ?? [], null);
         $this->setIfExists('final_price', $data ?? [], null);
+        $this->setIfExists('resource', $data ?? [], null);
     }
 
     /**
@@ -392,6 +407,33 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable addon_id cannot be null');
         }
         $this->container['addon_id'] = $addon_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource_id
+     *
+     * @return int|null
+     */
+    public function getResourceId()
+    {
+        return $this->container['resource_id'];
+    }
+
+    /**
+     * Sets resource_id
+     *
+     * @param int|null $resource_id resource_id
+     *
+     * @return self
+     */
+    public function setResourceId($resource_id)
+    {
+        if (is_null($resource_id)) {
+            throw new \InvalidArgumentException('non-nullable resource_id cannot be null');
+        }
+        $this->container['resource_id'] = $resource_id;
 
         return $this;
     }
@@ -618,6 +660,33 @@ class Addon implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable final_price cannot be null');
         }
         $this->container['final_price'] = $final_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource
+     *
+     * @return \OpenAPI\Client\Model\Resource|null
+     */
+    public function getResource()
+    {
+        return $this->container['resource'];
+    }
+
+    /**
+     * Sets resource
+     *
+     * @param \OpenAPI\Client\Model\Resource|null $resource resource
+     *
+     * @return self
+     */
+    public function setResource($resource)
+    {
+        if (is_null($resource)) {
+            throw new \InvalidArgumentException('non-nullable resource cannot be null');
+        }
+        $this->container['resource'] = $resource;
 
         return $this;
     }

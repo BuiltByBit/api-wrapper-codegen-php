@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **addon_id** | **int** |  | [optional]
+**resource_id** | **int** |  | [optional]
 **title** | **string** |  | [optional]
 **description** | **string** |  | [optional]
 **type** | **string** |  | [optional]
@@ -13,5 +14,6 @@ Name | Type | Description | Notes
 **default** | **bool** |  | [optional]
 **list_price** | [**\OpenAPI\Client\Model\Price**](Price.md) |  | [optional]
 **final_price** | [**\OpenAPI\Client\Model\Price**](Price.md) |  | [optional]
+**resource** | [**\OpenAPI\Client\Model\Resource**](Resource.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
