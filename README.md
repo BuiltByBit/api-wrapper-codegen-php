@@ -92,8 +92,6 @@ Class | Method | HTTP request | Description
 *ResourcesBuyerApi* | [**getV2ResourcesBuyerLatest**](docs/Api/ResourcesBuyerApi.md#getv2resourcesbuyerlatest) | **GET** /v2/resources/buyer/latest | Fetches the latest versions &amp; license information
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorAddons**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatoraddons) | **GET** /v2/resources/creator/addons | Fetch a list of your resources&#39; addons
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorBatch**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorbatch) | **GET** /v2/resources/creator/batch | Fetch a list of your batches edits
-*ResourcesCreatorApi* | [**getV2ResourcesCreatorBundles**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorbundles) | **GET** /v2/resources/creator/bundles | Fetch a list of your bundles
-*ResourcesCreatorApi* | [**getV2ResourcesCreatorBundlesEntries**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorbundlesentries) | **GET** /v2/resources/creator/bundles/entries | Fetch a list of your bundle entries
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorCoupons**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorcoupons) | **GET** /v2/resources/creator/coupons | Fetch a list of your coupons
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorCouponsEntries**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorcouponsentries) | **GET** /v2/resources/creator/coupons/entries | Fetch a list of your coupon entries
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorLicenses**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorlicenses) | **GET** /v2/resources/creator/licenses | Fetch a list of your resources&#39; licenses
