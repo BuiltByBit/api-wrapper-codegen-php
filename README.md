@@ -84,6 +84,7 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getV2Analytics**](docs/Api/AnalyticsApi.md#getv2analytics) | **GET** /v2/analytics | Fetch a list of analytics definitions
 *AnalyticsApi* | [**getV2AnalyticsGraph**](docs/Api/AnalyticsApi.md#getv2analyticsgraph) | **GET** /v2/analytics/graph | Fetch analytics graph data
 *AnalyticsApi* | [**getV2AnalyticsSingle**](docs/Api/AnalyticsApi.md#getv2analyticssingle) | **GET** /v2/analytics/single | Fetch a single analytics value
+*DeploymentsApi* | [**postV2DeploymentsUpgrade**](docs/Api/DeploymentsApi.md#postv2deploymentsupgrade) | **POST** /v2/deployments/upgrade | Upgrade a short-lived token
 *EventsApi* | [**getV2Events**](docs/Api/EventsApi.md#getv2events) | **GET** /v2/events | Fetch a list of pending events
 *EventsApi* | [**postV2EventsComplete**](docs/Api/EventsApi.md#postv2eventscomplete) | **POST** /v2/events/complete | Mark events as complete
 *HealthApi* | [**getV2Health**](docs/Api/HealthApi.md#getv2health) | **GET** /v2/health | Retrieve a health status
@@ -199,6 +200,10 @@ Class | Method | HTTP request | Description
 - [License](docs/Model/License.md)
 - [ListStats](docs/Model/ListStats.md)
 - [Member](docs/Model/Member.md)
+- [PostV2DeploymentsUpgrade200Response](docs/Model/PostV2DeploymentsUpgrade200Response.md)
+- [PostV2DeploymentsUpgrade200ResponseData](docs/Model/PostV2DeploymentsUpgrade200ResponseData.md)
+- [PostV2DeploymentsUpgrade200ResponseDataPreauthorize](docs/Model/PostV2DeploymentsUpgrade200ResponseDataPreauthorize.md)
+- [PostV2DeploymentsUpgradeRequest](docs/Model/PostV2DeploymentsUpgradeRequest.md)
 - [PostV2EventsComplete200Response](docs/Model/PostV2EventsComplete200Response.md)
 - [PostV2EventsCompleteRequest](docs/Model/PostV2EventsCompleteRequest.md)
 - [PostV2ResourcesCreatorBatch200Response](docs/Model/PostV2ResourcesCreatorBatch200Response.md)
