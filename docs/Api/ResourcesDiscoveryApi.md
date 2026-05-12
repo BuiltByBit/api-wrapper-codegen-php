@@ -82,7 +82,7 @@ try {
 ## `getResourcesDiscoverResources()`
 
 ```php
-getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies): \OpenAPI\Client\Model\GetResourcesDiscoverResources200Response
+getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids): \OpenAPI\Client\Model\GetResourcesDiscoverResources200Response
 ```
 
 Fetch a list of resources
@@ -114,10 +114,12 @@ $filters = array('key' => new \stdClass); // object | A list of dynamic filters 
 $resource_ids = 'resource_ids_example'; // string | A comma-separated list of resource IDs to filter on.
 $page = 1; // int | The page number to return.
 $per_page = 25; // float | The number of resources to return per page.
-$no_dependencies = True; // bool
+$no_dependencies = True; // bool | Whether or not to exclude resources with dependencies listed.
+$excluded_resource_ids = 'excluded_resource_ids_example'; // string | A comma-separated list of resource IDs to exclude. No filter will be applied if empty.
+$excluded_creator_ids = 'excluded_creator_ids_example'; // string | A comma-separated list of creator IDs to exclude. No filter will be applied if empty.
 
 try {
-    $result = $apiInstance->getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies);
+    $result = $apiInstance->getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesDiscoveryApi->getResourcesDiscoverResources: ', $e->getMessage(), PHP_EOL;
@@ -134,7 +136,9 @@ try {
 | **resource_ids** | **string**| A comma-separated list of resource IDs to filter on. | [optional] |
 | **page** | **int**| The page number to return. | [optional] [default to 1] |
 | **per_page** | **float**| The number of resources to return per page. | [optional] [default to 25] |
-| **no_dependencies** | **bool**|  | [optional] |
+| **no_dependencies** | **bool**| Whether or not to exclude resources with dependencies listed. | [optional] |
+| **excluded_resource_ids** | **string**| A comma-separated list of resource IDs to exclude. No filter will be applied if empty. | [optional] |
+| **excluded_creator_ids** | **string**| A comma-separated list of creator IDs to exclude. No filter will be applied if empty. | [optional] |
 
 ### Return type
 

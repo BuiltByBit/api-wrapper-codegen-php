@@ -483,16 +483,18 @@ class ResourcesDiscoveryApi
      * @param  string $resource_ids A comma-separated list of resource IDs to filter on. (optional)
      * @param  int $page The page number to return. (optional, default to 1)
      * @param  float $per_page The number of resources to return per page. (optional, default to 25)
-     * @param  bool $no_dependencies no_dependencies (optional)
+     * @param  bool $no_dependencies Whether or not to exclude resources with dependencies listed. (optional)
+     * @param  string $excluded_resource_ids A comma-separated list of resource IDs to exclude. No filter will be applied if empty. (optional)
+     * @param  string $excluded_creator_ids A comma-separated list of creator IDs to exclude. No filter will be applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getResourcesDiscoverResources'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\GetResourcesDiscoverResources200Response|\OpenAPI\Client\Model\GetResourcesDiscoverResources4XXResponse|\OpenAPI\Client\Model\GetResourcesDiscoverResources4XXResponse
      */
-    public function getResourcesDiscoverResources($category_id = null, $with = null, $filters = null, $resource_ids = null, $page = 1, $per_page = 25, $no_dependencies = null, string $contentType = self::contentTypes['getResourcesDiscoverResources'][0])
+    public function getResourcesDiscoverResources($category_id = null, $with = null, $filters = null, $resource_ids = null, $page = 1, $per_page = 25, $no_dependencies = null, $excluded_resource_ids = null, $excluded_creator_ids = null, string $contentType = self::contentTypes['getResourcesDiscoverResources'][0])
     {
-        list($response) = $this->getResourcesDiscoverResourcesWithHttpInfo($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $contentType);
+        list($response) = $this->getResourcesDiscoverResourcesWithHttpInfo($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $contentType);
         return $response;
     }
 
@@ -507,16 +509,18 @@ class ResourcesDiscoveryApi
      * @param  string $resource_ids A comma-separated list of resource IDs to filter on. (optional)
      * @param  int $page The page number to return. (optional, default to 1)
      * @param  float $per_page The number of resources to return per page. (optional, default to 25)
-     * @param  bool $no_dependencies (optional)
+     * @param  bool $no_dependencies Whether or not to exclude resources with dependencies listed. (optional)
+     * @param  string $excluded_resource_ids A comma-separated list of resource IDs to exclude. No filter will be applied if empty. (optional)
+     * @param  string $excluded_creator_ids A comma-separated list of creator IDs to exclude. No filter will be applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getResourcesDiscoverResources'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\GetResourcesDiscoverResources200Response|\OpenAPI\Client\Model\GetResourcesDiscoverResources4XXResponse|\OpenAPI\Client\Model\GetResourcesDiscoverResources4XXResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getResourcesDiscoverResourcesWithHttpInfo($category_id = null, $with = null, $filters = null, $resource_ids = null, $page = 1, $per_page = 25, $no_dependencies = null, string $contentType = self::contentTypes['getResourcesDiscoverResources'][0])
+    public function getResourcesDiscoverResourcesWithHttpInfo($category_id = null, $with = null, $filters = null, $resource_ids = null, $page = 1, $per_page = 25, $no_dependencies = null, $excluded_resource_ids = null, $excluded_creator_ids = null, string $contentType = self::contentTypes['getResourcesDiscoverResources'][0])
     {
-        $request = $this->getResourcesDiscoverResourcesRequest($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $contentType);
+        $request = $this->getResourcesDiscoverResourcesRequest($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -641,15 +645,17 @@ class ResourcesDiscoveryApi
      * @param  string $resource_ids A comma-separated list of resource IDs to filter on. (optional)
      * @param  int $page The page number to return. (optional, default to 1)
      * @param  float $per_page The number of resources to return per page. (optional, default to 25)
-     * @param  bool $no_dependencies (optional)
+     * @param  bool $no_dependencies Whether or not to exclude resources with dependencies listed. (optional)
+     * @param  string $excluded_resource_ids A comma-separated list of resource IDs to exclude. No filter will be applied if empty. (optional)
+     * @param  string $excluded_creator_ids A comma-separated list of creator IDs to exclude. No filter will be applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getResourcesDiscoverResources'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getResourcesDiscoverResourcesAsync($category_id = null, $with = null, $filters = null, $resource_ids = null, $page = 1, $per_page = 25, $no_dependencies = null, string $contentType = self::contentTypes['getResourcesDiscoverResources'][0])
+    public function getResourcesDiscoverResourcesAsync($category_id = null, $with = null, $filters = null, $resource_ids = null, $page = 1, $per_page = 25, $no_dependencies = null, $excluded_resource_ids = null, $excluded_creator_ids = null, string $contentType = self::contentTypes['getResourcesDiscoverResources'][0])
     {
-        return $this->getResourcesDiscoverResourcesAsyncWithHttpInfo($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $contentType)
+        return $this->getResourcesDiscoverResourcesAsyncWithHttpInfo($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -668,16 +674,18 @@ class ResourcesDiscoveryApi
      * @param  string $resource_ids A comma-separated list of resource IDs to filter on. (optional)
      * @param  int $page The page number to return. (optional, default to 1)
      * @param  float $per_page The number of resources to return per page. (optional, default to 25)
-     * @param  bool $no_dependencies (optional)
+     * @param  bool $no_dependencies Whether or not to exclude resources with dependencies listed. (optional)
+     * @param  string $excluded_resource_ids A comma-separated list of resource IDs to exclude. No filter will be applied if empty. (optional)
+     * @param  string $excluded_creator_ids A comma-separated list of creator IDs to exclude. No filter will be applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getResourcesDiscoverResources'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getResourcesDiscoverResourcesAsyncWithHttpInfo($category_id = null, $with = null, $filters = null, $resource_ids = null, $page = 1, $per_page = 25, $no_dependencies = null, string $contentType = self::contentTypes['getResourcesDiscoverResources'][0])
+    public function getResourcesDiscoverResourcesAsyncWithHttpInfo($category_id = null, $with = null, $filters = null, $resource_ids = null, $page = 1, $per_page = 25, $no_dependencies = null, $excluded_resource_ids = null, $excluded_creator_ids = null, string $contentType = self::contentTypes['getResourcesDiscoverResources'][0])
     {
         $returnType = '\OpenAPI\Client\Model\GetResourcesDiscoverResources200Response';
-        $request = $this->getResourcesDiscoverResourcesRequest($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $contentType);
+        $request = $this->getResourcesDiscoverResourcesRequest($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -724,13 +732,15 @@ class ResourcesDiscoveryApi
      * @param  string $resource_ids A comma-separated list of resource IDs to filter on. (optional)
      * @param  int $page The page number to return. (optional, default to 1)
      * @param  float $per_page The number of resources to return per page. (optional, default to 25)
-     * @param  bool $no_dependencies (optional)
+     * @param  bool $no_dependencies Whether or not to exclude resources with dependencies listed. (optional)
+     * @param  string $excluded_resource_ids A comma-separated list of resource IDs to exclude. No filter will be applied if empty. (optional)
+     * @param  string $excluded_creator_ids A comma-separated list of creator IDs to exclude. No filter will be applied if empty. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getResourcesDiscoverResources'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getResourcesDiscoverResourcesRequest($category_id = null, $with = null, $filters = null, $resource_ids = null, $page = 1, $per_page = 25, $no_dependencies = null, string $contentType = self::contentTypes['getResourcesDiscoverResources'][0])
+    public function getResourcesDiscoverResourcesRequest($category_id = null, $with = null, $filters = null, $resource_ids = null, $page = 1, $per_page = 25, $no_dependencies = null, $excluded_resource_ids = null, $excluded_creator_ids = null, string $contentType = self::contentTypes['getResourcesDiscoverResources'][0])
     {
 
 
@@ -742,6 +752,8 @@ class ResourcesDiscoveryApi
             throw new \InvalidArgumentException('invalid value for "$per_page" when calling ResourcesDiscoveryApi.getResourcesDiscoverResources, must be smaller than or equal to 100.');
         }
         
+
+
 
 
         $resourcePath = '/v2/resources/discover/resources';
@@ -810,6 +822,24 @@ class ResourcesDiscoveryApi
             $no_dependencies,
             'no_dependencies', // param base name
             'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $excluded_resource_ids,
+            'excluded_resource_ids', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $excluded_creator_ids,
+            'excluded_creator_ids', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required
