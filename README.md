@@ -92,21 +92,16 @@ Class | Method | HTTP request | Description
 *Oauth2Api* | [**getOauth2TokenRevoke**](docs/Api/Oauth2Api.md#getoauth2tokenrevoke) | **POST** /oauth2/token/revoke | Revoke an existing access or refresh token
 *ResourcesBuyerApi* | [**getV2ResourcesBuyerLatest**](docs/Api/ResourcesBuyerApi.md#getv2resourcesbuyerlatest) | **GET** /v2/resources/buyer/latest | Fetches the latest versions &amp; license information
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorAddons**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatoraddons) | **GET** /v2/resources/creator/addons | Fetch a list of your resources&#39; addons
-*ResourcesCreatorApi* | [**getV2ResourcesCreatorBatch**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorbatch) | **GET** /v2/resources/creator/batch | Fetch a list of your batches edits
-*ResourcesCreatorApi* | [**getV2ResourcesCreatorCoupons**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorcoupons) | **GET** /v2/resources/creator/coupons | Fetch a list of your coupons
-*ResourcesCreatorApi* | [**getV2ResourcesCreatorCouponsEntries**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorcouponsentries) | **GET** /v2/resources/creator/coupons/entries | Fetch a list of your coupon entries
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorLicenses**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorlicenses) | **GET** /v2/resources/creator/licenses | Fetch a list of your resources&#39; licenses
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorPurchases**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorpurchases) | **GET** /v2/resources/creator/purchases | Fetch a list of your resources&#39; purchases
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorResources**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorresources) | **GET** /v2/resources/creator/resources | Fetch a list of your resources
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorReviews**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorreviews) | **GET** /v2/resources/creator/reviews | Fetch a list of your resources&#39; reviews
-*ResourcesCreatorApi* | [**getV2ResourcesCreatorSaleEvents**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorsaleevents) | **GET** /v2/resources/creator/sale-events | Fetch a list of your sale events
-*ResourcesCreatorApi* | [**getV2ResourcesCreatorSaleEventsEntries**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorsaleeventsentries) | **GET** /v2/resources/creator/sale-events/entries | Fetch a list of your sale event entries
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorStores**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorstores) | **GET** /v2/resources/creator/stores | Fetch a list of your stores
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorUpdates**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorupdates) | **GET** /v2/resources/creator/updates | Fetch a list of your resource&#39;s updates
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorVersions**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorversions) | **GET** /v2/resources/creator/versions | Fetch a list of your resources&#39; versions
-*ResourcesCreatorApi* | [**postV2ResourcesCreatorBatch**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorbatch) | **POST** /v2/resources/creator/batch | Submit a new batch edit
-*ResourcesCreatorApi* | [**postV2ResourcesCreatorCoupons**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorcoupons) | **POST** /v2/resources/creator/coupons | Create a new coupon
 *ResourcesCreatorApi* | [**postV2ResourcesCreatorUpdate**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorupdate) | **POST** /v2/resources/creator/update | Post a resource update
+*ResourcesCreatorBatchApi* | [**getV2ResourcesCreatorBatch**](docs/Api/ResourcesCreatorBatchApi.md#getv2resourcescreatorbatch) | **GET** /v2/resources/creator/batch | Fetch a list of your batches edits
+*ResourcesCreatorBatchApi* | [**postV2ResourcesCreatorBatch**](docs/Api/ResourcesCreatorBatchApi.md#postv2resourcescreatorbatch) | **POST** /v2/resources/creator/batch | Submit a new batch edit
 *ResourcesCreatorBundlesApi* | [**getV2ResourcesCreatorBundles**](docs/Api/ResourcesCreatorBundlesApi.md#getv2resourcescreatorbundles) | **GET** /v2/resources/creator/bundles | Fetch a list of your bundles
 *ResourcesCreatorBundlesApi* | [**getV2ResourcesCreatorBundlesEntries**](docs/Api/ResourcesCreatorBundlesApi.md#getv2resourcescreatorbundlesentries) | **GET** /v2/resources/creator/bundles/entries | Fetch a list of your bundle entries
 *ResourcesCreatorCouponsApi* | [**getV2ResourcesCreatorCoupons**](docs/Api/ResourcesCreatorCouponsApi.md#getv2resourcescreatorcoupons) | **GET** /v2/resources/creator/coupons | Fetch a list of your coupons
@@ -114,15 +109,15 @@ Class | Method | HTTP request | Description
 *ResourcesCreatorCouponsApi* | [**postV2ResourcesCreatorCoupons**](docs/Api/ResourcesCreatorCouponsApi.md#postv2resourcescreatorcoupons) | **POST** /v2/resources/creator/coupons | Create a new coupon
 *ResourcesCreatorSaleEventsApi* | [**getV2ResourcesCreatorSaleEvents**](docs/Api/ResourcesCreatorSaleEventsApi.md#getv2resourcescreatorsaleevents) | **GET** /v2/resources/creator/sale-events | Fetch a list of your sale events
 *ResourcesCreatorSaleEventsApi* | [**getV2ResourcesCreatorSaleEventsEntries**](docs/Api/ResourcesCreatorSaleEventsApi.md#getv2resourcescreatorsaleeventsentries) | **GET** /v2/resources/creator/sale-events/entries | Fetch a list of your sale event entries
-*ResourcesDiscoveryApi* | [**getResourcesDiscoverCategories**](docs/Api/ResourcesDiscoveryApi.md#getresourcesdiscovercategories) | **GET** /v2/resources/discover/categories | Fetch a list of categories
-*ResourcesDiscoveryApi* | [**getResourcesDiscoverResources**](docs/Api/ResourcesDiscoveryApi.md#getresourcesdiscoverresources) | **GET** /v2/resources/discover/resources | Fetch a list of resources
-*ResourcesDiscoveryApi* | [**getV2ResourcesDiscoverCartView**](docs/Api/ResourcesDiscoveryApi.md#getv2resourcesdiscovercartview) | **GET** /v2/resources/discover/cart/view | View the user&#39;s cart items
-*ResourcesDiscoveryApi* | [**getV2ResourcesDiscoverLicenses**](docs/Api/ResourcesDiscoveryApi.md#getv2resourcesdiscoverlicenses) | **GET** /v2/resources/discover/licenses | Fetch a list of the user&#39;s licenses
-*ResourcesDiscoveryApi* | [**postV2ResourcesDiscoverCartAdd**](docs/Api/ResourcesDiscoveryApi.md#postv2resourcesdiscovercartadd) | **POST** /v2/resources/discover/cart/add | Add items to a user&#39;s cart
-*ResourcesDiscoveryApi* | [**postV2ResourcesDiscoverCartCheckout**](docs/Api/ResourcesDiscoveryApi.md#postv2resourcesdiscovercartcheckout) | **POST** /v2/resources/discover/cart/checkout | Initiate a checkout of a user&#39;s cart
-*ResourcesDiscoveryApi* | [**postV2ResourcesDiscoverCartCouponAdd**](docs/Api/ResourcesDiscoveryApi.md#postv2resourcesdiscovercartcouponadd) | **POST** /v2/resources/discover/cart/coupon/add | Add a coupon to the user&#39;s cart
-*ResourcesDiscoveryApi* | [**postV2ResourcesDiscoverCartCouponRemove**](docs/Api/ResourcesDiscoveryApi.md#postv2resourcesdiscovercartcouponremove) | **POST** /v2/resources/discover/cart/coupon/remove | Remove a coupon from the user&#39;s cart
-*ResourcesDiscoveryApi* | [**postV2ResourcesDiscoverCartRemove**](docs/Api/ResourcesDiscoveryApi.md#postv2resourcesdiscovercartremove) | **POST** /v2/resources/discover/cart/remove | Remove an item from the user&#39;s cart
+*ResourcesDiscoverApi* | [**getResourcesDiscoverCategories**](docs/Api/ResourcesDiscoverApi.md#getresourcesdiscovercategories) | **GET** /v2/resources/discover/categories | Fetch a list of categories
+*ResourcesDiscoverApi* | [**getResourcesDiscoverResources**](docs/Api/ResourcesDiscoverApi.md#getresourcesdiscoverresources) | **GET** /v2/resources/discover/resources | Fetch a list of resources
+*ResourcesDiscoverApi* | [**getV2ResourcesDiscoverLicenses**](docs/Api/ResourcesDiscoverApi.md#getv2resourcesdiscoverlicenses) | **GET** /v2/resources/discover/licenses | Fetch a list of the user&#39;s licenses
+*ResourcesDiscoverCartApi* | [**getV2ResourcesDiscoverCartView**](docs/Api/ResourcesDiscoverCartApi.md#getv2resourcesdiscovercartview) | **GET** /v2/resources/discover/cart/view | View the user&#39;s cart items
+*ResourcesDiscoverCartApi* | [**postV2ResourcesDiscoverCartAdd**](docs/Api/ResourcesDiscoverCartApi.md#postv2resourcesdiscovercartadd) | **POST** /v2/resources/discover/cart/add | Add items to a user&#39;s cart
+*ResourcesDiscoverCartApi* | [**postV2ResourcesDiscoverCartCheckout**](docs/Api/ResourcesDiscoverCartApi.md#postv2resourcesdiscovercartcheckout) | **POST** /v2/resources/discover/cart/checkout | Initiate a checkout of a user&#39;s cart
+*ResourcesDiscoverCartApi* | [**postV2ResourcesDiscoverCartCouponAdd**](docs/Api/ResourcesDiscoverCartApi.md#postv2resourcesdiscovercartcouponadd) | **POST** /v2/resources/discover/cart/coupon/add | Add a coupon to the user&#39;s cart
+*ResourcesDiscoverCartApi* | [**postV2ResourcesDiscoverCartCouponRemove**](docs/Api/ResourcesDiscoverCartApi.md#postv2resourcesdiscovercartcouponremove) | **POST** /v2/resources/discover/cart/coupon/remove | Remove a coupon from the user&#39;s cart
+*ResourcesDiscoverCartApi* | [**postV2ResourcesDiscoverCartRemove**](docs/Api/ResourcesDiscoverCartApi.md#postv2resourcesdiscovercartremove) | **POST** /v2/resources/discover/cart/remove | Remove an item from the user&#39;s cart
 
 ## Models
 
