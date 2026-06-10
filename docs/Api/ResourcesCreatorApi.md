@@ -78,7 +78,7 @@ try {
 ## `getV2ResourcesCreatorLicenses()`
 
 ```php
-getV2ResourcesCreatorLicenses($resource_ids): \OpenAPI\Client\Model\GetV2ResourcesCreatorLicenses200Response
+getV2ResourcesCreatorLicenses($resource_ids, $buyer_ids): \OpenAPI\Client\Model\GetV2ResourcesCreatorLicenses200Response
 ```
 
 Fetch a list of your resources' licenses
@@ -103,9 +103,10 @@ $apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
     $config
 );
 $resource_ids = NULL; // array | A comma-separated list of resource IDs to filter on. No filter is applied if empty.
+$buyer_ids = NULL; // array | A comma-separated list of buyer IDs to filter on. No filter is applied if empty.
 
 try {
-    $result = $apiInstance->getV2ResourcesCreatorLicenses($resource_ids);
+    $result = $apiInstance->getV2ResourcesCreatorLicenses($resource_ids, $buyer_ids);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesCreatorApi->getV2ResourcesCreatorLicenses: ', $e->getMessage(), PHP_EOL;
@@ -117,6 +118,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **resource_ids** | [**array**](../Model/.md)| A comma-separated list of resource IDs to filter on. No filter is applied if empty. | [optional] |
+| **buyer_ids** | [**array**](../Model/.md)| A comma-separated list of buyer IDs to filter on. No filter is applied if empty. | [optional] |
 
 ### Return type
 
