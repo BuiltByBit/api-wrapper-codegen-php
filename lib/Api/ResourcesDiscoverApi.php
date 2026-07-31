@@ -77,6 +77,12 @@ class ResourcesDiscoverApi
         'getResourcesDiscoverResources' => [
             'application/json',
         ],
+        'getV2ResourcesDiscoverDownloadDirectInitiate' => [
+            'application/json',
+        ],
+        'getV2ResourcesDiscoverDownloadDirectPoll' => [
+            'application/json',
+        ],
         'getV2ResourcesDiscoverLicenses' => [
             'application/json',
         ],
@@ -865,6 +871,645 @@ class ResourcesDiscoverApi
         $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
         if ($apiKey !== null) {
             $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesDiscoverDownloadDirectInitiate
+     *
+     * Initiate a direct download request
+     *
+     * @param  string $content_type Either &#39;resource&#39; or &#39;resource_version&#39; (required)
+     * @param  int $content_id content_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesDiscoverDownloadDirectInitiate'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectInitiate200Response
+     */
+    public function getV2ResourcesDiscoverDownloadDirectInitiate($content_type, $content_id, string $contentType = self::contentTypes['getV2ResourcesDiscoverDownloadDirectInitiate'][0])
+    {
+        list($response) = $this->getV2ResourcesDiscoverDownloadDirectInitiateWithHttpInfo($content_type, $content_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesDiscoverDownloadDirectInitiateWithHttpInfo
+     *
+     * Initiate a direct download request
+     *
+     * @param  string $content_type Either &#39;resource&#39; or &#39;resource_version&#39; (required)
+     * @param  int $content_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesDiscoverDownloadDirectInitiate'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectInitiate200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesDiscoverDownloadDirectInitiateWithHttpInfo($content_type, $content_id, string $contentType = self::contentTypes['getV2ResourcesDiscoverDownloadDirectInitiate'][0])
+    {
+        $request = $this->getV2ResourcesDiscoverDownloadDirectInitiateRequest($content_type, $content_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectInitiate200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectInitiate200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectInitiate200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectInitiate200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectInitiate200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesDiscoverDownloadDirectInitiateAsync
+     *
+     * Initiate a direct download request
+     *
+     * @param  string $content_type Either &#39;resource&#39; or &#39;resource_version&#39; (required)
+     * @param  int $content_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesDiscoverDownloadDirectInitiate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesDiscoverDownloadDirectInitiateAsync($content_type, $content_id, string $contentType = self::contentTypes['getV2ResourcesDiscoverDownloadDirectInitiate'][0])
+    {
+        return $this->getV2ResourcesDiscoverDownloadDirectInitiateAsyncWithHttpInfo($content_type, $content_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesDiscoverDownloadDirectInitiateAsyncWithHttpInfo
+     *
+     * Initiate a direct download request
+     *
+     * @param  string $content_type Either &#39;resource&#39; or &#39;resource_version&#39; (required)
+     * @param  int $content_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesDiscoverDownloadDirectInitiate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesDiscoverDownloadDirectInitiateAsyncWithHttpInfo($content_type, $content_id, string $contentType = self::contentTypes['getV2ResourcesDiscoverDownloadDirectInitiate'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectInitiate200Response';
+        $request = $this->getV2ResourcesDiscoverDownloadDirectInitiateRequest($content_type, $content_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesDiscoverDownloadDirectInitiate'
+     *
+     * @param  string $content_type Either &#39;resource&#39; or &#39;resource_version&#39; (required)
+     * @param  int $content_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesDiscoverDownloadDirectInitiate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesDiscoverDownloadDirectInitiateRequest($content_type, $content_id, string $contentType = self::contentTypes['getV2ResourcesDiscoverDownloadDirectInitiate'][0])
+    {
+
+        // verify the required parameter 'content_type' is set
+        if ($content_type === null || (is_array($content_type) && count($content_type) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $content_type when calling getV2ResourcesDiscoverDownloadDirectInitiate'
+            );
+        }
+
+        // verify the required parameter 'content_id' is set
+        if ($content_id === null || (is_array($content_id) && count($content_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $content_id when calling getV2ResourcesDiscoverDownloadDirectInitiate'
+            );
+        }
+
+
+        $resourcePath = '/v2/resources/discover/download/direct/initiate';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $content_type,
+            'content_type', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $content_id,
+            'content_id', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getV2ResourcesDiscoverDownloadDirectPoll
+     *
+     * Fetch the status of a direct download request
+     *
+     * @param  string $token The download request token returned from an initiate request. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesDiscoverDownloadDirectPoll'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectPoll200Response
+     */
+    public function getV2ResourcesDiscoverDownloadDirectPoll($token = null, string $contentType = self::contentTypes['getV2ResourcesDiscoverDownloadDirectPoll'][0])
+    {
+        list($response) = $this->getV2ResourcesDiscoverDownloadDirectPollWithHttpInfo($token, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getV2ResourcesDiscoverDownloadDirectPollWithHttpInfo
+     *
+     * Fetch the status of a direct download request
+     *
+     * @param  string $token The download request token returned from an initiate request. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesDiscoverDownloadDirectPoll'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectPoll200Response, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getV2ResourcesDiscoverDownloadDirectPollWithHttpInfo($token = null, string $contentType = self::contentTypes['getV2ResourcesDiscoverDownloadDirectPoll'][0])
+    {
+        $request = $this->getV2ResourcesDiscoverDownloadDirectPollRequest($token, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectPoll200Response' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectPoll200Response' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectPoll200Response', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectPoll200Response';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectPoll200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getV2ResourcesDiscoverDownloadDirectPollAsync
+     *
+     * Fetch the status of a direct download request
+     *
+     * @param  string $token The download request token returned from an initiate request. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesDiscoverDownloadDirectPoll'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesDiscoverDownloadDirectPollAsync($token = null, string $contentType = self::contentTypes['getV2ResourcesDiscoverDownloadDirectPoll'][0])
+    {
+        return $this->getV2ResourcesDiscoverDownloadDirectPollAsyncWithHttpInfo($token, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getV2ResourcesDiscoverDownloadDirectPollAsyncWithHttpInfo
+     *
+     * Fetch the status of a direct download request
+     *
+     * @param  string $token The download request token returned from an initiate request. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesDiscoverDownloadDirectPoll'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getV2ResourcesDiscoverDownloadDirectPollAsyncWithHttpInfo($token = null, string $contentType = self::contentTypes['getV2ResourcesDiscoverDownloadDirectPoll'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectPoll200Response';
+        $request = $this->getV2ResourcesDiscoverDownloadDirectPollRequest($token, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getV2ResourcesDiscoverDownloadDirectPoll'
+     *
+     * @param  string $token The download request token returned from an initiate request. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getV2ResourcesDiscoverDownloadDirectPoll'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getV2ResourcesDiscoverDownloadDirectPollRequest($token = null, string $contentType = self::contentTypes['getV2ResourcesDiscoverDownloadDirectPoll'][0])
+    {
+
+
+
+        $resourcePath = '/v2/resources/discover/download/direct/status';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $token,
+            'token', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

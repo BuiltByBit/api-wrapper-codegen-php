@@ -6,6 +6,8 @@ All URIs are relative to https://api.builtbybit.com, except if the operation def
 | ------------- | ------------- | ------------- |
 | [**getResourcesDiscoverCategories()**](ResourcesDiscoverApi.md#getResourcesDiscoverCategories) | **GET** /v2/resources/discover/categories | Fetch a list of categories |
 | [**getResourcesDiscoverResources()**](ResourcesDiscoverApi.md#getResourcesDiscoverResources) | **GET** /v2/resources/discover/resources | Fetch a list of resources |
+| [**getV2ResourcesDiscoverDownloadDirectInitiate()**](ResourcesDiscoverApi.md#getV2ResourcesDiscoverDownloadDirectInitiate) | **GET** /v2/resources/discover/download/direct/initiate | Initiate a direct download request |
+| [**getV2ResourcesDiscoverDownloadDirectPoll()**](ResourcesDiscoverApi.md#getV2ResourcesDiscoverDownloadDirectPoll) | **GET** /v2/resources/discover/download/direct/status | Fetch the status of a direct download request |
 | [**getV2ResourcesDiscoverLicenses()**](ResourcesDiscoverApi.md#getV2ResourcesDiscoverLicenses) | **GET** /v2/resources/discover/licenses | Fetch a list of the user&#39;s licenses |
 
 
@@ -141,6 +143,128 @@ try {
 ### Authorization
 
 [token](../../README.md#token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getV2ResourcesDiscoverDownloadDirectInitiate()`
+
+```php
+getV2ResourcesDiscoverDownloadDirectInitiate($content_type, $content_id): \OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectInitiate200Response
+```
+
+Initiate a direct download request
+
+See: https://builtbybit.com/help/developers/discovery-api/downloading-and-one-click/
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure OAuth2 access token for authorization: oauth2
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ResourcesDiscoverApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$content_type = 'content_type_example'; // string | Either 'resource' or 'resource_version'
+$content_id = 56; // int
+
+try {
+    $result = $apiInstance->getV2ResourcesDiscoverDownloadDirectInitiate($content_type, $content_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesDiscoverApi->getV2ResourcesDiscoverDownloadDirectInitiate: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **content_type** | **string**| Either &#39;resource&#39; or &#39;resource_version&#39; | |
+| **content_id** | **int**|  | |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectInitiate200Response**](../Model/GetV2ResourcesDiscoverDownloadDirectInitiate200Response.md)
+
+### Authorization
+
+[oauth2](../../README.md#oauth2)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getV2ResourcesDiscoverDownloadDirectPoll()`
+
+```php
+getV2ResourcesDiscoverDownloadDirectPoll($token): \OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectPoll200Response
+```
+
+Fetch the status of a direct download request
+
+See: https://builtbybit.com/help/developers/discovery-api/downloading-and-one-click/
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure OAuth2 access token for authorization: oauth2
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new OpenAPI\Client\Api\ResourcesDiscoverApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$token = 'token_example'; // string | The download request token returned from an initiate request.
+
+try {
+    $result = $apiInstance->getV2ResourcesDiscoverDownloadDirectPoll($token);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesDiscoverApi->getV2ResourcesDiscoverDownloadDirectPoll: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **token** | **string**| The download request token returned from an initiate request. | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadDirectPoll200Response**](../Model/GetV2ResourcesDiscoverDownloadDirectPoll200Response.md)
+
+### Authorization
+
+[oauth2](../../README.md#oauth2)
 
 ### HTTP request headers
 
