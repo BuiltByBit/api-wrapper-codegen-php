@@ -98,6 +98,8 @@ Class | Method | HTTP request | Description
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorStores**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorstores) | **GET** /v2/resources/creator/stores | Fetch a list of your stores
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorUpdates**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorupdates) | **GET** /v2/resources/creator/updates | Fetch a list of your resource&#39;s updates
 *ResourcesCreatorApi* | [**getV2ResourcesCreatorVersions**](docs/Api/ResourcesCreatorApi.md#getv2resourcescreatorversions) | **GET** /v2/resources/creator/versions | Fetch a list of your resources&#39; versions
+*ResourcesCreatorApi* | [**postV2ResourcesCreatorAddonsUpdate**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatoraddonsupdate) | **POST** /v2/resources/creator/addons/update | Post an addon update
+*ResourcesCreatorApi* | [**postV2ResourcesCreatorApiAssetsUpdate**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorapiassetsupdate) | **POST** /v2/resources/creator/api-assets/update | Post an API asset update
 *ResourcesCreatorApi* | [**postV2ResourcesCreatorUpdate**](docs/Api/ResourcesCreatorApi.md#postv2resourcescreatorupdate) | **POST** /v2/resources/creator/update | Post a resource update
 *ResourcesCreatorBatchApi* | [**getV2ResourcesCreatorBatch**](docs/Api/ResourcesCreatorBatchApi.md#getv2resourcescreatorbatch) | **GET** /v2/resources/creator/batch | Fetch a list of your batches edits
 *ResourcesCreatorBatchApi* | [**postV2ResourcesCreatorBatch**](docs/Api/ResourcesCreatorBatchApi.md#postv2resourcescreatorbatch) | **POST** /v2/resources/creator/batch | Submit a new batch edit
@@ -215,6 +217,10 @@ Class | Method | HTTP request | Description
 - [PostV2DeploymentsUpgradeRequest](docs/Model/PostV2DeploymentsUpgradeRequest.md)
 - [PostV2EventsComplete200Response](docs/Model/PostV2EventsComplete200Response.md)
 - [PostV2EventsCompleteRequest](docs/Model/PostV2EventsCompleteRequest.md)
+- [PostV2ResourcesCreatorAddonsUpdateRequest](docs/Model/PostV2ResourcesCreatorAddonsUpdateRequest.md)
+- [PostV2ResourcesCreatorAddonsUpdateRequestFile](docs/Model/PostV2ResourcesCreatorAddonsUpdateRequestFile.md)
+- [PostV2ResourcesCreatorApiAssetsUpdateRequest](docs/Model/PostV2ResourcesCreatorApiAssetsUpdateRequest.md)
+- [PostV2ResourcesCreatorApiAssetsUpdateRequestFile](docs/Model/PostV2ResourcesCreatorApiAssetsUpdateRequestFile.md)
 - [PostV2ResourcesCreatorBatch200Response](docs/Model/PostV2ResourcesCreatorBatch200Response.md)
 - [PostV2ResourcesCreatorBatch200ResponseData](docs/Model/PostV2ResourcesCreatorBatch200ResponseData.md)
 - [PostV2ResourcesCreatorBatchRequest](docs/Model/PostV2ResourcesCreatorBatchRequest.md)

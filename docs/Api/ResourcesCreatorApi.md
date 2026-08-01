@@ -12,6 +12,8 @@ All URIs are relative to https://api.builtbybit.com, except if the operation def
 | [**getV2ResourcesCreatorStores()**](ResourcesCreatorApi.md#getV2ResourcesCreatorStores) | **GET** /v2/resources/creator/stores | Fetch a list of your stores |
 | [**getV2ResourcesCreatorUpdates()**](ResourcesCreatorApi.md#getV2ResourcesCreatorUpdates) | **GET** /v2/resources/creator/updates | Fetch a list of your resource&#39;s updates |
 | [**getV2ResourcesCreatorVersions()**](ResourcesCreatorApi.md#getV2ResourcesCreatorVersions) | **GET** /v2/resources/creator/versions | Fetch a list of your resources&#39; versions |
+| [**postV2ResourcesCreatorAddonsUpdate()**](ResourcesCreatorApi.md#postV2ResourcesCreatorAddonsUpdate) | **POST** /v2/resources/creator/addons/update | Post an addon update |
+| [**postV2ResourcesCreatorApiAssetsUpdate()**](ResourcesCreatorApi.md#postV2ResourcesCreatorApiAssetsUpdate) | **POST** /v2/resources/creator/api-assets/update | Post an API asset update |
 | [**postV2ResourcesCreatorUpdate()**](ResourcesCreatorApi.md#postV2ResourcesCreatorUpdate) | **POST** /v2/resources/creator/update | Post a resource update |
 
 
@@ -487,6 +489,124 @@ try {
 
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `postV2ResourcesCreatorAddonsUpdate()`
+
+```php
+postV2ResourcesCreatorAddonsUpdate($post_v2_resources_creator_addons_update_request)
+```
+
+Post an addon update
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$post_v2_resources_creator_addons_update_request = new \OpenAPI\Client\Model\PostV2ResourcesCreatorAddonsUpdateRequest(); // \OpenAPI\Client\Model\PostV2ResourcesCreatorAddonsUpdateRequest | Creates a new version for the addon. The uploaded file must be encoded using base64 as part of the JSON request body shown below.  The request body (including the base64 encoded file data) cannot exceed 100MB. This roughly equates to a 67MB upload limit for the raw file when taking into account base64 encoding losses.
+
+try {
+    $apiInstance->postV2ResourcesCreatorAddonsUpdate($post_v2_resources_creator_addons_update_request);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesCreatorApi->postV2ResourcesCreatorAddonsUpdate: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **post_v2_resources_creator_addons_update_request** | [**\OpenAPI\Client\Model\PostV2ResourcesCreatorAddonsUpdateRequest**](../Model/PostV2ResourcesCreatorAddonsUpdateRequest.md)| Creates a new version for the addon. The uploaded file must be encoded using base64 as part of the JSON request body shown below.  The request body (including the base64 encoded file data) cannot exceed 100MB. This roughly equates to a 67MB upload limit for the raw file when taking into account base64 encoding losses. | [optional] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[token](../../README.md#token)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `postV2ResourcesCreatorApiAssetsUpdate()`
+
+```php
+postV2ResourcesCreatorApiAssetsUpdate($post_v2_resources_creator_api_assets_update_request)
+```
+
+Post an API asset update
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ResourcesCreatorApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$post_v2_resources_creator_api_assets_update_request = new \OpenAPI\Client\Model\PostV2ResourcesCreatorApiAssetsUpdateRequest(); // \OpenAPI\Client\Model\PostV2ResourcesCreatorApiAssetsUpdateRequest | Creates a new version for the API asset. The uploaded file must be encoded using base64 as part of the JSON request body shown below.  The request body (including the base64 encoded file data) cannot exceed 100MB. This roughly equates to a 67MB upload limit for the raw file when taking into account base64 encoding losses.
+
+try {
+    $apiInstance->postV2ResourcesCreatorApiAssetsUpdate($post_v2_resources_creator_api_assets_update_request);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesCreatorApi->postV2ResourcesCreatorApiAssetsUpdate: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **post_v2_resources_creator_api_assets_update_request** | [**\OpenAPI\Client\Model\PostV2ResourcesCreatorApiAssetsUpdateRequest**](../Model/PostV2ResourcesCreatorApiAssetsUpdateRequest.md)| Creates a new version for the API asset. The uploaded file must be encoded using base64 as part of the JSON request body shown below.  The request body (including the base64 encoded file data) cannot exceed 100MB. This roughly equates to a 67MB upload limit for the raw file when taking into account base64 encoding losses. | [optional] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[token](../../README.md#token)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
