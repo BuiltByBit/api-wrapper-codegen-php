@@ -114,6 +114,7 @@ Class | Method | HTTP request | Description
 *ResourcesDiscoverApi* | [**getResourcesDiscoverResources**](docs/Api/ResourcesDiscoverApi.md#getresourcesdiscoverresources) | **GET** /v2/resources/discover/resources | Fetch a list of resources
 *ResourcesDiscoverApi* | [**getV2ResourcesDiscoverDownloadDirectInitiate**](docs/Api/ResourcesDiscoverApi.md#getv2resourcesdiscoverdownloaddirectinitiate) | **GET** /v2/resources/discover/download/direct/initiate | Initiate a direct download request
 *ResourcesDiscoverApi* | [**getV2ResourcesDiscoverDownloadDirectPoll**](docs/Api/ResourcesDiscoverApi.md#getv2resourcesdiscoverdownloaddirectpoll) | **GET** /v2/resources/discover/download/direct/status | Fetch the status of a direct download request
+*ResourcesDiscoverApi* | [**getV2ResourcesDiscoverDownloadPlan**](docs/Api/ResourcesDiscoverApi.md#getv2resourcesdiscoverdownloadplan) | **GET** /v2/resources/discover/download/plan | Fetch a download plan
 *ResourcesDiscoverApi* | [**getV2ResourcesDiscoverLicenses**](docs/Api/ResourcesDiscoverApi.md#getv2resourcesdiscoverlicenses) | **GET** /v2/resources/discover/licenses | Fetch a list of the user&#39;s licenses
 *ResourcesDiscoverCartApi* | [**getV2ResourcesDiscoverCartView**](docs/Api/ResourcesDiscoverCartApi.md#getv2resourcesdiscovercartview) | **GET** /v2/resources/discover/cart/view | View the user&#39;s cart items
 *ResourcesDiscoverCartApi* | [**postV2ResourcesDiscoverCartAdd**](docs/Api/ResourcesDiscoverCartApi.md#postv2resourcesdiscovercartadd) | **POST** /v2/resources/discover/cart/add | Add items to a user&#39;s cart
@@ -141,6 +142,9 @@ Class | Method | HTTP request | Description
 - [Category](docs/Model/Category.md)
 - [Coupon](docs/Model/Coupon.md)
 - [CouponEntry](docs/Model/CouponEntry.md)
+- [DownloadPlan](docs/Model/DownloadPlan.md)
+- [DownloadPlanAction](docs/Model/DownloadPlanAction.md)
+- [DownloadPlanNotice](docs/Model/DownloadPlanNotice.md)
 - [DownloadRequest](docs/Model/DownloadRequest.md)
 - [DownloadStatus](docs/Model/DownloadStatus.md)
 - [Event](docs/Model/Event.md)
@@ -200,6 +204,8 @@ Class | Method | HTTP request | Description
 - [GetV2ResourcesDiscoverDownloadDirectInitiate200ResponseData](docs/Model/GetV2ResourcesDiscoverDownloadDirectInitiate200ResponseData.md)
 - [GetV2ResourcesDiscoverDownloadDirectPoll200Response](docs/Model/GetV2ResourcesDiscoverDownloadDirectPoll200Response.md)
 - [GetV2ResourcesDiscoverDownloadDirectPoll200ResponseData](docs/Model/GetV2ResourcesDiscoverDownloadDirectPoll200ResponseData.md)
+- [GetV2ResourcesDiscoverDownloadPlan200Response](docs/Model/GetV2ResourcesDiscoverDownloadPlan200Response.md)
+- [GetV2ResourcesDiscoverDownloadPlan200ResponseData](docs/Model/GetV2ResourcesDiscoverDownloadPlan200ResponseData.md)
 - [GetV2ResourcesDiscoverLicenses200Response](docs/Model/GetV2ResourcesDiscoverLicenses200Response.md)
 - [GetV2ResourcesDiscoverLicenses200ResponseData](docs/Model/GetV2ResourcesDiscoverLicenses200ResponseData.md)
 - [GetV2ResourcesEmbedDownloadInitiate200Response](docs/Model/GetV2ResourcesEmbedDownloadInitiate200Response.md)
