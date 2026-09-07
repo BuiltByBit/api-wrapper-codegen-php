@@ -59,7 +59,8 @@ class DownloadPlanAction implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'type' => 'string',
         'src' => 'string',
-        'dst' => 'string'
+        'dst' => 'string',
+        'actions' => '\OpenAPI\Client\Model\DownloadPlanAction[]'
     ];
 
     /**
@@ -72,7 +73,8 @@ class DownloadPlanAction implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPIFormats = [
         'type' => null,
         'src' => null,
-        'dst' => null
+        'dst' => null,
+        'actions' => null
     ];
 
     /**
@@ -83,7 +85,8 @@ class DownloadPlanAction implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static array $openAPINullables = [
         'type' => false,
         'src' => false,
-        'dst' => false
+        'dst' => false,
+        'actions' => false
     ];
 
     /**
@@ -174,7 +177,8 @@ class DownloadPlanAction implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $attributeMap = [
         'type' => 'type',
         'src' => 'src',
-        'dst' => 'dst'
+        'dst' => 'dst',
+        'actions' => 'actions'
     ];
 
     /**
@@ -185,7 +189,8 @@ class DownloadPlanAction implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $setters = [
         'type' => 'setType',
         'src' => 'setSrc',
-        'dst' => 'setDst'
+        'dst' => 'setDst',
+        'actions' => 'setActions'
     ];
 
     /**
@@ -196,7 +201,8 @@ class DownloadPlanAction implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $getters = [
         'type' => 'getType',
         'src' => 'getSrc',
-        'dst' => 'getDst'
+        'dst' => 'getDst',
+        'actions' => 'getActions'
     ];
 
     /**
@@ -278,6 +284,7 @@ class DownloadPlanAction implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('src', $data ?? [], null);
         $this->setIfExists('dst', $data ?? [], null);
+        $this->setIfExists('actions', $data ?? [], null);
     }
 
     /**
@@ -421,6 +428,33 @@ class DownloadPlanAction implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable dst cannot be null');
         }
         $this->container['dst'] = $dst;
+
+        return $this;
+    }
+
+    /**
+     * Gets actions
+     *
+     * @return \OpenAPI\Client\Model\DownloadPlanAction[]|null
+     */
+    public function getActions()
+    {
+        return $this->container['actions'];
+    }
+
+    /**
+     * Sets actions
+     *
+     * @param \OpenAPI\Client\Model\DownloadPlanAction[]|null $actions A set of subactions to execute in the context of this action.
+     *
+     * @return self
+     */
+    public function setActions($actions)
+    {
+        if (is_null($actions)) {
+            throw new \InvalidArgumentException('non-nullable actions cannot be null');
+        }
+        $this->container['actions'] = $actions;
 
         return $this;
     }
