@@ -58,7 +58,10 @@ class PostV2ResourcesCreatorApiAssetsUpdateRequest implements ModelInterface, Ar
       */
     protected static $openAPITypes = [
         'api_asset_id' => 'string',
-        'file' => '\OpenAPI\Client\Model\PostV2ResourcesCreatorApiAssetsUpdateRequestFile'
+        'file' => '\OpenAPI\Client\Model\PostV2ResourcesCreatorApiAssetsUpdateRequestFile',
+        'version_string' => 'string',
+        'description' => 'string',
+        'oldest_resource_version_id' => 'int'
     ];
 
     /**
@@ -70,7 +73,10 @@ class PostV2ResourcesCreatorApiAssetsUpdateRequest implements ModelInterface, Ar
       */
     protected static $openAPIFormats = [
         'api_asset_id' => null,
-        'file' => null
+        'file' => null,
+        'version_string' => null,
+        'description' => null,
+        'oldest_resource_version_id' => null
     ];
 
     /**
@@ -80,7 +86,10 @@ class PostV2ResourcesCreatorApiAssetsUpdateRequest implements ModelInterface, Ar
       */
     protected static array $openAPINullables = [
         'api_asset_id' => false,
-        'file' => false
+        'file' => false,
+        'version_string' => false,
+        'description' => false,
+        'oldest_resource_version_id' => false
     ];
 
     /**
@@ -170,7 +179,10 @@ class PostV2ResourcesCreatorApiAssetsUpdateRequest implements ModelInterface, Ar
      */
     protected static $attributeMap = [
         'api_asset_id' => 'api_asset_id',
-        'file' => 'file'
+        'file' => 'file',
+        'version_string' => 'version_string',
+        'description' => 'description',
+        'oldest_resource_version_id' => 'oldest_resource_version_id'
     ];
 
     /**
@@ -180,7 +192,10 @@ class PostV2ResourcesCreatorApiAssetsUpdateRequest implements ModelInterface, Ar
      */
     protected static $setters = [
         'api_asset_id' => 'setApiAssetId',
-        'file' => 'setFile'
+        'file' => 'setFile',
+        'version_string' => 'setVersionString',
+        'description' => 'setDescription',
+        'oldest_resource_version_id' => 'setOldestResourceVersionId'
     ];
 
     /**
@@ -190,7 +205,10 @@ class PostV2ResourcesCreatorApiAssetsUpdateRequest implements ModelInterface, Ar
      */
     protected static $getters = [
         'api_asset_id' => 'getApiAssetId',
-        'file' => 'getFile'
+        'file' => 'getFile',
+        'version_string' => 'getVersionString',
+        'description' => 'getDescription',
+        'oldest_resource_version_id' => 'getOldestResourceVersionId'
     ];
 
     /**
@@ -252,6 +270,9 @@ class PostV2ResourcesCreatorApiAssetsUpdateRequest implements ModelInterface, Ar
     {
         $this->setIfExists('api_asset_id', $data ?? [], null);
         $this->setIfExists('file', $data ?? [], null);
+        $this->setIfExists('version_string', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('oldest_resource_version_id', $data ?? [], null);
     }
 
     /**
@@ -286,6 +307,12 @@ class PostV2ResourcesCreatorApiAssetsUpdateRequest implements ModelInterface, Ar
         }
         if ($this->container['file'] === null) {
             $invalidProperties[] = "'file' can't be null";
+        }
+        if ($this->container['version_string'] === null) {
+            $invalidProperties[] = "'version_string' can't be null";
+        }
+        if ($this->container['oldest_resource_version_id'] === null) {
+            $invalidProperties[] = "'oldest_resource_version_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -352,6 +379,87 @@ class PostV2ResourcesCreatorApiAssetsUpdateRequest implements ModelInterface, Ar
             throw new \InvalidArgumentException('non-nullable file cannot be null');
         }
         $this->container['file'] = $file;
+
+        return $this;
+    }
+
+    /**
+     * Gets version_string
+     *
+     * @return string
+     */
+    public function getVersionString()
+    {
+        return $this->container['version_string'];
+    }
+
+    /**
+     * Sets version_string
+     *
+     * @param string $version_string version_string
+     *
+     * @return self
+     */
+    public function setVersionString($version_string)
+    {
+        if (is_null($version_string)) {
+            throw new \InvalidArgumentException('non-nullable version_string cannot be null');
+        }
+        $this->container['version_string'] = $version_string;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets oldest_resource_version_id
+     *
+     * @return int
+     */
+    public function getOldestResourceVersionId()
+    {
+        return $this->container['oldest_resource_version_id'];
+    }
+
+    /**
+     * Sets oldest_resource_version_id
+     *
+     * @param int $oldest_resource_version_id oldest_resource_version_id
+     *
+     * @return self
+     */
+    public function setOldestResourceVersionId($oldest_resource_version_id)
+    {
+        if (is_null($oldest_resource_version_id)) {
+            throw new \InvalidArgumentException('non-nullable oldest_resource_version_id cannot be null');
+        }
+        $this->container['oldest_resource_version_id'] = $oldest_resource_version_id;
 
         return $this;
     }
