@@ -35,7 +35,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * Resource Class Doc Comment
  *
  * @category Class
- * @description Supported &#39;with&#39; hints: - &#39;Creator&#39;: the resource creator/owner - &#39;Category&#39;: the resource category  - &#39;Description&#39;: the resource description (rendered HTML and BBCode) - &#39;LatestReviews&#39;: list of the 10 latest reviews - &#39;Filter values&#39;: filter values set by the creator
+ * @description Supported &#39;with&#39; hints: - &#39;Creator&#39;: the resource creator/owner - &#39;Category&#39;: the resource category  - &#39;Description&#39;: the resource description (rendered HTML and BBCode) - &#39;Dependencies&#39;: the resource dependencies section (rendered HTML and BBCode) - &#39;LatestReviews&#39;: list of the 10 latest reviews - &#39;FilterValues&#39;: filter values set by the creator
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -80,7 +80,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'latest_reviews' => '\OpenAPI\Client\Model\Review[]',
         'description' => '\OpenAPI\Client\Model\RichText',
         'category' => '\OpenAPI\Client\Model\Category',
-        'addons' => 'array<string,\OpenAPI\Client\Model\Addon[]>'
+        'addons' => 'array<string,\OpenAPI\Client\Model\Addon[]>',
+        'dependencies' => '\OpenAPI\Client\Model\RichText'
     ];
 
     /**
@@ -113,7 +114,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'latest_reviews' => null,
         'description' => null,
         'category' => null,
-        'addons' => null
+        'addons' => null,
+        'dependencies' => null
     ];
 
     /**
@@ -144,7 +146,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'latest_reviews' => false,
         'description' => false,
         'category' => false,
-        'addons' => false
+        'addons' => false,
+        'dependencies' => false
     ];
 
     /**
@@ -255,7 +258,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'latest_reviews' => 'LatestReviews',
         'description' => 'Description',
         'category' => 'Category',
-        'addons' => 'Addons'
+        'addons' => 'Addons',
+        'dependencies' => 'Dependencies'
     ];
 
     /**
@@ -286,7 +290,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'latest_reviews' => 'setLatestReviews',
         'description' => 'setDescription',
         'category' => 'setCategory',
-        'addons' => 'setAddons'
+        'addons' => 'setAddons',
+        'dependencies' => 'setDependencies'
     ];
 
     /**
@@ -317,7 +322,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'latest_reviews' => 'getLatestReviews',
         'description' => 'getDescription',
         'category' => 'getCategory',
-        'addons' => 'getAddons'
+        'addons' => 'getAddons',
+        'dependencies' => 'getDependencies'
     ];
 
     /**
@@ -400,6 +406,7 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('addons', $data ?? [], null);
+        $this->setIfExists('dependencies', $data ?? [], null);
     }
 
     /**
@@ -1061,6 +1068,33 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable addons cannot be null');
         }
         $this->container['addons'] = $addons;
+
+        return $this;
+    }
+
+    /**
+     * Gets dependencies
+     *
+     * @return \OpenAPI\Client\Model\RichText|null
+     */
+    public function getDependencies()
+    {
+        return $this->container['dependencies'];
+    }
+
+    /**
+     * Sets dependencies
+     *
+     * @param \OpenAPI\Client\Model\RichText|null $dependencies dependencies
+     *
+     * @return self
+     */
+    public function setDependencies($dependencies)
+    {
+        if (is_null($dependencies)) {
+            throw new \InvalidArgumentException('non-nullable dependencies cannot be null');
+        }
+        $this->container['dependencies'] = $dependencies;
 
         return $this;
     }

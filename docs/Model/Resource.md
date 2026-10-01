@@ -27,5 +27,6 @@ Name | Type | Description | Notes
 **description** | [**\OpenAPI\Client\Model\RichText**](RichText.md) |  | [optional]
 **category** | [**\OpenAPI\Client\Model\Category**](Category.md) |  | [optional]
 **addons** | **array<string,\OpenAPI\Client\Model\Addon[]>** |  | [optional]
+**dependencies** | [**\OpenAPI\Client\Model\RichText**](RichText.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
