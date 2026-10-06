@@ -115,6 +115,7 @@ Class | Method | HTTP request | Description
 *ResourcesDiscoverApi* | [**getV2ResourcesDiscoverDownloadDirectInitiate**](docs/Api/ResourcesDiscoverApi.md#getv2resourcesdiscoverdownloaddirectinitiate) | **GET** /v2/resources/discover/download/direct/initiate | Initiate a direct download request
 *ResourcesDiscoverApi* | [**getV2ResourcesDiscoverDownloadDirectPoll**](docs/Api/ResourcesDiscoverApi.md#getv2resourcesdiscoverdownloaddirectpoll) | **GET** /v2/resources/discover/download/direct/status | Fetch the status of a direct download request
 *ResourcesDiscoverApi* | [**getV2ResourcesDiscoverDownloadPlan**](docs/Api/ResourcesDiscoverApi.md#getv2resourcesdiscoverdownloadplan) | **GET** /v2/resources/discover/download/plan | Fetch a download plan
+*ResourcesDiscoverApi* | [**getV2ResourcesDiscoverDownloadPlanBatch**](docs/Api/ResourcesDiscoverApi.md#getv2resourcesdiscoverdownloadplanbatch) | **GET** /v2/resources/discover/download/plan/batch | Batch fetch download plans
 *ResourcesDiscoverApi* | [**getV2ResourcesDiscoverLicenses**](docs/Api/ResourcesDiscoverApi.md#getv2resourcesdiscoverlicenses) | **GET** /v2/resources/discover/licenses | Fetch a list of the user&#39;s licenses
 *ResourcesDiscoverCartApi* | [**getV2ResourcesDiscoverCartView**](docs/Api/ResourcesDiscoverCartApi.md#getv2resourcesdiscovercartview) | **GET** /v2/resources/discover/cart/view | View the user&#39;s cart items
 *ResourcesDiscoverCartApi* | [**postV2ResourcesDiscoverCartAdd**](docs/Api/ResourcesDiscoverCartApi.md#postv2resourcesdiscovercartadd) | **POST** /v2/resources/discover/cart/add | Add items to a user&#39;s cart
@@ -206,6 +207,10 @@ Class | Method | HTTP request | Description
 - [GetV2ResourcesDiscoverDownloadDirectPoll200ResponseData](docs/Model/GetV2ResourcesDiscoverDownloadDirectPoll200ResponseData.md)
 - [GetV2ResourcesDiscoverDownloadPlan200Response](docs/Model/GetV2ResourcesDiscoverDownloadPlan200Response.md)
 - [GetV2ResourcesDiscoverDownloadPlan200ResponseData](docs/Model/GetV2ResourcesDiscoverDownloadPlan200ResponseData.md)
+- [GetV2ResourcesDiscoverDownloadPlanBatch200Response](docs/Model/GetV2ResourcesDiscoverDownloadPlanBatch200Response.md)
+- [GetV2ResourcesDiscoverDownloadPlanBatch200ResponseData](docs/Model/GetV2ResourcesDiscoverDownloadPlanBatch200ResponseData.md)
+- [GetV2ResourcesDiscoverDownloadPlanBatch200ResponseDataPlansInner](docs/Model/GetV2ResourcesDiscoverDownloadPlanBatch200ResponseDataPlansInner.md)
+- [GetV2ResourcesDiscoverDownloadPlanBatch200ResponseDataPlansInnerError](docs/Model/GetV2ResourcesDiscoverDownloadPlanBatch200ResponseDataPlansInnerError.md)
 - [GetV2ResourcesDiscoverLicenses200Response](docs/Model/GetV2ResourcesDiscoverLicenses200Response.md)
 - [GetV2ResourcesDiscoverLicenses200ResponseData](docs/Model/GetV2ResourcesDiscoverLicenses200ResponseData.md)
 - [GetV2ResourcesEmbedDownloadInitiate200Response](docs/Model/GetV2ResourcesEmbedDownloadInitiate200Response.md)

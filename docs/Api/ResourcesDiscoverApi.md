@@ -9,6 +9,7 @@ All URIs are relative to https://api.builtbybit.com, except if the operation def
 | [**getV2ResourcesDiscoverDownloadDirectInitiate()**](ResourcesDiscoverApi.md#getV2ResourcesDiscoverDownloadDirectInitiate) | **GET** /v2/resources/discover/download/direct/initiate | Initiate a direct download request |
 | [**getV2ResourcesDiscoverDownloadDirectPoll()**](ResourcesDiscoverApi.md#getV2ResourcesDiscoverDownloadDirectPoll) | **GET** /v2/resources/discover/download/direct/status | Fetch the status of a direct download request |
 | [**getV2ResourcesDiscoverDownloadPlan()**](ResourcesDiscoverApi.md#getV2ResourcesDiscoverDownloadPlan) | **GET** /v2/resources/discover/download/plan | Fetch a download plan |
+| [**getV2ResourcesDiscoverDownloadPlanBatch()**](ResourcesDiscoverApi.md#getV2ResourcesDiscoverDownloadPlanBatch) | **GET** /v2/resources/discover/download/plan/batch | Batch fetch download plans |
 | [**getV2ResourcesDiscoverLicenses()**](ResourcesDiscoverApi.md#getV2ResourcesDiscoverLicenses) | **GET** /v2/resources/discover/licenses | Fetch a list of the user&#39;s licenses |
 
 
@@ -279,7 +280,7 @@ try {
 ## `getV2ResourcesDiscoverDownloadPlan()`
 
 ```php
-getV2ResourcesDiscoverDownloadPlan($content_type, $content_id, $supported, $current_server_sofware, $current_server_version): \OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadPlan200Response
+getV2ResourcesDiscoverDownloadPlan($content_type, $content_id, $supported, $current_server_software, $current_server_version): \OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadPlan200Response
 ```
 
 Fetch a download plan
@@ -306,11 +307,11 @@ $apiInstance = new OpenAPI\Client\Api\ResourcesDiscoverApi(
 $content_type = 'content_type_example'; // string | Only 'resource' is currently supported.
 $content_id = 56; // int
 $supported = 'supported_example'; // string | A comma-separated list of supported features (like archive formats).
-$current_server_sofware = 'current_server_sofware_example'; // string
+$current_server_software = 'current_server_software_example'; // string
 $current_server_version = 'current_server_version_example'; // string
 
 try {
-    $result = $apiInstance->getV2ResourcesDiscoverDownloadPlan($content_type, $content_id, $supported, $current_server_sofware, $current_server_version);
+    $result = $apiInstance->getV2ResourcesDiscoverDownloadPlan($content_type, $content_id, $supported, $current_server_software, $current_server_version);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesDiscoverApi->getV2ResourcesDiscoverDownloadPlan: ', $e->getMessage(), PHP_EOL;
@@ -324,12 +325,78 @@ try {
 | **content_type** | **string**| Only &#39;resource&#39; is currently supported. | |
 | **content_id** | **int**|  | |
 | **supported** | **string**| A comma-separated list of supported features (like archive formats). | [optional] |
-| **current_server_sofware** | **string**|  | [optional] |
+| **current_server_software** | **string**|  | [optional] |
 | **current_server_version** | **string**|  | [optional] |
 
 ### Return type
 
 [**\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadPlan200Response**](../Model/GetV2ResourcesDiscoverDownloadPlan200Response.md)
+
+### Authorization
+
+[token](../../README.md#token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getV2ResourcesDiscoverDownloadPlanBatch()`
+
+```php
+getV2ResourcesDiscoverDownloadPlanBatch($content_pairs, $supported, $current_server_software, $current_server_version): \OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadPlanBatch200Response
+```
+
+Batch fetch download plans
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: token
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ResourcesDiscoverApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$content_pairs = resource:5,resource_version:15; // string | A comma-separated list of content pairs. A content pair is a content_type and content_id separated by a : (colon).
+$supported = 'supported_example'; // string | A comma-separated list of supported features (like archive formats).
+$current_server_software = 'current_server_software_example'; // string
+$current_server_version = 'current_server_version_example'; // string
+
+try {
+    $result = $apiInstance->getV2ResourcesDiscoverDownloadPlanBatch($content_pairs, $supported, $current_server_software, $current_server_version);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesDiscoverApi->getV2ResourcesDiscoverDownloadPlanBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **content_pairs** | **string**| A comma-separated list of content pairs. A content pair is a content_type and content_id separated by a : (colon). | |
+| **supported** | **string**| A comma-separated list of supported features (like archive formats). | [optional] |
+| **current_server_software** | **string**|  | [optional] |
+| **current_server_version** | **string**|  | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetV2ResourcesDiscoverDownloadPlanBatch200Response**](../Model/GetV2ResourcesDiscoverDownloadPlanBatch200Response.md)
 
 ### Authorization
 
