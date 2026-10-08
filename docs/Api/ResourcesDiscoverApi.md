@@ -80,7 +80,7 @@ try {
 ## `getResourcesDiscoverResources()`
 
 ```php
-getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids): \OpenAPI\Client\Model\GetResourcesDiscoverResources200Response
+getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $min_referrer_rate): \OpenAPI\Client\Model\GetResourcesDiscoverResources200Response
 ```
 
 Fetch a list of resources
@@ -115,9 +115,10 @@ $per_page = 25; // float | The number of resources to return per page.
 $no_dependencies = True; // bool | Whether or not to exclude resources with dependencies listed.
 $excluded_resource_ids = 'excluded_resource_ids_example'; // string | A comma-separated list of resource IDs to exclude. No filter will be applied if empty.
 $excluded_creator_ids = 'excluded_creator_ids_example'; // string | A comma-separated list of creator IDs to exclude. No filter will be applied if empty.
+$min_referrer_rate = 56; // int | A minimum referral rate (percent) to filter on. Defaults to 0%.
 
 try {
-    $result = $apiInstance->getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids);
+    $result = $apiInstance->getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $min_referrer_rate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesDiscoverApi->getResourcesDiscoverResources: ', $e->getMessage(), PHP_EOL;
@@ -137,6 +138,7 @@ try {
 | **no_dependencies** | **bool**| Whether or not to exclude resources with dependencies listed. | [optional] |
 | **excluded_resource_ids** | **string**| A comma-separated list of resource IDs to exclude. No filter will be applied if empty. | [optional] |
 | **excluded_creator_ids** | **string**| A comma-separated list of creator IDs to exclude. No filter will be applied if empty. | [optional] |
+| **min_referrer_rate** | **int**| A minimum referral rate (percent) to filter on. Defaults to 0%. | [optional] |
 
 ### Return type
 

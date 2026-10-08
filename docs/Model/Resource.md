@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **title** | **string** |  | [optional]
 **summary** | **string** |  | [optional]
 **url** | **string** |  | [optional]
+**referrer_url** | **string** |  | [optional]
+**referrer_rate** | **int** |  | [optional]
 **creator_id** | **int** |  | [optional]
 **published_at** | **int** |  | [optional]
 **last_updated_at** | **int** |  | [optional]

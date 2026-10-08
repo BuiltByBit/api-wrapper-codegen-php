@@ -62,6 +62,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'string',
         'summary' => 'string',
         'url' => 'string',
+        'referrer_url' => 'string',
+        'referrer_rate' => 'int',
         'creator_id' => 'int',
         'published_at' => 'int',
         'last_updated_at' => 'int',
@@ -96,6 +98,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => null,
         'summary' => null,
         'url' => null,
+        'referrer_url' => null,
+        'referrer_rate' => null,
         'creator_id' => null,
         'published_at' => null,
         'last_updated_at' => null,
@@ -128,6 +132,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => false,
         'summary' => false,
         'url' => false,
+        'referrer_url' => false,
+        'referrer_rate' => false,
         'creator_id' => false,
         'published_at' => false,
         'last_updated_at' => false,
@@ -240,6 +246,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'title',
         'summary' => 'summary',
         'url' => 'url',
+        'referrer_url' => 'referrer_url',
+        'referrer_rate' => 'referrer_rate',
         'creator_id' => 'creator_id',
         'published_at' => 'published_at',
         'last_updated_at' => 'last_updated_at',
@@ -272,6 +280,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'setTitle',
         'summary' => 'setSummary',
         'url' => 'setUrl',
+        'referrer_url' => 'setReferrerUrl',
+        'referrer_rate' => 'setReferrerRate',
         'creator_id' => 'setCreatorId',
         'published_at' => 'setPublishedAt',
         'last_updated_at' => 'setLastUpdatedAt',
@@ -304,6 +314,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         'title' => 'getTitle',
         'summary' => 'getSummary',
         'url' => 'getUrl',
+        'referrer_url' => 'getReferrerUrl',
+        'referrer_rate' => 'getReferrerRate',
         'creator_id' => 'getCreatorId',
         'published_at' => 'getPublishedAt',
         'last_updated_at' => 'getLastUpdatedAt',
@@ -387,6 +399,8 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('summary', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('referrer_url', $data ?? [], null);
+        $this->setIfExists('referrer_rate', $data ?? [], null);
         $this->setIfExists('creator_id', $data ?? [], null);
         $this->setIfExists('published_at', $data ?? [], null);
         $this->setIfExists('last_updated_at', $data ?? [], null);
@@ -555,6 +569,60 @@ class Resource implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable url cannot be null');
         }
         $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets referrer_url
+     *
+     * @return string|null
+     */
+    public function getReferrerUrl()
+    {
+        return $this->container['referrer_url'];
+    }
+
+    /**
+     * Sets referrer_url
+     *
+     * @param string|null $referrer_url referrer_url
+     *
+     * @return self
+     */
+    public function setReferrerUrl($referrer_url)
+    {
+        if (is_null($referrer_url)) {
+            throw new \InvalidArgumentException('non-nullable referrer_url cannot be null');
+        }
+        $this->container['referrer_url'] = $referrer_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets referrer_rate
+     *
+     * @return int|null
+     */
+    public function getReferrerRate()
+    {
+        return $this->container['referrer_rate'];
+    }
+
+    /**
+     * Sets referrer_rate
+     *
+     * @param int|null $referrer_rate referrer_rate
+     *
+     * @return self
+     */
+    public function setReferrerRate($referrer_rate)
+    {
+        if (is_null($referrer_rate)) {
+            throw new \InvalidArgumentException('non-nullable referrer_rate cannot be null');
+        }
+        $this->container['referrer_rate'] = $referrer_rate;
 
         return $this;
     }
