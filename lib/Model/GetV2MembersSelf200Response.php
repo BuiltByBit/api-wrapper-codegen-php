@@ -1,6 +1,6 @@
 <?php
 /**
- * Member
+ * GetV2MembersSelf200Response
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Member Class Doc Comment
+ * GetV2MembersSelf200Response Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Member implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetV2MembersSelf200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Member';
+    protected static $openAPIModelName = 'get_v2_members_self_200_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,15 +57,8 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'user_id' => 'string',
-        'user_url' => 'string',
-        'username' => 'string',
-        'registered_at' => 'string',
-        'avatar_url_large' => 'string',
-        'avatar_url_medium' => 'string',
-        'avatar_url_small' => 'string',
-        'banned' => 'bool',
-        'discord_id' => 'string'
+        'result' => 'string',
+        'data' => '\OpenAPI\Client\Model\GetV2MembersSelf200ResponseData'
     ];
 
     /**
@@ -76,15 +69,8 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'user_id' => null,
-        'user_url' => null,
-        'username' => null,
-        'registered_at' => null,
-        'avatar_url_large' => null,
-        'avatar_url_medium' => null,
-        'avatar_url_small' => null,
-        'banned' => null,
-        'discord_id' => null
+        'result' => null,
+        'data' => null
     ];
 
     /**
@@ -93,15 +79,8 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'user_id' => false,
-        'user_url' => false,
-        'username' => false,
-        'registered_at' => false,
-        'avatar_url_large' => false,
-        'avatar_url_medium' => false,
-        'avatar_url_small' => false,
-        'banned' => false,
-        'discord_id' => false
+        'result' => false,
+        'data' => false
     ];
 
     /**
@@ -190,15 +169,8 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'user_id' => 'user_id',
-        'user_url' => 'user_url',
-        'username' => 'username',
-        'registered_at' => 'registered_at',
-        'avatar_url_large' => 'avatar_url_large',
-        'avatar_url_medium' => 'avatar_url_medium',
-        'avatar_url_small' => 'avatar_url_small',
-        'banned' => 'banned',
-        'discord_id' => 'discord_id'
+        'result' => 'result',
+        'data' => 'data'
     ];
 
     /**
@@ -207,15 +179,8 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'user_id' => 'setUserId',
-        'user_url' => 'setUserUrl',
-        'username' => 'setUsername',
-        'registered_at' => 'setRegisteredAt',
-        'avatar_url_large' => 'setAvatarUrlLarge',
-        'avatar_url_medium' => 'setAvatarUrlMedium',
-        'avatar_url_small' => 'setAvatarUrlSmall',
-        'banned' => 'setBanned',
-        'discord_id' => 'setDiscordId'
+        'result' => 'setResult',
+        'data' => 'setData'
     ];
 
     /**
@@ -224,15 +189,8 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'user_id' => 'getUserId',
-        'user_url' => 'getUserUrl',
-        'username' => 'getUsername',
-        'registered_at' => 'getRegisteredAt',
-        'avatar_url_large' => 'getAvatarUrlLarge',
-        'avatar_url_medium' => 'getAvatarUrlMedium',
-        'avatar_url_small' => 'getAvatarUrlSmall',
-        'banned' => 'getBanned',
-        'discord_id' => 'getDiscordId'
+        'result' => 'getResult',
+        'data' => 'getData'
     ];
 
     /**
@@ -276,6 +234,19 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const RESULT_SUCCESS = 'success';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getResultAllowableValues()
+    {
+        return [
+            self::RESULT_SUCCESS,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -292,15 +263,8 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('user_id', $data ?? [], null);
-        $this->setIfExists('user_url', $data ?? [], null);
-        $this->setIfExists('username', $data ?? [], null);
-        $this->setIfExists('registered_at', $data ?? [], null);
-        $this->setIfExists('avatar_url_large', $data ?? [], null);
-        $this->setIfExists('avatar_url_medium', $data ?? [], null);
-        $this->setIfExists('avatar_url_small', $data ?? [], null);
-        $this->setIfExists('banned', $data ?? [], null);
-        $this->setIfExists('discord_id', $data ?? [], null);
+        $this->setIfExists('result', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
     }
 
     /**
@@ -330,6 +294,15 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getResultAllowableValues();
+        if (!is_null($this->container['result']) && !in_array($this->container['result'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'result', must be one of '%s'",
+                $this->container['result'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -346,244 +319,65 @@ class Member implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets user_id
+     * Gets result
      *
      * @return string|null
      */
-    public function getUserId()
+    public function getResult()
     {
-        return $this->container['user_id'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets user_id
+     * Sets result
      *
-     * @param string|null $user_id user_id
+     * @param string|null $result result
      *
      * @return self
      */
-    public function setUserId($user_id)
+    public function setResult($result)
     {
-        if (is_null($user_id)) {
-            throw new \InvalidArgumentException('non-nullable user_id cannot be null');
+        if (is_null($result)) {
+            throw new \InvalidArgumentException('non-nullable result cannot be null');
         }
-        $this->container['user_id'] = $user_id;
+        $allowedValues = $this->getResultAllowableValues();
+        if (!in_array($result, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'result', must be one of '%s'",
+                    $result,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['result'] = $result;
 
         return $this;
     }
 
     /**
-     * Gets user_url
+     * Gets data
      *
-     * @return string|null
+     * @return \OpenAPI\Client\Model\GetV2MembersSelf200ResponseData|null
      */
-    public function getUserUrl()
+    public function getData()
     {
-        return $this->container['user_url'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets user_url
+     * Sets data
      *
-     * @param string|null $user_url user_url
+     * @param \OpenAPI\Client\Model\GetV2MembersSelf200ResponseData|null $data data
      *
      * @return self
      */
-    public function setUserUrl($user_url)
+    public function setData($data)
     {
-        if (is_null($user_url)) {
-            throw new \InvalidArgumentException('non-nullable user_url cannot be null');
+        if (is_null($data)) {
+            throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
-        $this->container['user_url'] = $user_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets username
-     *
-     * @return string|null
-     */
-    public function getUsername()
-    {
-        return $this->container['username'];
-    }
-
-    /**
-     * Sets username
-     *
-     * @param string|null $username username
-     *
-     * @return self
-     */
-    public function setUsername($username)
-    {
-        if (is_null($username)) {
-            throw new \InvalidArgumentException('non-nullable username cannot be null');
-        }
-        $this->container['username'] = $username;
-
-        return $this;
-    }
-
-    /**
-     * Gets registered_at
-     *
-     * @return string|null
-     */
-    public function getRegisteredAt()
-    {
-        return $this->container['registered_at'];
-    }
-
-    /**
-     * Sets registered_at
-     *
-     * @param string|null $registered_at registered_at
-     *
-     * @return self
-     */
-    public function setRegisteredAt($registered_at)
-    {
-        if (is_null($registered_at)) {
-            throw new \InvalidArgumentException('non-nullable registered_at cannot be null');
-        }
-        $this->container['registered_at'] = $registered_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets avatar_url_large
-     *
-     * @return string|null
-     */
-    public function getAvatarUrlLarge()
-    {
-        return $this->container['avatar_url_large'];
-    }
-
-    /**
-     * Sets avatar_url_large
-     *
-     * @param string|null $avatar_url_large avatar_url_large
-     *
-     * @return self
-     */
-    public function setAvatarUrlLarge($avatar_url_large)
-    {
-        if (is_null($avatar_url_large)) {
-            throw new \InvalidArgumentException('non-nullable avatar_url_large cannot be null');
-        }
-        $this->container['avatar_url_large'] = $avatar_url_large;
-
-        return $this;
-    }
-
-    /**
-     * Gets avatar_url_medium
-     *
-     * @return string|null
-     */
-    public function getAvatarUrlMedium()
-    {
-        return $this->container['avatar_url_medium'];
-    }
-
-    /**
-     * Sets avatar_url_medium
-     *
-     * @param string|null $avatar_url_medium avatar_url_medium
-     *
-     * @return self
-     */
-    public function setAvatarUrlMedium($avatar_url_medium)
-    {
-        if (is_null($avatar_url_medium)) {
-            throw new \InvalidArgumentException('non-nullable avatar_url_medium cannot be null');
-        }
-        $this->container['avatar_url_medium'] = $avatar_url_medium;
-
-        return $this;
-    }
-
-    /**
-     * Gets avatar_url_small
-     *
-     * @return string|null
-     */
-    public function getAvatarUrlSmall()
-    {
-        return $this->container['avatar_url_small'];
-    }
-
-    /**
-     * Sets avatar_url_small
-     *
-     * @param string|null $avatar_url_small avatar_url_small
-     *
-     * @return self
-     */
-    public function setAvatarUrlSmall($avatar_url_small)
-    {
-        if (is_null($avatar_url_small)) {
-            throw new \InvalidArgumentException('non-nullable avatar_url_small cannot be null');
-        }
-        $this->container['avatar_url_small'] = $avatar_url_small;
-
-        return $this;
-    }
-
-    /**
-     * Gets banned
-     *
-     * @return bool|null
-     */
-    public function getBanned()
-    {
-        return $this->container['banned'];
-    }
-
-    /**
-     * Sets banned
-     *
-     * @param bool|null $banned banned
-     *
-     * @return self
-     */
-    public function setBanned($banned)
-    {
-        if (is_null($banned)) {
-            throw new \InvalidArgumentException('non-nullable banned cannot be null');
-        }
-        $this->container['banned'] = $banned;
-
-        return $this;
-    }
-
-    /**
-     * Gets discord_id
-     *
-     * @return string|null
-     */
-    public function getDiscordId()
-    {
-        return $this->container['discord_id'];
-    }
-
-    /**
-     * Sets discord_id
-     *
-     * @param string|null $discord_id discord_id
-     *
-     * @return self
-     */
-    public function setDiscordId($discord_id)
-    {
-        if (is_null($discord_id)) {
-            throw new \InvalidArgumentException('non-nullable discord_id cannot be null');
-        }
-        $this->container['discord_id'] = $discord_id;
+        $this->container['data'] = $data;
 
         return $this;
     }

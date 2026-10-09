@@ -84,6 +84,7 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getV2Analytics**](docs/Api/AnalyticsApi.md#getv2analytics) | **GET** /v2/analytics | Fetch a list of analytics definitions
 *AnalyticsApi* | [**getV2AnalyticsGraph**](docs/Api/AnalyticsApi.md#getv2analyticsgraph) | **GET** /v2/analytics/graph | Fetch analytics graph data
 *AnalyticsApi* | [**getV2AnalyticsSingle**](docs/Api/AnalyticsApi.md#getv2analyticssingle) | **GET** /v2/analytics/single | Fetch a single analytics value
+*DefaultApi* | [**getV2MembersSelf**](docs/Api/DefaultApi.md#getv2membersself) | **GET** /v2/members/self | Fetch self member information
 *DeploymentsApi* | [**postV2DeploymentsUpgrade**](docs/Api/DeploymentsApi.md#postv2deploymentsupgrade) | **POST** /v2/deployments/upgrade | Upgrade a short-lived token
 *EventsApi* | [**getV2Events**](docs/Api/EventsApi.md#getv2events) | **GET** /v2/events | Fetch a list of pending events
 *EventsApi* | [**postV2EventsComplete**](docs/Api/EventsApi.md#postv2eventscomplete) | **POST** /v2/events/complete | Mark events as complete
@@ -169,6 +170,8 @@ Class | Method | HTTP request | Description
 - [GetV2Events200Response](docs/Model/GetV2Events200Response.md)
 - [GetV2Events200ResponseData](docs/Model/GetV2Events200ResponseData.md)
 - [GetV2Health200Response](docs/Model/GetV2Health200Response.md)
+- [GetV2MembersSelf200Response](docs/Model/GetV2MembersSelf200Response.md)
+- [GetV2MembersSelf200ResponseData](docs/Model/GetV2MembersSelf200ResponseData.md)
 - [GetV2ResourcesCreatorAddons200Response](docs/Model/GetV2ResourcesCreatorAddons200Response.md)
 - [GetV2ResourcesCreatorAddons200ResponseData](docs/Model/GetV2ResourcesCreatorAddons200ResponseData.md)
 - [GetV2ResourcesCreatorBatch200Response](docs/Model/GetV2ResourcesCreatorBatch200Response.md)
