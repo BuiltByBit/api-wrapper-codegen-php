@@ -80,7 +80,7 @@ try {
 ## `getResourcesDiscoverResources()`
 
 ```php
-getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $min_referrer_rate): \OpenAPI\Client\Model\GetResourcesDiscoverResources200Response
+getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $min_referrer_rate, $strict_mug): \OpenAPI\Client\Model\GetResourcesDiscoverResources200Response
 ```
 
 Fetch a list of resources
@@ -116,9 +116,10 @@ $no_dependencies = True; // bool | Whether or not to exclude resources with depe
 $excluded_resource_ids = 'excluded_resource_ids_example'; // string | A comma-separated list of resource IDs to exclude. No filter will be applied if empty.
 $excluded_creator_ids = 'excluded_creator_ids_example'; // string | A comma-separated list of creator IDs to exclude. No filter will be applied if empty.
 $min_referrer_rate = 56; // int | A minimum referral rate (percent) to filter on. Defaults to 0%.
+$strict_mug = True; // bool | Whether to enforce strict MUG compliance title/summary keyword exclusions.
 
 try {
-    $result = $apiInstance->getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $min_referrer_rate);
+    $result = $apiInstance->getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $min_referrer_rate, $strict_mug);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesDiscoverApi->getResourcesDiscoverResources: ', $e->getMessage(), PHP_EOL;
@@ -139,6 +140,7 @@ try {
 | **excluded_resource_ids** | **string**| A comma-separated list of resource IDs to exclude. No filter will be applied if empty. | [optional] |
 | **excluded_creator_ids** | **string**| A comma-separated list of creator IDs to exclude. No filter will be applied if empty. | [optional] |
 | **min_referrer_rate** | **int**| A minimum referral rate (percent) to filter on. Defaults to 0%. | [optional] |
+| **strict_mug** | **bool**| Whether to enforce strict MUG compliance title/summary keyword exclusions. | [optional] |
 
 ### Return type
 
