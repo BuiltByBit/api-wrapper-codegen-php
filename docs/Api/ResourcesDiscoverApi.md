@@ -16,7 +16,7 @@ All URIs are relative to https://api.builtbybit.com, except if the operation def
 ## `getResourcesDiscoverCategories()`
 
 ```php
-getResourcesDiscoverCategories($category_id, $with): \OpenAPI\Client\Model\GetResourcesDiscoverCategories200Response
+getResourcesDiscoverCategories($category_id, $with, $excluded_category_ids): \OpenAPI\Client\Model\GetResourcesDiscoverCategories200Response
 ```
 
 Fetch a list of categories
@@ -44,9 +44,10 @@ $apiInstance = new OpenAPI\Client\Api\ResourcesDiscoverApi(
 );
 $category_id = 'category_id_example'; // string | A category ID to filter on.
 $with = 'with_example'; // string | A comma-separated list of submodels to include.
+$excluded_category_ids = 'excluded_category_ids_example'; // string | A comma-separated list of category IDs to exclude. No filter will be applied if empty.
 
 try {
-    $result = $apiInstance->getResourcesDiscoverCategories($category_id, $with);
+    $result = $apiInstance->getResourcesDiscoverCategories($category_id, $with, $excluded_category_ids);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesDiscoverApi->getResourcesDiscoverCategories: ', $e->getMessage(), PHP_EOL;
@@ -59,6 +60,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **category_id** | **string**| A category ID to filter on. | [optional] |
 | **with** | **string**| A comma-separated list of submodels to include. | [optional] |
+| **excluded_category_ids** | **string**| A comma-separated list of category IDs to exclude. No filter will be applied if empty. | [optional] |
 
 ### Return type
 
@@ -80,7 +82,7 @@ try {
 ## `getResourcesDiscoverResources()`
 
 ```php
-getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $min_referrer_rate, $strict_mug): \OpenAPI\Client\Model\GetResourcesDiscoverResources200Response
+getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $min_referrer_rate, $strict_mug, $excluded_category_ids): \OpenAPI\Client\Model\GetResourcesDiscoverResources200Response
 ```
 
 Fetch a list of resources
@@ -117,9 +119,10 @@ $excluded_resource_ids = 'excluded_resource_ids_example'; // string | A comma-se
 $excluded_creator_ids = 'excluded_creator_ids_example'; // string | A comma-separated list of creator IDs to exclude. No filter will be applied if empty.
 $min_referrer_rate = 56; // int | A minimum referral rate (percent) to filter on. Defaults to 0%.
 $strict_mug = True; // bool | Whether to enforce strict MUG compliance title/summary keyword exclusions.
+$excluded_category_ids = 'excluded_category_ids_example'; // string | A comma-separated list of category IDs to exclude. No filter will be applied if empty.
 
 try {
-    $result = $apiInstance->getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $min_referrer_rate, $strict_mug);
+    $result = $apiInstance->getResourcesDiscoverResources($category_id, $with, $filters, $resource_ids, $page, $per_page, $no_dependencies, $excluded_resource_ids, $excluded_creator_ids, $min_referrer_rate, $strict_mug, $excluded_category_ids);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesDiscoverApi->getResourcesDiscoverResources: ', $e->getMessage(), PHP_EOL;
@@ -141,6 +144,7 @@ try {
 | **excluded_creator_ids** | **string**| A comma-separated list of creator IDs to exclude. No filter will be applied if empty. | [optional] |
 | **min_referrer_rate** | **int**| A minimum referral rate (percent) to filter on. Defaults to 0%. | [optional] |
 | **strict_mug** | **bool**| Whether to enforce strict MUG compliance title/summary keyword exclusions. | [optional] |
+| **excluded_category_ids** | **string**| A comma-separated list of category IDs to exclude. No filter will be applied if empty. | [optional] |
 
 ### Return type
 
